@@ -12,7 +12,7 @@ var argv = require('minimist')(process.argv.slice(2));
       .on('close', function() { process.exit(1); });
   }
 
-  if (argv.V || argv.version) {
+  if (argv.v || argv.version) {
     return console.log(require('../package.json').version);
   }
 
@@ -31,10 +31,6 @@ var argv = require('minimist')(process.argv.slice(2));
     if (err) {
       console.error(err.stack || String(err));
       process.exit(1);
-    }
-
-    if (opts.verbose) {
-      console.log(':D');
     }
 
     process.exit(0);
