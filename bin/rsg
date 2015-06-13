@@ -12,7 +12,7 @@ var argv = require('minimist')(process.argv.slice(2));
       .on('close', function() { process.exit(1); });
   }
 
-  if (argv.v || argv.version) {
+  if (argv.V || argv.version) {
     return console.log(require('../package.json').version);
   }
 
@@ -24,13 +24,24 @@ var argv = require('minimist')(process.argv.slice(2));
   opts.title = argv.t || argv.title;
   opts.basePath = argv.b || argv.basePath;
   opts.pushState = argv.p || argv.pushState;
+  opts.verbose = argv.v || argv.verbose;
   opts.files = argv.f || argv.files;
   opts.files = opts.files && opts.files.split(',').map(function(file) { return file.trim(); });
 
   rsg(opts).generate(function(err) {
     if (err) {
-      console.error(err.stack || String(err));
+      console.error(String(err));
       process.exit(1);
+    }
+
+    if (opts.verbose) {
+      var gray = '\u001b[90m';
+      var magenta = '\u001b[35m';
+      var reset = '\u001b[0m';
+
+      var time = '[' + gray + new Date().toLocaleTimeString() + reset + ']';
+
+      console.log(time, magenta + this.opts.output);
     }
 
     process.exit(0);
