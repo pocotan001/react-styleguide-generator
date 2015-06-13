@@ -1,0 +1,40 @@
+/**
+ * Nav
+ */
+
+.sg-nav {
+  list-style: none;
+}
+
+.sg-nav-link {
+  display: block;
+  overflow: hidden;
+  padding: 15px;
+  white-space: nowrap;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  word-wrap: normal; /* for IE 8/9 */
+  color: var(--gray);
+}
+
+.sg-nav-link:hover,
+.sg-nav-link.is-selected {
+  color: var(--white);
+  background: var(--black);
+}
+
+.sg-nav .fa {
+  margin: 0 10px 0 -.3em;
+  color: var(--gray-dark);
+}
+
+.sg-nav-link:hover .fa,
+.sg-nav-link.is-selected .fa {
+  color: var(--white);
+}
+
+@media (--break-sm) {
+  .sg-nav-link {
+    padding: 15px 25px;
+  }
+}

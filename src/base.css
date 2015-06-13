@@ -1,0 +1,10 @@
+.sg {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none !important; /* for link */
+  color: inherit;
+  border: none;
+  background: transparent;
+  font: 300 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

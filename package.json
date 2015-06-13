@@ -2,8 +2,15 @@
   "name": "react-styleguide-generator",
   "version": "0.0.1",
   "description": "Easily generate a style guides from your React components",
+  "main": "dist/lib/index.js",
+  "bin": {
+    "rsg": "dist/bin/rsg"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "cssnext -c src/index.css dist/sg.css",
+    "build:js": "browserify src | uglifyjs -m -o dist/sg.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +29,25 @@
   "bugs": {
     "url": "https://github.com/pocotan001/react-styleguide-generator/issues"
   },
-  "homepage": "https://github.com/pocotan001/react-styleguide-generator#readme"
+  "homepage": "https://github.com/pocotan001/react-styleguide-generator#readme",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "dependencies": {
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^3.1.15",
+    "cssnext": "^1.6.0",
+    "eslint": "^0.22.1",
+    "eslint-plugin-react": "^2.5.0",
+    "highlight.js": "^8.6.0",
+    "marked": "^0.3.3",
+    "page": "^1.6.3",
+    "react": "^0.13.3",
+    "uglify-js": "^2.4.23"
+  }
 }
