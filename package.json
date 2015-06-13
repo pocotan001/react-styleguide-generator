@@ -2,10 +2,7 @@
   "name": "react-styleguide-generator",
   "version": "0.0.1",
   "description": "Easily generate a style guides from your React components",
-  "main": "dist/lib/index.js",
-  "bin": {
-    "rsg": "dist/bin/rsg"
-  },
+  "main": "lib/rsg.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:css && npm run build:js",
