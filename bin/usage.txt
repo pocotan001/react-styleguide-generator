@@ -1,0 +1,15 @@
+Usage: rsg [input] [options]
+
+Options:
+  -h, --help
+  -V, --version
+  -t, --title
+  -c, --config
+  -v, --verbose
+  -o, --output
+  -p, --pushState
+  --extraFiles
+
+Examples:
+  rsg css
+  rsg css -w

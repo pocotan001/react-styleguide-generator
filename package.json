@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Easily generate a style guides from your React components",
   "main": "lib/rsg.js",
+  "bin": {
+    "rsg": "bin/rsg"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:css && npm run build:js",
