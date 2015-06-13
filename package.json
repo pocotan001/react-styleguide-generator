@@ -9,9 +9,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bin": "node bin/rsg",
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "cssnext -c src/index.css dist/sg.css",
-    "build:js": "browserify src | uglifyjs -m -o dist/sg.js"
+    "prod": "npm run prod:css && npm run prod:js",
+    "prod:css": "cssnext -c src/index.css dist/sg.css",
+    "prod:js": "browserify src | uglifyjs -m -o dist/sg.js",
+    "dev": "npm run dev:css && npm run dev:js",
+    "dev:css": "cssnext -sv src/index.css dist/sg.css",
+    "dev:js": "browserify -d src -o dist/sg.js"
   },
   "files": [
     "bin",
