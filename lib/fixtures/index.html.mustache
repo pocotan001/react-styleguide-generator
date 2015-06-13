@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="src/sg.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="user.css">
-    {{#extraCss}}
-      <link rel="stylesheet" href="{{.}}">
-    {{/extraCss}}
+    {{#cssFils}}
+      <link rel="stylesheet" href="{{{.}}}">
+    {{/cssFils}}
   </head>
   <body>
     <div id="app"></div>
@@ -27,9 +27,9 @@
         hashbang: {{hashbang}}
       };
     </script>
-    {{#extraJs}}
-      <script src="{{.}}"></script>
-    {{/extraJs}}
+    {{#jsFils}}
+      <script src="{{{.}}}"></script>
+    {{/jsFils}}
     <script src="src/contents-bundle.js"></script>
     <script src="src/sg.js"></script>
   </body>

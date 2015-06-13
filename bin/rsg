@@ -17,15 +17,15 @@ var argv = require('minimist')(process.argv.slice(2));
   }
 
   var CWD = process.cwd();
+  var opts = {};
 
-  var opts = {
-    input: argv._.length === 1 ? argv._[0] : argv._.map(function(file) { return path.resolve(CWD, file); }),
-    output: argv.o || argv.output,
-    title: argv.t || argv.title,
-    basePath: argv.b || argv.basePath,
-    pushState: argv.p || argv.pushState,
-    extraFiles: argv.extraFiles && argv.extraFiles.split(',').map(function(file) { return file.trim(); })
-  };
+  opts.input = argv._.length === 1 ? argv._[0] : argv._.map(function(file) { return path.resolve(CWD, file); });
+  opts.output = argv.o || argv.output;
+  opts.title = argv.t || argv.title;
+  opts.basePath = argv.b || argv.basePath;
+  opts.pushState = argv.p || argv.pushState;
+  opts.files = argv.f || argv.files;
+  opts.files = opts.files && opts.files.split(',').map(function(file) { return file.trim(); });
 
   rsg(opts).generate(function(err) {
     if (err) {
