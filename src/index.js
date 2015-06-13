@@ -61,5 +61,8 @@ page('*', () => {
   page.redirect('.');
 });
 
-page.base(window.options.base);
+if (window.options.base) {
+  page.base(window.options.base);
+}
+
 page.start({ hashbang: window.options.hashbang });
