@@ -1,6 +1,6 @@
 {
   "name": "react-styleguide-generator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Easily generate a style guides from your React components",
   "main": "lib/rsg.js",
   "bin": {
