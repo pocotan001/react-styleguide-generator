@@ -22,6 +22,7 @@ var argv = require('minimist')(process.argv.slice(2));
     input: argv._.length === 1 ? argv._[0] : argv._.map(function(file) { return path.resolve(CWD, file); }),
     output: argv.o || argv.output,
     title: argv.t || argv.title,
+    basePath: argv.b || argv.basePath,
     pushState: argv.p || argv.pushState,
     extraFiles: argv.extraFiles && argv.extraFiles.split(',').map(function(file) { return file.trim(); })
   };

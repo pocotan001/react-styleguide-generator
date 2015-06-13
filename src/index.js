@@ -1,5 +1,3 @@
-/* global options */
-
 import React from 'react';
 import page from 'page';
 import App from './components/App';
@@ -63,4 +61,5 @@ page('*', () => {
   page.redirect('/');
 });
 
-page.start({ hashbang: options.hashbang });
+page.base(window.options.base);
+page.start({ hashbang: window.options.hashbang });

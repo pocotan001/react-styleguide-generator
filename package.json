@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "bin": "node bin/rsg",
     "build": "npm run build:css && npm run build:js",
     "build:css": "cssnext -c src/index.css dist/sg.css",
     "build:js": "browserify src | uglifyjs -m -o dist/sg.js"
