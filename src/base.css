@@ -8,3 +8,9 @@
   background: transparent;
   font: 300 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.sg:focus {
+  color: inherit;
+  outline: none;
+  box-shadow: 0 0 5px var(--blue);
+}

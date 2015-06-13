@@ -27,6 +27,7 @@
   .sg-header-inner {
     position: fixed;
     width: 240px;
+    padding-bottom: 5px;
   }
 }
 

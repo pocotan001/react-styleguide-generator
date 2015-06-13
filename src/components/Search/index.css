@@ -39,10 +39,6 @@
   background: transparent;
 }
 
-.sg-search-input:focus {
-  outline: none;
-}
-
 .sg-search-input::-webkit-input-placeholder {
   color: var(--gray-dark);
 }
