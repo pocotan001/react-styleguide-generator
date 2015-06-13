@@ -38,6 +38,7 @@
   "dependencies": {
     "babelify": "^6.1.2",
     "browserify": "^10.2.4",
+    "glob": "^5.0.10",
     "minimist": "^1.1.1",
     "mkdirp": "^0.5.1",
     "mustache": "^2.1.1",
