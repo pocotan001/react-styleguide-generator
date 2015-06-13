@@ -1,0 +1,26 @@
+{
+  "name": "react-styleguide-generator",
+  "version": "0.0.1",
+  "description": "Easily generate a style guides from your React components",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pocotan001/react-styleguide-generator.git"
+  },
+  "keywords": [
+    "react",
+    "styleguide",
+    "generator",
+    "component",
+    "documentation",
+    "markdown"
+  ],
+  "author": "pocotan001",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pocotan001/react-styleguide-generator/issues"
+  },
+  "homepage": "https://github.com/pocotan001/react-styleguide-generator#readme"
+}
