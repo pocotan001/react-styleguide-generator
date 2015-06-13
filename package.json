@@ -1,7 +1,7 @@
 {
   "name": "react-styleguide-generator-example",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.4",
   "scripts": {
     "styleguide": "rsg 'example/**/*.js' -t 'React Style Guide' -b '/react-styleguide-generator/styleguide'"
   },
