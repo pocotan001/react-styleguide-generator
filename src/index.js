@@ -7,7 +7,7 @@ let mountNode = document.getElementById('app');
 /**
  * Home
  */
-page('/', () => {
+page('.', () => {
   let props = {
     query: 'overview',
     keys: ['category'],
@@ -58,7 +58,7 @@ page('/:category/:title?', (ctx) => {
  * Not Found
  */
 page('*', () => {
-  page.redirect('/');
+  page.redirect('.');
 });
 
 page.base(window.options.base);
