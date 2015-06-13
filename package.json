@@ -3,13 +3,13 @@
   "private": true,
   "version": "0.0.2",
   "scripts": {
-    "styleguide": "rsg 'example/**/*.js' -t 'React Style Guide'"
+    "styleguide": "rsg 'example/**/*.js' -t 'React Style Guide' -b '/react-styleguide-generator/styleguide'"
   },
   "dependencies": {
     "react": "^0.13.3",
     "react-bootstrap": "^0.23.3"
   },
   "devDependencies": {
-    "react-styleguide-generator": "0.0.2"
+    "react-styleguide-generator": "*"
   }
 }
