@@ -12,17 +12,25 @@
     "build:css": "cssnext -c src/index.css dist/sg.css",
     "build:js": "browserify src | uglifyjs -m -o dist/sg.js"
   },
+  "files": [
+    "bin",
+    "dist",
+    "lib",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pocotan001/react-styleguide-generator.git"
   },
   "keywords": [
-    "react",
-    "styleguide",
-    "generator",
     "component",
     "documentation",
-    "markdown"
+    "generator",
+    "markdown",
+    "react",
+    "styleguide"
   ],
   "author": "pocotan001",
   "license": "MIT",
