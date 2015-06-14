@@ -7,10 +7,20 @@
   border: none;
   background: transparent;
   font: 300 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a.sg,
+button.sg,
+input.sg,
+select.sg,
+textarea.sg,
+label.sg {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, .3);
 }
 
 .sg:focus {
   color: inherit;
   outline: none;
-  box-shadow: 0 0 5px var(--blue);
+  box-shadow: none;
 }
