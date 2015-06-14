@@ -27,7 +27,7 @@
   .sg-header-inner {
     position: fixed;
     width: 240px;
-    padding-bottom: 5px;
+    backface-visibility: hidden; /* for GPU acceleration */
   }
 }
 
@@ -42,10 +42,6 @@
 .sg-header-title-link {
   color: var(--white) !important;
   font-size: 20px;
-}
-
-.sg-header-title-link:hover {
-  opacity: .8;
 }
 
 @media (--break-sm) {
@@ -73,12 +69,6 @@
   .sg-header-copy {
     display: block;
   }
-}
-
-/* States */
-
-.sg-header-copy-link:hover {
-  opacity: .8;
 }
 
 /**

@@ -29,9 +29,13 @@ export default class Header extends React.Component {
               react-sg
             </a>
           </p>
-          <p className="sg sg-header-toggle-menu" onClick={this.toggleMenu.bind(this)}>
+          <button
+            className="sg sg-header-toggle-menu"
+            type="button"
+            onClick={this.toggleMenu.bind(this)}
+          >
             <i className="fa fa-bars" />
-          </p>
+          </button>
           <div className={`sg sg-header-menu${this.state.visibleMenu ? ' is-visible' : ''}`}>
             <Search defaultValue={this.props.searchQuery} />
             <Nav selectedCategory={this.props.selectedCategory} />

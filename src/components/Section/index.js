@@ -33,13 +33,15 @@ export default class Section extends React.Component {
 
     return (
       <h1 className="sg sg-section-heading">
-        <a
-          className="sg sg-section-heading-title"
-          href={`${this.props.category}/${this.props.title}`}
-        >
-          {this.props.title}
-          <i className="fa fa-link" />
-        </a>
+        <span className="sg sg-section-heading-title">
+          <a
+            className="sg sg-section-heading-title-link"
+            href={`${this.props.category}/${this.props.title}`}
+          >
+            {this.props.title}
+            <i className="fa fa-link" />
+          </a>
+        </span>
         {!isOverview &&
           <a className="sg sg-section-heading-category" href={this.props.category}>
             {this.props.category}

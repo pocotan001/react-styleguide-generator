@@ -24,6 +24,8 @@
  */
 
 .sg-section-heading {
+  display: flex;
+  align-items: center;
   padding: 15px 20px;
   border-bottom: 1px solid var(--gray-lighter);
 }
@@ -41,25 +43,19 @@
 }
 
 .sg-section-heading-title {
+  flex: 1;
+}
+
+.sg-section-heading-title-link {
   display: inline-block;
   color: var(--gray-dark) !important;
   font-size: 24px;
-  line-height: 24px;
-}
-
-.sg-section-heading-title:hover {
-  opacity: .8;
+  line-height: 1.2;
 }
 
 .sg-section-heading-category {
-  float: right;
   color: var(--gray) !important;
   font-size: 13px;
-  line-height: 24px;
-}
-
-.sg-section-heading-category:hover {
-  opacity: .8;
 }
 
 /**
