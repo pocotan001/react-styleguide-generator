@@ -4,13 +4,19 @@
 
 .sg-section {
   overflow: hidden;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   border-radius: 5px;
   background: var(--white);
 }
 
 .sg-section > :last-child {
   border-bottom: none;
+}
+
+@media (--break-sm) {
+  .sg-section {
+    margin-bottom: 25px;
+  }
 }
 
 /**

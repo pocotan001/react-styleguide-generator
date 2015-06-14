@@ -4,12 +4,12 @@
 
 .sg-main {
   position: relative;
-  padding: 25px 15px 0;
+  padding: 15px 15px 0;
 }
 
 @media (--break-sm) {
   .sg-main {
     flex: 1;
-    padding: 25px 25px 0;
+    padding-top: 25px;
   }
 }
