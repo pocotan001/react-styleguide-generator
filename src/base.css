@@ -2,7 +2,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  text-decoration: none !important; /* for link */
   color: inherit;
   border: none;
   background: transparent;
@@ -17,6 +16,12 @@ select.sg,
 textarea.sg,
 label.sg {
   -webkit-tap-highlight-color: rgba(0, 0, 0, .3);
+}
+
+a.sg,
+button.sg {
+  text-decoration: none !important;
+  touch-action: none;
 }
 
 a.sg:hover,
