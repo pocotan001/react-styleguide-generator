@@ -20,8 +20,6 @@ rules:
   spaced-line-comment: [1, "always"]
 
   # React
-  react/display-name: 2
-  react/jsx-quotes: [1, "double"]
   react/jsx-no-undef: 2
   react/jsx-uses-vars: 2
   react/no-did-mount-set-state: 2
@@ -30,7 +28,6 @@ rules:
   react/no-unknown-property: 2
   react/react-in-jsx-scope: 2
   react/self-closing-comp: 2
-  react/wrap-multilines: 1
 
 env:
   browser: true

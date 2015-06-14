@@ -6,9 +6,14 @@
   "bin": {
     "rsg": "bin/rsg"
   },
+  "directories": {
+    "lib": "lib",
+    "bin": "bin",
+    "example": "example"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bin": "node bin/rsg",
+    "styleguide": "node bin/rsg 'example/components/**/*.js' -t 'React Style Guide' -b 'example/styleguide' -o 'example/styleguide' -v -f 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'",
     "prod": "npm run prod:css && npm run prod:js",
     "prod:css": "cssnext -c src/index.css dist/sg.css",
     "prod:js": "browserify src | uglifyjs -m -o dist/sg.js",
@@ -46,6 +51,9 @@
     "transform": [
       "babelify"
     ]
+  },
+  "peerDependencies": {
+    "react": ">=0.13"
   },
   "dependencies": {
     "babelify": "^6.1.2",
