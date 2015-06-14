@@ -73,6 +73,7 @@
     "marked": "^0.3.3",
     "page": "^1.6.3",
     "react": "^0.13.3",
+    "react-bootstrap": "^0.23.3",
     "uglify-js": "^2.4.23"
   }
 }
