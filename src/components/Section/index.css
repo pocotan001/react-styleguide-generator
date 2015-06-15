@@ -5,6 +5,7 @@
 .sg-section {
   overflow: hidden;
   margin-bottom: 15px;
+  border: 1px solid color(var(--gray-light) a(30%));
   border-radius: 5px;
   background: var(--white);
 }
