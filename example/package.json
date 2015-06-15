@@ -1,0 +1,15 @@
+{
+  "name": "react-styleguide-generator-example",
+  "private": true,
+  "scripts": {
+    "dev": "node ../bin/rsg 'components/**/*.js' -t 'React Style Guide' -v -f 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'",
+    "prod": "rsg 'components/**/*.js' -t 'React Style Guide' -f 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'"
+  },
+  "dependencies": {
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.23.3"
+  },
+  "devDependencies": {
+    "react-styleguide-generator": "*"
+  }
+}
