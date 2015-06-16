@@ -1,15 +1,13 @@
 Usage: rsg [input] [options]
 
 Options:
-  -o, --output     Output directory ['styleguide']
-  -t, --title      Used as a page title ['Style Guide']
-  -p, --pushState  Enable HTML5 pushState
-  -v, --verbose    Verbose output
-  -r, --root       Set the root path
-  -f, --files      Inject references to files into HTML
-  -c, --config     wip ['styleguide.json']
-  -h, --help       Output usage information
-  -V, --version    Output the version number
+  -o, --output     Output directory            ['styleguide']
+  -t, --title      Used as a page title        ['Style Guide']
+  -c, --config     Config file                 ['styleguide.json']
+  -r, --root       Set the root path           ['.']
+  -f, --files      Inject references to files  ['']
+  -p, --pushstate  Enable HTML5 pushState      [false]
+  -v, --verbose    Verbose output              [false]
 
 Examples:
-  rsg 'example/**/*.js' -t 'My Style Guide'
+  rsg 'example/**/*.js' -t 'My Style Guide' -f 'a.css, a.js'
