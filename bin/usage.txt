@@ -1,14 +1,15 @@
 Usage: rsg [input] [options]
 
 Options:
-  -o, --output     Output directory                      [default: 'styleguide']
-  -t, --title      Used as a page title                  [default: 'Style Guide']
+  -o, --output     Output directory ['styleguide']
+  -t, --title      Used as a page title ['Style Guide']
   -p, --pushState  Enable HTML5 pushState
   -v, --verbose    Verbose output
   -r, --root       Set the root path
   -f, --files      Inject references to files into HTML
-  -b, --babel      Pass the options to Babel
-  -c, --config     wip                                   [default: 'react-styleguide.json']
+  -c, --config     wip ['styleguide.json']
+  -h, --help       Output usage information
+  -V, --version    Output the version number
 
 Examples:
-  rsg 'example/**/*.js' -t 'Cool Components'
+  rsg 'example/**/*.js' -t 'My Style Guide'

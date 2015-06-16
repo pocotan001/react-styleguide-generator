@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var path = require('path');
 var rsg = require('../lib/rsg');
 var argv = require('minimist')(process.argv.slice(2));
 
 (function() {
   if (!argv._[0] || argv.h || argv.help) {
-    return fs.createReadStream(path.resolve(__dirname, 'usage.txt'))
+    return require('fs').createReadStream(require('path').resolve(__dirname, 'usage.txt'))
       .pipe(process.stdout)
       .on('close', function() { process.exit(1); });
   }
@@ -16,18 +14,14 @@ var argv = require('minimist')(process.argv.slice(2));
     return console.log(require('../package.json').version);
   }
 
-  var CWD = process.cwd();
-  var opts = {};
-
-  opts.input = argv._.length === 1 ? argv._[0] : argv._.map(function(file) { return path.resolve(CWD, file); });
-  opts.output = argv.o || argv.output;
-  opts.title = argv.t || argv.title;
-  opts.root = argv.r || argv.root;
-  opts.babel = argv.b || argv.babel;
-  opts.pushState = argv.p || argv.pushState;
-  opts.verbose = argv.v || argv.verbose;
-  opts.files = argv.f || argv.files;
-  opts.files = opts.files && opts.files.split(',').map(function(file) { return file.trim(); });
+  var opts = {
+    input: argv._[0],
+    output: argv.o || argv.output,
+    title: argv.t || argv.title,
+    root: argv.r || argv.root,
+    pushState: argv.p || argv.pushState,
+    files: argv.f || argv.files
+  };
 
   rsg(opts).generate(function(err) {
     if (err) {
@@ -35,13 +29,11 @@ var argv = require('minimist')(process.argv.slice(2));
       process.exit(1);
     }
 
-    if (opts.verbose) {
+    if (argv.v || argv.verbose) {
       var gray = '\u001b[90m';
       var magenta = '\u001b[35m';
       var reset = '\u001b[0m';
-
       var time = '[' + gray + new Date().toLocaleTimeString() + reset + ']';
-
       console.log(time, magenta + this.opts.output);
     }
 
