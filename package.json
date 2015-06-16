@@ -15,11 +15,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "styleguide": "node bin/rsg 'example/components/**/*.js' -t 'React Style Guide' -b 'example/styleguide' -o 'example/styleguide' -v -f 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'",
     "prod": "npm run prod:css && npm run prod:js",
-    "prod:css": "cssnext -c src/index.css dist/sg.css",
-    "prod:js": "browserify src | uglifyjs -m -o dist/sg.js",
+    "prod:css": "cssnext -c src/index.css dist/_sg.css",
+    "prod:js": "browserify -x react src | uglifyjs -m -o dist/_sg.js",
     "dev": "npm run dev:css && npm run dev:js",
-    "dev:css": "cssnext -sv src/index.css dist/sg.css",
-    "dev:js": "browserify -d src -o dist/sg.js"
+    "dev:css": "cssnext -sv src/index.css dist/_sg.css",
+    "dev:js": "browserify -d -x react src -o dist/_sg.js"
   },
   "files": [
     "bin",
@@ -62,8 +62,7 @@
     "is-url": "^1.2.1",
     "minimist": "^1.1.1",
     "mkdirp": "^0.5.1",
-    "mustache": "^2.1.1",
-    "ncp": "^2.0.0"
+    "mustache": "^2.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^3.1.15",
@@ -73,7 +72,6 @@
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
     "page": "^1.6.3",
-    "react": "^0.13.3",
     "uglify-js": "^2.4.23"
   }
 }
