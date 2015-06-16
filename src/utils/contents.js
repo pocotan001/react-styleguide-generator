@@ -1,4 +1,6 @@
-/* global Contents */
+// for `commonStrict` module formatter
+// https://babeljs.io/docs/usage/modules/#interop
+let Contents = window.Contents.map((Content) => Content.default || Content);
 
 export default {
   /**
