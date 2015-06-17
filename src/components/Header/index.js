@@ -26,7 +26,7 @@ export default class Header extends React.Component {
               href="https://github.com/pocotan001/react-styleguide-generator"
               target="_blank"
             >
-              react-sg
+              react-styleguide
             </a>
           </p>
           <button
