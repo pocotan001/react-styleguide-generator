@@ -29,7 +29,7 @@ export default {
 
     return Contents.filter((Content) => {
       return keys
-        .filter((key) => !!Content.styleguide[key] && Content.styleguide[key] !== 'overview')
+        .filter((key) => !!Content.styleguide[key])
         .some((key) => {
           let val = Content.styleguide[key].toLowerCase();
 
