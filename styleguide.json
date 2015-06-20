@@ -1,5 +1,5 @@
 {
-  "input": "components/**/*.js",
+  "input": "example/components/**/*.js",
   "title": "React Style Guide",
   "files": [
     "//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"

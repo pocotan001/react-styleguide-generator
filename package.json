@@ -14,12 +14,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist/*",
-    "prod": "npm run clean && npm run prod:css && npm run prod:js",
-    "prod:css": "cssnext -c src/index.css dist/sg.css",
-    "prod:js": "browserify -x react src | uglifyjs -m -o dist/sg.js",
+    "prod": "npm run clean && npm run build",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "cssnext -c src/index.css dist/sg.css",
+    "build:js": "browserify -x react src | uglifyjs -m -o dist/sg.js",
     "dev": "npm run dev:css && npm run dev:js",
     "dev:css": "cssnext -sv src/index.css dist/sg.css",
-    "dev:js": "browserify -d -x react src -o dist/sg.js"
+    "dev:js": "browserify -d -x react src -o dist/sg.js",
+    "styleguide": "node bin/rsg",
+    "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide",
+    "postpublish": "npm run ghpages"
   },
   "files": [
     "bin",
@@ -70,9 +74,12 @@
     "cssnext": "^1.7.1",
     "eslint": "^0.23.0",
     "eslint-plugin-react": "^2.5.2",
+    "gh-pages": "^0.3.1",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
     "page": "^1.6.3",
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.23.4",
     "rimraf": "^2.4.0",
     "uglify-js": "^2.4.23"
   }

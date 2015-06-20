@@ -3,16 +3,15 @@
   "private": true,
   "scripts": {
     "start": "npm run styleguide && npm run serve -- ./styleguide",
-    "styleguide": "node ../bin/rsg",
-    "serve": "serve",
-    "deploy": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
+    "styleguide": "rsg",
+    "serve": "serve"
   },
   "dependencies": {
     "react": "^0.13.3",
     "react-bootstrap": "^0.23.3"
   },
   "devDependencies": {
-    "gh-pages": "^0.3.1",
+    "react-styleguide-generator": "*",
     "serve": "^1.4.0"
   }
 }
