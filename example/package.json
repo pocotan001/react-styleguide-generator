@@ -2,11 +2,10 @@
   "name": "react-styleguide-generator-example",
   "private": true,
   "scripts": {
-    "start": "npm run dev && npm run serve -- ./styleguide",
-    "dev": "node ../bin/rsg 'components/**/*.js' -t 'React Style Guide' -v -f 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'",
-    "prod": "node ../bin/rsg 'components/**/*.js' -t 'React Style Guide' -r 'react-styleguide-generator' -f 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'",
+    "start": "npm run styleguide && npm run serve -- ./styleguide",
+    "styleguide": "node ../bin/rsg",
     "serve": "serve",
-    "deploy": "npm run prod && gh-pages -d styleguide"
+    "deploy": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
   },
   "dependencies": {
     "react": "^0.13.3",
@@ -14,7 +13,6 @@
   },
   "devDependencies": {
     "gh-pages": "^0.3.1",
-    "react-styleguide-generator": "*",
     "serve": "^1.4.0"
   }
 }
