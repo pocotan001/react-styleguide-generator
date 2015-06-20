@@ -1,5 +1,6 @@
-@import "./settings";
-@import "./base";
+@import "./common/settings";
+@import "./common/base";
+
 @import "./components/Container";
 @import "./components/Header";
 @import "./components/Main";

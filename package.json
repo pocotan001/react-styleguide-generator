@@ -6,20 +6,15 @@
   "bin": {
     "rsg": "bin/rsg"
   },
-  "directories": {
-    "lib": "lib",
-    "bin": "bin",
-    "example": "example"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
-    "build:css": "cssnext -c src/index.css dist/sg.css",
-    "build:js": "browserify -t [babelify --stage 0] -x react src | uglifyjs -m -o dist/sg.js",
+    "build:css": "cssnext -c app/index.css dist/sg.css",
+    "build:js": "browserify -t [babelify --stage 0] -x react app | uglifyjs -m -o dist/sg.js",
     "dev": "npm run dev:css && npm run dev:js",
-    "dev:css": "cssnext -sv src/index.css dist/sg.css",
-    "dev:js": "browserify -d -t [babelify --stage 0] -x react src -o dist/sg.js",
+    "dev:css": "cssnext -s app/index.css dist/sg.css",
+    "dev:js": "browserify -d -t [babelify --stage 0] -x react app -o dist/sg.js",
     "clean": "rimraf dist/*",
     "styleguide": "node bin/rsg",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide",
