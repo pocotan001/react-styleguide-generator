@@ -1,0 +1,10 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+deployment:
+  ghpages:
+    branch: master
+    commands:
+      - npm run ghpages
