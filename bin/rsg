@@ -1,17 +1,21 @@
 #!/usr/bin/env node
 
-var rsg = require('../lib/rsg');
-var argv = require('minimist')(process.argv.slice(2));
+var RSG = require('../lib/rsg')
+var argv = require('minimist')(process.argv.slice(2))
 
-(function() {
+var GRAY_COLOR = '\u001b[90m'
+var MAGENTA_COLOR = '\u001b[35m'
+var RESET_COLOR = '\u001b[0m'
+
+!(function () {
   if (argv.h || argv.help) {
     return require('fs').createReadStream(require('path').resolve(__dirname, 'usage.txt'))
       .pipe(process.stdout)
-      .on('close', function() { process.exit(1); });
+      .on('close', function () { process.exit(1) })
   }
 
   if (argv.V || argv.version) {
-    return console.log(require('../package.json').version);
+    return console.log(require('../package.json').version)
   }
 
   var opts = {
@@ -22,26 +26,30 @@ var argv = require('minimist')(process.argv.slice(2));
     pushstate: argv.p || argv.pushstate,
     files: argv.f || argv.files,
     config: argv.c || argv.config
-  };
-
-  if (opts.files) {
-    opts.files = opts.files.split(',').map(function(part) { return part.trim(); });
   }
 
-  rsg(opts).generate(function(err) {
+  // removing falsy fields from an opts
+  Object.keys(opts).forEach(function (name) {
+    if (!opts[name]) {
+      delete opts[name]
+    }
+  })
+
+  if (opts.files) {
+    opts.files = opts.files.split(',').map(function (part) { return part.trim() })
+  }
+
+  RSG(opts).generate(function (err) {
     if (err) {
-      console.error(String(err));
-      process.exit(1);
+      console.error(String(err))
+      process.exit(1)
     }
 
     if (argv.v || argv.verbose) {
-      var gray = '\u001b[90m';
-      var magenta = '\u001b[35m';
-      var reset = '\u001b[0m';
-      var time = '[' + gray + new Date().toLocaleTimeString() + reset + ']';
-      console.log(time, magenta + this.opts.output);
+      var time = '[' + GRAY_COLOR + new Date().toLocaleTimeString() + RESET_COLOR + ']'
+      console.log(time, MAGENTA_COLOR + this.opts.output)
     }
 
-    process.exit(0);
-  });
-})();
+    process.exit(0)
+  })
+})()

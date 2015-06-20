@@ -3,9 +3,9 @@ Usage: rsg [input] [options]
 Options:
   -o, --output     Output directory            ['styleguide']
   -t, --title      Used as a page title        ['Style Guide']
-  -c, --config     Config file                 ['styleguide.json']
   -r, --root       Set the root path           ['.']
   -f, --files      Inject references to files  ['']
+  -c, --config     Config file                 ['styleguide.json']
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
 

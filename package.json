@@ -7,14 +7,14 @@
     "rsg": "bin/rsg"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "standard",
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
-    "build:css": "cssnext -c app/index.css dist/sg.css",
-    "build:js": "browserify -t [babelify --stage 0] -x react app | uglifyjs -m -o dist/sg.js",
-    "dev": "npm run dev:css && npm run dev:js",
-    "dev:css": "cssnext -s app/index.css dist/sg.css",
-    "dev:js": "browserify -d -t [babelify --stage 0] -x react app -o dist/sg.js",
+    "build:css": "cssnext -c app/index.css dist/app.css",
+    "build:js": "browserify -t [babelify --stage 0] -x react app | uglifyjs -m -o dist/app.js",
+    "dev-build": "npm run dev-build:css && npm run dev-build:js",
+    "dev-build:css": "cssnext -s app/index.css dist/app.css",
+    "dev-build:js": "browserify -d -t [babelify --stage 0] -x react app -o dist/app.js",
     "clean": "rimraf dist/*",
     "styleguide": "node bin/rsg",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide",
@@ -46,6 +46,9 @@
     "url": "https://github.com/pocotan001/react-styleguide-generator/issues"
   },
   "homepage": "https://github.com/pocotan001/react-styleguide-generator#readme",
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "peerDependencies": {
     "react": ">=0.13"
   },
@@ -54,16 +57,14 @@
     "browserify": "^10.2.4",
     "glob": "^5.0.10",
     "is-url": "^1.2.1",
+    "fs-extra": "^0.20.0",
     "minimist": "^1.1.1",
-    "mkdirp": "^0.5.1",
     "mustache": "^2.1.2",
     "object-assign": "^3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^3.1.17",
     "cssnext": "^1.7.1",
-    "eslint": "^0.23.0",
-    "eslint-plugin-react": "^2.5.2",
     "gh-pages": "^0.3.1",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
@@ -71,6 +72,7 @@
     "react": "^0.13.3",
     "react-bootstrap": "^0.23.4",
     "rimraf": "^2.4.0",
+    "standard": "^4.3.1",
     "uglify-js": "^2.4.23"
   }
 }
