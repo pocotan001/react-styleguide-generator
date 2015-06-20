@@ -4,14 +4,16 @@
   "scripts": {
     "start": "npm run dev && npm run serve -- ./styleguide",
     "dev": "node ../bin/rsg 'components/**/*.js' -t 'React Style Guide' -v -f 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'",
-    "prod": "rsg 'components/**/*.js' -t 'React Style Guide' -f 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'",
-    "serve": "serve"
+    "prod": "node ../bin/rsg 'components/**/*.js' -t 'React Style Guide' -r 'react-styleguide-generator' -f 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'",
+    "serve": "serve",
+    "deploy": "npm run prod && gh-pages -d styleguide"
   },
   "dependencies": {
     "react": "^0.13.3",
     "react-bootstrap": "^0.23.3"
   },
   "devDependencies": {
+    "gh-pages": "^0.3.1",
     "react-styleguide-generator": "*",
     "serve": "^1.4.0"
   }
