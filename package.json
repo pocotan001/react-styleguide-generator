@@ -13,14 +13,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf dist/*",
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
     "build:css": "cssnext -c src/index.css dist/sg.css",
-    "build:js": "browserify -x react src | uglifyjs -m -o dist/sg.js",
+    "build:js": "browserify -t [babelify --stage 0] -x react src | uglifyjs -m -o dist/sg.js",
     "dev": "npm run dev:css && npm run dev:js",
     "dev:css": "cssnext -sv src/index.css dist/sg.css",
-    "dev:js": "browserify -d -x react src -o dist/sg.js",
+    "dev:js": "browserify -d -t [babelify --stage 0] -x react src -o dist/sg.js",
+    "clean": "rimraf dist/*",
     "styleguide": "node bin/rsg",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide",
     "postpublish": "npm run ghpages"
@@ -51,11 +51,6 @@
     "url": "https://github.com/pocotan001/react-styleguide-generator/issues"
   },
   "homepage": "https://github.com/pocotan001/react-styleguide-generator#readme",
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "peerDependencies": {
     "react": ">=0.13"
   },
