@@ -1,23 +1,23 @@
-import React, { PropTypes } from 'react';
-import contents from '../../utils/contents';
+import React, { Component, PropTypes } from 'react'
+import contents from '../../utils/contents'
 
-export default class Nav extends React.Component {
-  static displayName = 'SG.Nav';
+export default class Nav extends Component {
+  static displayName = 'SG.Nav'
 
   static propTypes = {
     selectedCategory: PropTypes.string
-  };
+  }
 
-  render() {
+  render () {
     return (
       <nav>
-        <ul className="sg sg-nav">
+        <ul className='sg sg-nav'>
           {contents.categories
             .map((category, i) => {
-              let isSelected = this.props.selectedCategory === category;
+              let isSelected = this.props.selectedCategory === category
 
               return (
-                <li className="sg" key={i}>
+                <li className='sg' key={i}>
                   <a
                     className={`sg sg-nav-link ${isSelected ? 'is-selected' : ''}`}
                     href={category}
@@ -26,10 +26,10 @@ export default class Nav extends React.Component {
                     {category}
                   </a>
                 </li>
-              );
+              )
             })}
         </ul>
       </nav>
-    );
+    )
   }
 }

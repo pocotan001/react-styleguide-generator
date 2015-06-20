@@ -1,7 +1,7 @@
-import React from 'react';
-import { ButtonToolbar, Button } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { ButtonToolbar, Button } from 'react-bootstrap'
 
-export default class extends React.Component {
+export default class extends Component {
   static styleguide = {
     category: 'Buttons',
     title: '01. Buttons',
@@ -17,9 +17,9 @@ export default class extends React.Component {
   <Button bsStyle='link'>Link</Button>
 </ButtonToolbar>
     `
-  };
+  }
 
-  render() {
+  render () {
     return (
       <ButtonToolbar>
         <Button>Default</Button>
@@ -30,6 +30,6 @@ export default class extends React.Component {
         <Button bsStyle='danger'>Danger</Button>
         <Button bsStyle='link'>Link</Button>
       </ButtonToolbar>
-    );
+    )
   }
 }

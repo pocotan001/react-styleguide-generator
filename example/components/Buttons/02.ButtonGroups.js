@@ -1,7 +1,7 @@
-import React from 'react';
-import { ButtonGroup, Button } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { ButtonGroup, Button } from 'react-bootstrap'
 
-export default class extends React.Component {
+export default class extends Component {
   static styleguide = {
     category: 'Buttons',
     title: '02. Button groups',
@@ -13,15 +13,15 @@ export default class extends React.Component {
   <Button>Right</Button>
 </ButtonGroup>
     `
-  };
+  }
 
-  render() {
+  render () {
     return (
       <ButtonGroup>
         <Button>Left</Button>
         <Button>Middle</Button>
         <Button>Right</Button>
       </ButtonGroup>
-    );
+    )
   }
 }

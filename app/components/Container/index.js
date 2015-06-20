@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react'
 
-export default class Container extends React.Component {
-  static displayName = 'SG.Container';
+export default class Container extends Component {
+  static displayName = 'SG.Container'
 
-  render() {
+  static propTypes = {
+    children: PropTypes.node
+  }
+
+  render () {
     return (
-      <div className="sg-container">
+      <div className='sg-container'>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

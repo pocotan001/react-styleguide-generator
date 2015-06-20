@@ -1,9 +1,9 @@
-import React from 'react';
-import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap'
 
-const BUTTONS = ['Default', 'Primary', 'Success', 'Info', 'Warning', 'Danger', 'Link'];
+const BUTTONS = ['Default', 'Primary', 'Success', 'Info', 'Warning', 'Danger', 'Link']
 
-export default class extends React.Component {
+export default class extends Component {
   static styleguide = {
     category: 'Buttons',
     title: '03. Button dropdowns',
@@ -17,9 +17,9 @@ export default class extends React.Component {
   <MenuItem eventKey='4'>Separated link</MenuItem>
 </DropdownButton>
     `
-  };
+  }
 
-  renderDropdownButton(title, i) {
+  renderDropdownButton (title, i) {
     return (
       <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i}>
         <MenuItem eventKey='1'>Action</MenuItem>
@@ -28,14 +28,14 @@ export default class extends React.Component {
         <MenuItem divider />
         <MenuItem eventKey='4'>Separated link</MenuItem>
       </DropdownButton>
-    );
+    )
   }
 
-  render() {
+  render () {
     return (
       <ButtonToolbar>
         {BUTTONS.map(this.renderDropdownButton)}
       </ButtonToolbar>
-    );
+    )
   }
 }

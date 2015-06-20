@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react'
 
-export default class Main extends React.Component {
-  static displayName = 'SG.Main';
+export default class Main extends Component {
+  static displayName = 'SG.Main'
 
-  render() {
+  static propTypes = {
+    children: PropTypes.node
+  }
+
+  render () {
     return (
-      <main className="sg-main">
+      <main className='sg-main'>
         {this.props.children}
       </main>
-    );
+    )
   }
 }

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Panel } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { Panel } from 'react-bootstrap'
 
-export default class PanelsBasicExample extends React.Component {
+export default class PanelsBasicExample extends Component {
   static styleguide = {
     category: 'Panels',
     title: '01. Basic example',
@@ -9,13 +9,13 @@ export default class PanelsBasicExample extends React.Component {
     code: `<Panel>
   Basic panel example
 </Panel>`
-  };
+  }
 
-  render() {
+  render () {
     return (
       <Panel>
         Basic panel example
       </Panel>
-    );
+    )
   }
 }
