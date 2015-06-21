@@ -8,6 +8,9 @@ var _RSG = require('../lib/rsg')
 
 var TMP_DIR = 'tmp'
 
+/**
+ * @param {Object} opts
+ */
 function RSG (opts) {
   var baseOpts = {
     input: 'example/components/**/*.js',
@@ -16,6 +19,14 @@ function RSG (opts) {
   }
 
   return _RSG(assign(baseOpts, opts))
+}
+
+/**
+ * @param {string} file
+ * @returns {string}
+ */
+function getRealPath (file) {
+  return path.resolve(process.cwd(), file)
 }
 
 describe('RSG', function () {
@@ -30,21 +41,21 @@ describe('RSG', function () {
     })
 
     it('should be a realpath', function () {
-      assert(RSG().opts.input.every(function (file) { return path.isAbsolute(file) }))
+      assert(RSG().opts.input.every(function (file) { return getRealPath(file) }))
     })
   })
 
   describe('opts.output', function () {
     it('should be a realpath', function () {
-      assert(path.isAbsolute(RSG().opts.output))
+      assert.equal(RSG().opts.output, getRealPath(TMP_DIR))
     })
 
     it('should default to "styleguide"', function () {
-      assert.equal(RSG({ output: undefined }).opts.output, path.resolve(process.cwd(), 'styleguide'))
+      assert.equal(RSG({ output: undefined }).opts.output, getRealPath('styleguide'))
     })
 
     it('should be a "Foo"', function () {
-      assert.equal(RSG({ output: 'Foo' }).opts.output, path.resolve(process.cwd(), 'Foo'))
+      assert.equal(RSG({ output: 'Foo' }).opts.output, getRealPath('Foo'))
     })
   })
 
