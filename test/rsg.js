@@ -46,10 +46,6 @@ describe('RSG', function () {
   })
 
   describe('opts.output', function () {
-    it('should be a realpath', function () {
-      assert.equal(RSG().opts.output, getRealPath(TMP_DIR))
-    })
-
     it('should default to "styleguide"', function () {
       assert.equal(RSG({ output: undefined }).opts.output, getRealPath('styleguide'))
     })
@@ -60,6 +56,10 @@ describe('RSG', function () {
   })
 
   describe('opts.title', function () {
+    it('should default to "Style Guide"', function () {
+      assert.equal(RSG({ title: undefined }).opts.title, 'Style Guide')
+    })
+
     it('should be a "Foo"', function () {
       assert.equal(RSG({ title: 'Foo' }).opts.title, 'Foo')
     })
