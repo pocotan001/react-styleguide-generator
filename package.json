@@ -52,14 +52,18 @@
       "example"
     ]
   },
+  "engines": {
+    "node": ">=0.10.33"
+  },
   "peerDependencies": {
     "react": ">=0.13"
   },
   "dependencies": {
     "babelify": "^6.1.2",
     "browserify": "^10.2.4",
-    "glob": "^5.0.10",
+    "es6-promise": "^2.3.0",
     "fs-extra": "^0.20.0",
+    "glob": "^5.0.10",
     "minimist": "^1.1.1",
     "mustache": "^2.1.2",
     "object-assign": "^3.0.0"
