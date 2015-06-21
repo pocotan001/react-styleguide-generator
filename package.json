@@ -7,7 +7,7 @@
     "rsg": "bin/rsg"
   },
   "scripts": {
-    "test": "standard",
+    "test": "standard && mocha test/**/*.js",
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
     "build:css": "cssnext -c app/index.css dist/app.css",
@@ -70,6 +70,7 @@
     "gh-pages": "^0.3.1",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
+    "mocha": "^2.2.5",
     "page": "^1.6.3",
     "react": "^0.13.3",
     "react-bootstrap": "^0.23.4",

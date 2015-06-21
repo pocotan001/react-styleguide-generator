@@ -35,6 +35,8 @@ var RESET_COLOR = '\u001b[0m'
     }
   })
 
+  // convert files to array
+  // 'a.js, b.js' -> ['a.js', 'b.js']
   if (opts.files) {
     opts.files = opts.files.split(',').map(function (part) { return part.trim() })
   }
