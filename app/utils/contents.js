@@ -1,6 +1,14 @@
-// for `commonStrict` module formatter
-// https://babeljs.io/docs/usage/modules/#interop
-let Contents = window.Contents.map((Content) => Content.default || Content)
+let Contents = window.Contents
+  // for `commonStrict` module formatter
+  // https://babeljs.io/docs/usage/modules/#interop
+  .map((Content) => Content.default || Content)
+  // compare index numbers
+  .sort((a, b) => {
+    a = a.styleguide.index
+    b = b.styleguide.index
+
+    return !a ? 1 : !b ? -1 : a.toString().localeCompare(b)
+  })
 
 export default {
   /**
@@ -10,7 +18,6 @@ export default {
     return Contents
       .map((Content) => Content.styleguide.category)
       .filter((category, i, categories) => categories.indexOf(category) === i)
-      .sort()
   })(),
 
   /**
@@ -40,10 +47,6 @@ export default {
 
           return exact ? val === query : phrases.every((phrase) => val.indexOf(phrase) !== -1)
         })
-    }).sort((a, b) => {
-      if (a.styleguide.title < b.styleguide.title) { return -1 }
-      if (a.styleguide.title > b.styleguide.title) { return 1 }
-      return 0
     })
   }
 }
