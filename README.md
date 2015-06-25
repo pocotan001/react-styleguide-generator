@@ -57,7 +57,7 @@ export default class extends React.Component {
 - `code`: Code examples (optional)
 - `className`: CSS class name (optional)
 
-If necessary, visit [react-styleguide-generator/example/](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
+If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
 
 ### Generating the documentation
 
