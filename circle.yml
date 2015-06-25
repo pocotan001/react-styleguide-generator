@@ -7,4 +7,6 @@ deployment:
   ghpages:
     branch: master
     commands:
+      - git config --global user.name 'circleci'
+      - git config --global user.email 'circleci@example.com'
       - npm run ghpages
