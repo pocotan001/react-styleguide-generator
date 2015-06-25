@@ -26,13 +26,10 @@ class MyModal extends Component {
 
 export default class extends Component {
   static styleguide = {
+    index: '3.2',
     category: 'Modals',
-    title: '01. Modals',
-    description: `
-A rendered modal with header, body, and set of actions in the footer.
-
-The header is added automatically if you pass in a \`title\` prop.
-`,
+    title: 'Live demo',
+    description: 'Use `<ModalTrigger />` to create a real modal that\'s added to the document body when opened.',
     code: `
 <ModalTrigger modal={MyModal}>
   <Button bsStyle='primary' bsSize='large'>Launch demo modal</Button>

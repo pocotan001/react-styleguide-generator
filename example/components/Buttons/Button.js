@@ -3,8 +3,9 @@ import { ButtonToolbar, Button } from 'react-bootstrap'
 
 export default class extends Component {
   static styleguide = {
+    index: '1.1',
     category: 'Buttons',
-    title: '01. Buttons',
+    title: 'Buttons',
     description: 'se any of the available button style types to quickly create a styled button. Just modify the `bsStyle` prop.',
     code: `
 <ButtonToolbar>
