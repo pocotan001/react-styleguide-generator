@@ -7,9 +7,11 @@ export default {
    * @type {string[]}
    */
   categories: (() => {
+    let overviewMatcher = /^overview$/i
+
     return Contents
       .map((Content) => Content.styleguide.category)
-      .filter((el, i, arr) => el !== 'overview' && arr.indexOf(el) === i)
+      .filter((el, i, arr) => !overviewMatcher.test(el) && arr.indexOf(el) === i)
       .sort()
   })(),
 
