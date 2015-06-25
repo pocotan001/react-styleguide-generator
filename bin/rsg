@@ -8,7 +8,7 @@ var MAGENTA_COLOR = '\u001b[35m'
 var RESET_COLOR = '\u001b[0m'
 
 !(function () {
-  if (argv.h || argv.help) {
+  if (!argv._[0] || argv.h || argv.help) {
     return require('fs').createReadStream(require('path').resolve(__dirname, 'usage.txt'))
       .pipe(process.stdout)
       .on('close', function () { process.exit(1) })
@@ -19,7 +19,6 @@ var RESET_COLOR = '\u001b[0m'
   }
 
   var opts = {
-    input: argv._[0],
     output: argv.o || argv.output,
     title: argv.t || argv.title,
     root: argv.r || argv.root,
@@ -41,7 +40,7 @@ var RESET_COLOR = '\u001b[0m'
     opts.files = opts.files.split(',').map(function (part) { return part.trim() })
   }
 
-  RSG(opts).generate(function (err) {
+  RSG(argv._[0], opts).generate(function (err) {
     if (err) {
       console.error(String(err))
       process.exit(1)

@@ -6,19 +6,20 @@ var fs = require('fs-extra')
 var assign = require('object-assign')
 var _RSG = require('../lib/rsg')
 
+var INPUT_FILE = 'example/components/**/*.js'
 var TMP_DIR = 'tmp'
 
 /**
- * @param {Object} opts
+ * @param {string} input
+ * @param {Object=} opts
  */
-function RSG (opts) {
+function RSG (input, opts) {
   var baseOpts = {
-    input: 'example/components/**/*.js',
     output: TMP_DIR,
     config: null
   }
 
-  return _RSG(assign(baseOpts, opts))
+  return _RSG(input, assign(baseOpts, opts))
 }
 
 /**
@@ -31,37 +32,44 @@ function getRealPath (file) {
 
 describe('RSG', function () {
 
-  describe('opts.input', function () {
+  describe('input', function () {
+
     it('should throw an exception when the value is not present', function () {
-      assert.throws(RSG.bind(null, { input: undefined }), Error)
+      assert.throws(RSG.bind(), Error)
     })
 
     it('should be an array', function () {
-      assert(Array.isArray(RSG().opts.input))
+      var rsg = RSG(INPUT_FILE)
+      assert(Array.isArray(rsg.input))
     })
 
     it('should be a realpath', function () {
-      assert(RSG().opts.input.every(function (file) { return getRealPath(file) }))
+      var rsg = RSG(INPUT_FILE)
+      assert(rsg.input.every(function (file) { return getRealPath(file) }))
     })
   })
 
   describe('opts.output', function () {
     it('should default to "styleguide"', function () {
-      assert.equal(RSG({ output: undefined }).opts.output, getRealPath('styleguide'))
+      var rsg = RSG(INPUT_FILE, { output: undefined })
+      assert.equal(rsg.opts.output, getRealPath('styleguide'))
     })
 
     it('should be a "Foo"', function () {
-      assert.equal(RSG({ output: 'Foo' }).opts.output, getRealPath('Foo'))
+      var rsg = RSG(INPUT_FILE, { output: 'Foo' })
+      assert.equal(rsg.opts.output, getRealPath('Foo'))
     })
   })
 
   describe('opts.title', function () {
     it('should default to "Style Guide"', function () {
-      assert.equal(RSG({ title: undefined }).opts.title, 'Style Guide')
+      var rsg = RSG(INPUT_FILE, { title: undefined })
+      assert.equal(rsg.opts.title, 'Style Guide')
     })
 
     it('should be a "Foo"', function () {
-      assert.equal(RSG({ title: 'Foo' }).opts.title, 'Foo')
+      var rsg = RSG(INPUT_FILE, { title: 'Foo' })
+      assert.equal(rsg.opts.title, 'Foo')
     })
   })
 
@@ -73,7 +81,7 @@ describe('RSG', function () {
     })
 
     // it('files should exist', function (done) {
-    //   RSG().generate(function (err) {
+    //   RSG(INPUT_FILE).generate(function (err) {
     //     assert.ifError(err)
 
     //     var files = [
@@ -91,7 +99,7 @@ describe('RSG', function () {
     // })
 
     it('should invoke the callback', function (done) {
-      RSG().generate(done)
+      RSG(INPUT_FILE).generate(done)
     })
   })
 
