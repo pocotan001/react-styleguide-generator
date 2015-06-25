@@ -5,7 +5,7 @@
 
 Easily generate a good-looking styleguide by adding some documentation to your React project.
 
-![preview](preview.png)  
+![preview](https://cloud.githubusercontent.com/assets/869065/8359419/1fc01378-1ba1-11e5-845f-72547dc88a59.png)
 [Demo](http://pocotan001.github.io/react-styleguide-generator/) using the [React-Bootstrap](http://react-bootstrap.github.io/).
 
 ## Installation
@@ -22,7 +22,7 @@ Which requires **React 0.13.0** or newer. To install it `npm install react`.
 
 Create a files for the styleguide, and then add some documentation to a static field named `styleguide`. You can use the [ES6 syntax](https://github.com/lukehoban/es6features) by [Babel](https://babeljs.io/).
 
-**NOTE:** By default Babel's `static` keyword are disabled. You can turn them on individually by passing `stage 0` as a [babelrc](https://babeljs.io/docs/usage/babelrc/) or [options.babelConfig](#).
+**NOTE:** By default Babel's `static` keyword are disabled. You can turn them on individually by passing `stage 0` as a [babelrc](https://babeljs.io/docs/usage/babelrc/) or [options.babelConfig](#babelconfig).
 
 ``` js
 import React from 'react'
