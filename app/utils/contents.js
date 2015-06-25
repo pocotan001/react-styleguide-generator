@@ -7,26 +7,29 @@ export default {
    * @type {string[]}
    */
   categories: (() => {
-    let overviewMatcher = /^overview$/i
-
     return Contents
       .map((Content) => Content.styleguide.category)
-      .filter((el, i, arr) => !overviewMatcher.test(el) && arr.indexOf(el) === i)
+      .filter((category, i, categories) => categories.indexOf(category) === i)
       .sort()
   })(),
 
   /**
-   * @param {string} query
-   * @param {string[]} keys
-   * @param {boolean=} exact
+   * @param {Object=} data
+   * @param {string=} data.query
+   * @param {string[]=} data.keys
+   * @param {boolean=} data.exact
    * @returns {ReactClass[]}
    */
-  search (query, keys, exact = false) {
-    query = query.toLowerCase()
-    let phrases
+  search (data) {
+    data = data || {}
 
-    if (!exact) {
-      phrases = query.trim().split(' ')
+    let query = (data.query || '').trim().toLowerCase()
+    let keys = data.keys || []
+    let exact = !!data.exact
+    let phrases = !exact ? query.split(' ') : null
+
+    if (query === '') {
+      return Contents
     }
 
     return Contents.filter((Content) => {

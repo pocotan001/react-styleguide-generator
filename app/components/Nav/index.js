@@ -5,7 +5,7 @@ export default class Nav extends Component {
   static displayName = 'SG.Nav'
 
   static propTypes = {
-    selectedCategory: PropTypes.string
+    ctx: PropTypes.object.isRequired
   }
 
   render () {
@@ -14,7 +14,7 @@ export default class Nav extends Component {
         <ul className='sg sg-nav'>
           {contents.categories
             .map((category, i) => {
-              let isSelected = this.props.selectedCategory === category
+              let isSelected = this.props.ctx.params.category === category
 
               return (
                 <li className='sg' key={i}>

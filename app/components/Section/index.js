@@ -30,8 +30,6 @@ export default class Section extends Component {
   }
 
   renderHeading () {
-    let isOverview = this.props.category === 'overview'
-
     return (
       <h1 className='sg sg-section-heading'>
         <span className='sg sg-section-heading-title'>
@@ -43,11 +41,9 @@ export default class Section extends Component {
             <i className='fa fa-link' />
           </a>
         </span>
-        {!isOverview &&
-          <a className='sg sg-section-heading-category' href={this.props.category}>
-            {this.props.category}
-          </a>
-        }
+        <a className='sg sg-section-heading-category' href={this.props.category}>
+          {this.props.category}
+        </a>
       </h1>
     )
   }

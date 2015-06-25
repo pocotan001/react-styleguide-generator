@@ -7,51 +7,22 @@ let mountNode = document.getElementById('app')
 /**
  * Home
  */
-page('.', () => {
-  let props = {
-    query: 'overview',
-    keys: ['category'],
-    exact: true
-  }
-
-  React.render(<App {...props} />, mountNode)
+page('.', (ctx) => {
+  React.render(<App ctx={ctx} />, mountNode)
 })
 
 /**
  * Search Result
  */
-page('/search/:query', (ctx) => {
-  let query = ctx.params.query
-
-  let props = {
-    query: query,
-    keys: ['category', 'title', 'description'],
-    searchQuery: query
-  }
-
-  React.render(<App {...props} />, mountNode)
+page('/search/:query?', (ctx) => {
+  React.render(<App ctx={ctx} />, mountNode)
 })
 
 /**
  * Category and Detail
  */
 page('/:category/:title?', (ctx) => {
-  let category = ctx.params.category
-  let title = ctx.params.title
-
-  if (category === 'overview') {
-    page.redirect('/')
-    return
-  }
-
-  let props = {
-    query: title ? title : category,
-    keys: title ? ['title'] : ['category'],
-    exact: true,
-    selectedCategory: category
-  }
-
-  React.render(<App {...props} />, mountNode)
+  React.render(<App ctx={ctx} />, mountNode)
 })
 
 /**
