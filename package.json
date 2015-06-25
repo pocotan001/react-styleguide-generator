@@ -62,14 +62,14 @@
     "babelify": "^6.1.2",
     "browserify": "^10.2.4",
     "es6-promise": "^2.3.0",
-    "fs-extra": "^0.20.0",
+    "fs-extra": "^0.20.1",
     "glob": "^5.0.10",
     "minimist": "^1.1.1",
     "mustache": "^2.1.2",
     "object-assign": "^3.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^3.1.17",
+    "babel-eslint": "^3.1.18",
     "cssnext": "^1.7.1",
     "gh-pages": "^0.3.1",
     "highlight.js": "^8.6.0",
@@ -77,9 +77,9 @@
     "mocha": "^2.2.5",
     "page": "^1.6.3",
     "react": "^0.13.3",
-    "react-bootstrap": "^0.23.4",
+    "react-bootstrap": "^0.23.5",
     "rimraf": "^2.4.0",
-    "standard": "^4.3.1",
+    "standard": "^4.3.2",
     "uglify-js": "^2.4.23"
   }
 }
