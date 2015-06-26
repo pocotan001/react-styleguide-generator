@@ -20,9 +20,9 @@ Which requires **React 0.13.0** or newer. To install it `npm install react`.
 
 ### Documenting your React components
 
-Create a files for the styleguide, and then add some documentation to a static field named `styleguide`. You can use the [ES6 syntax](https://github.com/lukehoban/es6features) by [Babel](https://babeljs.io/).
+Create file for the styleguide, and then add some documentation to a static field named `styleguide`. You can use the [ES6 syntax](https://github.com/lukehoban/es6features) by [Babel](https://babeljs.io/).
 
-**NOTE:** By default Babel's `static` keyword are disabled. You can turn them on individually by passing `stage 0` as a [babelrc](https://babeljs.io/docs/usage/babelrc/) or [options.babelConfig](#babelconfig).
+**NOTE:** By default Babel's `static` keyword is disabled. You can turn them on individually by passing `stage 0` as a [babelrc](https://babeljs.io/docs/usage/babelrc/) or [options.babelConfig](#babelconfig).
 
 ``` js
 import React from 'react'
@@ -126,28 +126,28 @@ Refers to [glob syntax](https://github.com/isaacs/node-glob) or it can be a dire
 
 ##### output
 
-Type: `String`
+Type: `String`  
 Default: `'styleguide'`
 
 Output directory path.
 
 ##### title
 
-Type: `String`
+Type: `String`  
 Default: `'Style Guide'`
 
 Used as a page title and in the page header.
 
 ##### root
 
-Type: `String`
+Type: `String`  
 Default: `'.'`
 
-Set the root path. For example if the styleguide is hosted at `http://example.com/styleguide` the `options.root` should be `styleguide`.
+Set the root path. For example, if the styleguide is hosted at `http://example.com/styleguide` the `options.root` should be `styleguide`.
 
 ##### files
 
-Type: `Array`
+Type: `Array`  
 Default: `null`
 
 Inject references to files. A usage example is:
@@ -191,21 +191,21 @@ Inject file references into index.html if the files with the extension `.css` or
 
 ##### config
 
-Type: `String`
+Type: `String`  
 Default: `styleguide.json`
 
-The entire range of RSG API options are allowed. [Usage example](https://github.com/pocotan001/react-styleguide-generator/blob/master/example/styleguide.json).
+The entire range of RSG API options is allowed. [Usage example](https://github.com/pocotan001/react-styleguide-generator/blob/master/example/styleguide.json).
 
 ##### pushstate
 
-Type: `String`
+Type: `String`  
 Default: `false`
 
 Enable HTML5 pushState. When this option is enabled, styleguide will use history API.
 
 ##### babelConfig
 
-Type: `Object`
+Type: `Object`  
 Default: `null`
 
 A usage example is below. See the [babel docs](http://babeljs.io/docs/usage/options/) for the complete list.
