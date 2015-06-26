@@ -1,0 +1,12 @@
+.modal-open {
+  overflow: visible;
+}
+
+.static-modal .modal {
+  position: relative;
+  z-index: 1;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+}
