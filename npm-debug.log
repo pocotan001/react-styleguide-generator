@@ -1,0 +1,86 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/Users/pocotan001/.nvm/versions/node/v0.12.1/bin/npm',
+1 verbose cli   'version',
+1 verbose cli   'patch' ]
+2 info using npm@2.11.3
+3 info using node@v0.12.1
+4 info preversion react-styleguide-generator@0.0.8
+5 info git [ 'status', '--porcelain' ]
+6 verbose version.write data { name: 'react-styleguide-generator',
+6 verbose version.write   version: '0.0.8',
+6 verbose version.write   description: 'Easily generate a style guides from your React components',
+6 verbose version.write   main: 'lib/rsg.js',
+6 verbose version.write   bin: { rsg: 'bin/rsg' },
+6 verbose version.write   scripts:
+6 verbose version.write    { test: 'standard',
+6 verbose version.write      prod: 'npm run clean && npm run build',
+6 verbose version.write      build: 'npm run build:css && npm run build:js',
+6 verbose version.write      'build:css': 'cssnext -c app/index.css dist/app.css',
+6 verbose version.write      'build:js': 'browserify -t [babelify --stage 0] -x react app | uglifyjs -m -o dist/app.js',
+6 verbose version.write      'dev-build': 'npm run dev-build:css && npm run dev-build:js',
+6 verbose version.write      'dev-build:css': 'cssnext -s app/index.css dist/app.css',
+6 verbose version.write      'dev-build:js': 'browserify -d -t [babelify --stage 0] -x react app -o dist/app.js',
+6 verbose version.write      clean: 'rimraf dist/*',
+6 verbose version.write      styleguide: 'node bin/rsg',
+6 verbose version.write      ghpages: 'npm run styleguide -- -r \'react-styleguide-generator\' && gh-pages -d styleguide',
+6 verbose version.write      postpublish: 'npm run ghpages' },
+6 verbose version.write   files: [ 'bin', 'dist', 'lib', 'LICENSE', 'package.json', 'README.md' ],
+6 verbose version.write   repository:
+6 verbose version.write    { type: 'git',
+6 verbose version.write      url: 'git+https://github.com/pocotan001/react-styleguide-generator.git' },
+6 verbose version.write   keywords:
+6 verbose version.write    [ 'component',
+6 verbose version.write      'documentation',
+6 verbose version.write      'generator',
+6 verbose version.write      'markdown',
+6 verbose version.write      'react',
+6 verbose version.write      'styleguide' ],
+6 verbose version.write   author: 'pocotan001',
+6 verbose version.write   license: 'MIT',
+6 verbose version.write   bugs: { url: 'https://github.com/pocotan001/react-styleguide-generator/issues' },
+6 verbose version.write   homepage: 'https://github.com/pocotan001/react-styleguide-generator#readme',
+6 verbose version.write   standard: { parser: 'babel-eslint', ignore: [ 'dist', 'example' ] },
+6 verbose version.write   peerDependencies: { react: '>=0.13' },
+6 verbose version.write   dependencies:
+6 verbose version.write    { babelify: '^6.1.2',
+6 verbose version.write      browserify: '^10.2.4',
+6 verbose version.write      glob: '^5.0.10',
+6 verbose version.write      'is-url': '^1.2.1',
+6 verbose version.write      'fs-extra': '^0.20.0',
+6 verbose version.write      minimist: '^1.1.1',
+6 verbose version.write      mustache: '^2.1.2',
+6 verbose version.write      'object-assign': '^3.0.0' },
+6 verbose version.write   devDependencies:
+6 verbose version.write    { 'babel-eslint': '^3.1.17',
+6 verbose version.write      cssnext: '^1.7.1',
+6 verbose version.write      'gh-pages': '^0.3.1',
+6 verbose version.write      'highlight.js': '^8.6.0',
+6 verbose version.write      marked: '^0.3.3',
+6 verbose version.write      page: '^1.6.3',
+6 verbose version.write      react: '^0.13.3',
+6 verbose version.write      'react-bootstrap': '^0.23.4',
+6 verbose version.write      rimraf: '^2.4.0',
+6 verbose version.write      standard: '^4.3.1',
+6 verbose version.write      'uglify-js': '^2.4.23' } } to package.json
+7 info git [ 'add', 'package.json' ]
+8 verbose stack Error: Command failed: git add package.json
+8 verbose stack fatal: pathspec 'styleguide/package.json' did not match any files
+8 verbose stack
+8 verbose stack     at ChildProcess.exithandler (child_process.js:744:12)
+8 verbose stack     at ChildProcess.emit (events.js:110:17)
+8 verbose stack     at maybeClose (child_process.js:1008:16)
+8 verbose stack     at Socket.<anonymous> (child_process.js:1176:11)
+8 verbose stack     at Socket.emit (events.js:107:17)
+8 verbose stack     at Pipe.close (net.js:476:12)
+9 verbose cwd /Users/pocotan001/Development/react-styleguide-generator/styleguide
+10 error Darwin 13.4.0
+11 error argv "node" "/Users/pocotan001/.nvm/versions/node/v0.12.1/bin/npm" "version" "patch"
+12 error node v0.12.1
+13 error npm  v2.11.3
+14 error code 128
+15 error Command failed: git add package.json
+15 error fatal: pathspec 'styleguide/package.json' did not match any files
+16 error If you need help, you may report this error at:
+16 error     <https://github.com/npm/npm/issues>
+17 verbose exit [ 1, true ]
