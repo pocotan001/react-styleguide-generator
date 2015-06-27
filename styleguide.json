@@ -3,5 +3,8 @@
   "files": [
     "//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css",
     "example/example.css"
-  ]
+  ],
+  "babelConfig": {
+    "stage": 0
+  }
 }
