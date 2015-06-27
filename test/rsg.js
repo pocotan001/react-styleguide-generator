@@ -16,7 +16,10 @@ var TMP_DIR = 'tmp'
 function RSG (input, opts) {
   var baseOpts = {
     output: TMP_DIR,
-    config: null
+    config: null,
+    babelConfig: {
+      stage: 0
+    }
   }
 
   return _RSG(input, assign(baseOpts, opts))
