@@ -119,7 +119,7 @@ describe('RSG', function () {
   describe('opts.babelConfig', function () {
     it('should default to null', function () {
       var rsg = RSG(INPUT_FILE, { babelConfig: undefined })
-      assert.deepEqual(rsg.opts.babelConfig, null)
+      assert.equal(rsg.opts.babelConfig, null)
     })
 
     it('should be an object', function () {
