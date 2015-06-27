@@ -5,7 +5,7 @@
 
 Easily generate a good-looking styleguide by adding some documentation to your React project.
 
-![preview](https://cloud.githubusercontent.com/assets/869065/8359419/1fc01378-1ba1-11e5-845f-72547dc88a59.png)
+![preview](https://cloud.githubusercontent.com/assets/869065/8392279/7f3811ae-1d20-11e5-9707-864d5994ba49.png)  
 [Demo](http://pocotan001.github.io/react-styleguide-generator/) using the [React-Bootstrap](http://react-bootstrap.github.io/).
 
 ## Installation
