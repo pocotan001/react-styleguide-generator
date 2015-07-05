@@ -218,6 +218,19 @@ A usage example is below. See the [babel docs](http://babeljs.io/docs/usage/opti
 }
 ```
 
+##### browserifyConfig
+
+Type: `Object`  
+Default: `{ standalone: 'Contents', debug: true }`
+
+A usage example is below. See the [browserify docs](https://github.com/substack/node-browserify#browserifyfiles--opts) for the complete list.
+
+``` js
+{
+  extensions: ['', '.js', '.jsx']
+}
+```
+
 ### rsg.generate([callback])
 
 Generate the files and their dependencies into a styleguide output.

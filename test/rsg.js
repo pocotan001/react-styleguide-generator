@@ -19,6 +19,10 @@ function RSG (input, opts) {
     config: null,
     babelConfig: {
       stage: 0
+    },
+    browserifyConfig: {
+      standalone: 'Contents',
+      debug: true
     }
   }
 
@@ -126,6 +130,20 @@ describe('RSG', function () {
       var babelConfig = { stage: 0 }
       var rsg = RSG(INPUT_FILE, { babelConfig: babelConfig })
       assert.deepEqual(rsg.opts.babelConfig, babelConfig)
+    })
+  })
+
+  describe('opts.browserifyConfig', function () {
+    it('should default to { standalone: \'Contents\', debug: true }', function () {
+      var browserifyConfig = { standalone: 'Contents', debug: true }
+      var rsg = RSG(INPUT_FILE, { browserifyConfig: undefined })
+      assert.deepEqual(rsg.opts.browserifyConfig, browserifyConfig)
+    })
+
+    it('should merge with defaults', function () {
+      var browserifyMergedConfig = { standalone: 'Contents', debug: true, extensions: ['', '.js', '.jsx'] }
+      var rsg = RSG(INPUT_FILE, { browserifyConfig: { extensions: ['', '.js', '.jsx'] } })
+      assert.deepEqual(rsg.opts.browserifyConfig, browserifyMergedConfig)
     })
   })
 
