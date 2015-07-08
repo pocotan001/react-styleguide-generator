@@ -10,6 +10,7 @@
 @media (--break-sm) {
   .sg-main {
     flex: 1;
+    max-width: calc(100% - 240px);
     padding-top: 25px;
   }
 }

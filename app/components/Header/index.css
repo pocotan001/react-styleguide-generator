@@ -10,6 +10,7 @@
 
 @media (--break-sm) {
   .sg-header {
+    flex: none;
     width: 240px;
   }
 }
