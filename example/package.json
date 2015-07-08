@@ -2,9 +2,9 @@
   "name": "react-styleguide-generator-example",
   "private": true,
   "scripts": {
-    "start": "npm run styleguide && npm run serve -- ./styleguide",
+    "start": "npm run styleguide && npm run serve",
     "styleguide": "rsg 'components/**/*.js'",
-    "serve": "serve"
+    "serve": "serve ./styleguide"
   },
   "dependencies": {
     "react": "^0.13.3",

@@ -11,6 +11,6 @@
   .sg-main {
     flex: 1;
     max-width: calc(100% - 240px);
-    padding-top: 25px;
+    padding: 25px 25px 0;
   }
 }
