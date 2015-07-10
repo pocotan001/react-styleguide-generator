@@ -182,6 +182,7 @@
 
 .sg-section-example {
   position: relative;
+  overflow: auto;
   padding: 20px;
   border-bottom: 1px solid var(--gray-lighter);
 }
