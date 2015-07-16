@@ -1,15 +1,23 @@
+import marked from 'marked'
+
 /**
  * This function takes the output of react-docgen and generates some compact markdown
  *
- * @param component react-docgen output of a component (e.g. not the whole json file, but one of the component subtrees)
- * @returns {string} Markdown formatted text
+ * @param {string} reactDocGenId
+ * @returns {string} HTMLElement
  * @author marcello3d
+ * @author theogravity
  */
 module.exports = function docgenToMarkdown (reactDocGenId) {
 
   var component = window.RSG.propMetas[reactDocGenId]
 
-  return [
+  if (!component) {
+    console.error('no prop docs found for ' + reactDocGenId)
+    return
+  }
+
+  return marked([
     'Properties',
     '----------',
     Object.keys(component.props).map(propName => {
@@ -21,5 +29,5 @@ module.exports = function docgenToMarkdown (reactDocGenId) {
         '\n\n'
       )
     }).join('\n')
-  ].join('\n')
+  ].join('\n'), { sanitize: true })
 }

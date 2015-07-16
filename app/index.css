@@ -9,3 +9,4 @@
 @import "./components/Section";
 
 @import "highlight.js/styles/github";
+@import "./common/react-simpletabs";

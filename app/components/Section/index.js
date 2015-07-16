@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import marked from 'marked'
 import hljs from 'highlight.js'
 import reactDocGenToMD from '../../utils/react-docgen-to-md'
+import Tabs from 'react-simpletabs'
 
 var exampleId = 0
 
@@ -19,13 +20,13 @@ export default class Section extends Component {
     reactDocGenRefId: PropTypes.string,
     // reference to the react element
     _self: PropTypes.func,
-    // Array of props to create a new example
-    exampleProps: PropTypes.array
+    // Array of props/children that are used to create additional examples
+    examples: PropTypes.array
   }
 
   static defaultProps () {
     return {
-      exampleProps: [],
+      examples: [],
       reactDocGenRefId: null
     }
   }
@@ -72,34 +73,61 @@ export default class Section extends Component {
     )
   }
 
-  renderAddlExamples () {
-    if (this.props.exampleProps) {
-      return this.props.exampleProps.map(function(props) {
-        exampleId += 1
-        return <this.props._self {...props} key={exampleId} />
-      }, this)
-    } else {
-      return null
-    }
-  }
-
-  renderExample () {
+  renderExamples () {
+    let Component = this.props._self
     let className = `sg sg-section-example ${this.props.className ? this.props.className : ''}`
+    let examples = []
+
+    // Default example
+    examples.push(
+        <Tabs.Panel key={'tab-panel-' + exampleId} title={'Default'}>
+          {this.props.children}
+        </Tabs.Panel>
+    )
+
+    // Additional examples
+    if (this.props.examples) {
+      let addlExamples = this.props.examples.map(function(data) {
+        exampleId += 1
+
+        if (data.children) {
+          return (
+            <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
+              <Component key={'component-ex-' + exampleId} {...data.props}>{data.children}</Component>
+            </Tabs.Panel>
+          )
+        } else {
+          return (
+            <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
+              <Component key={'component-ex-' + exampleId} {...data.props} />
+            </Tabs.Panel>
+          )
+        }
+      }, this)
+
+      examples = examples.concat(addlExamples)
+    }
 
     return (
       <section className={className}>
-        {this.props.children}
-        {this.renderAddlExamples()}
+        <Tabs>
+          {examples}
+        </Tabs>
       </section>
     )
   }
 
   renderProps () {
-    let markup = marked(reactDocGenToMD(this.props.reactDocGenRefId, { sanitize: true }))
+    let markup = reactDocGenToMD(this.props.reactDocGenRefId, { sanitize: true })
 
-    return (
-      <div className='sg sg-section-description' dangerouslySetInnerHTML={{__html: markup}} />
-    )
+    if (markup) {
+      return (
+        <div className='sg sg-section-description' dangerouslySetInnerHTML={{__html: markup}} />
+      )
+    }
+
+    return null
+
   }
 
   renderCode () {
@@ -118,7 +146,7 @@ export default class Section extends Component {
         {this.props.category && this.props.title && this.renderHeading()}
         {this.props.description && this.renderDescription()}
         {this.props.reactDocGenRefId && this.renderProps()}
-        {this.props.children && this.renderExample()}
+        {this.props.children && this.renderExamples()}
         {this.props.code && this.renderCode()}
       </section>
     )

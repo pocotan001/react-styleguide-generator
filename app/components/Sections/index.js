@@ -33,6 +33,8 @@ export default class Sections extends Component {
     return (
       <div>
         {this.getContents().map((Content, i) => {
+          // This exists so we could generate multiple examples of the same component
+          // in renderExamples() of section/index.js
           Content.styleguide._self = Content
 
           return (
