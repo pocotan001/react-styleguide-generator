@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import { ModalTrigger, Modal, Button } from 'react-bootstrap'
 
 class MyModal extends Component {
+  props = {
+    /**
+     * Handler for when the close button is clicked
+     */
+    onRequestHide: React.PropTypes.func
+  }
+
   render () {
     return (
       <Modal {...this.props} title='Modal heading' animation={false}>

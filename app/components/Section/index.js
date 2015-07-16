@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import marked from 'marked'
 import hljs from 'highlight.js'
+import reactDocGenToMD from '../utils/react-docgen-to-md'
 
 export default class Section extends Component {
   static displayName = 'SG.Section'
@@ -11,6 +12,7 @@ export default class Section extends Component {
     description: PropTypes.string,
     code: PropTypes.string,
     className: PropTypes.string,
+    propMeta: PropTypes.Object,
     children: PropTypes.node
   }
 
@@ -66,6 +68,14 @@ export default class Section extends Component {
     )
   }
 
+  renderProps () {
+    let markup = marked(reactDocGenToMD(this.props.propMeta), { sanitize: true })
+
+    return (
+      <div className='sg sg-section-description' dangerouslySetInnerHTML={{__html: markup}} />
+    )
+  }
+
   renderCode () {
     return (
       <section className='sg sg-section-code'>
@@ -81,6 +91,7 @@ export default class Section extends Component {
       <section className='sg sg-section'>
         {this.props.category && this.props.title && this.renderHeading()}
         {this.props.description && this.renderDescription()}
+        {this.props.propMeta && this.renderProps()}
         {this.props.children && this.renderExample()}
         {this.props.code && this.renderCode()}
       </section>

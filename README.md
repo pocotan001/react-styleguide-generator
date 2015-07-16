@@ -138,6 +138,19 @@ Default: `'Style Guide'`
 
 Used as a page title and in the page header.
 
+##### react-docgen
+
+###### react-docgen.enabled
+
+Enables use of `react-docgen` to ouput metadata from a React component's `props`. Note that es6 classes are not supported with
+the current version of `react-docgen`.
+
+Metadata files are found in `<output_dir>/react-docgen/<relative-path-to-component>`.
+
+###### react-docgen.files
+
+An array of `glob`'d file/paths for `react-docgen` to parse. If not specified, will default the value to `input`.
+
 ##### root
 
 Type: `String`  

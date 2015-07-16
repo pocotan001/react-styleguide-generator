@@ -174,6 +174,12 @@ describe('RSG', function () {
     this.timeout(60000)
 
     var opts = {
+      'react-docgen': {
+        'enabled': true,
+        'files': [
+          'example/components/Select/select.js'
+        ]
+      },
       files: [
         '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css',
         'example/example.css'
@@ -188,7 +194,8 @@ describe('RSG', function () {
         'index.html',
         'src/contents.js',
         'src/react_' + rsg.reactVersion + '.js',
-        'files/example.css'
+        'files/example.css',
+        'src/react-docgen/example/components/Select/select.json'
       ].map(function (file) { return getRealPath(TMP_DIR + '/' + file) })
 
       generated.then(function () {
