@@ -33,6 +33,8 @@ export default class Sections extends Component {
     return (
       <div>
         {this.getContents().map((Content, i) => {
+          Content.styleguide._self = Content
+
           return (
             <Section {...Content.styleguide} key={i}>
               {Content.prototype.render && <Content {...this.props} />}

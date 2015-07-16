@@ -8,6 +8,7 @@ const React = require('react')
 const InputSelect = React.createClass({
   displayName: 'SelectExample',
   propTypes: {
+    reactDocGenId: React.PropTypes.string,
     /**
      * A react stylesheet to apply
      */
@@ -40,6 +41,7 @@ const InputSelect = React.createClass({
 
   getDefaultProps() {
     return {
+      reactDocGenId: 'selectComponent',
       stylesheet: {},
       defaultText: 'Loading...'
     }

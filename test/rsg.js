@@ -194,8 +194,7 @@ describe('RSG', function () {
         'index.html',
         'src/contents.js',
         'src/react_' + rsg.reactVersion + '.js',
-        'files/example.css',
-        'src/react-docgen/example/components/Select/select.json'
+        'files/example.css'
       ].map(function (file) { return getRealPath(TMP_DIR + '/' + file) })
 
       generated.then(function () {

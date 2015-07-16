@@ -5,9 +5,11 @@
  * @returns {string} Markdown formatted text
  * @author marcello3d
  */
-module.exports = function docgenToMarkdown (component) {
+module.exports = function docgenToMarkdown (reactDocGenId) {
+
+  var component = window.RSG.propMetas[reactDocGenId]
+
   return [
-    component.description,
     'Properties',
     '----------',
     Object.keys(component.props).map(propName => {
