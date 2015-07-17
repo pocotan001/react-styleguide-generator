@@ -8,6 +8,7 @@ Options:
   -c, --config     Use the config file         ['styleguide.json']
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
+  -w, --watch      Enable watch mode
 
 Examples:
   rsg 'example/**/*.js' -t 'My Style Guide' -f 'a.css, a.js'

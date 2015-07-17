@@ -33,7 +33,7 @@ export default class Section extends Component {
 
   highlight (component) {
     // fix bug where unmount triggers the ref definition
-    if (component) {
+    if (this.isMounted()) {
       let code = React.findDOMNode(component)
       hljs.highlightBlock(code)
     }
