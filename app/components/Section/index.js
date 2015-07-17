@@ -31,17 +31,10 @@ export default class Section extends Component {
     }
   }
 
-  componentDidMount () {
-    this.highlight()
-  }
-
-  componentDidUpdate () {
-    this.highlight()
-  }
-
-  highlight () {
-    if (this.props.code) {
-      let code = React.findDOMNode(this.refs.code)
+  highlight (component) {
+    // fix bug where unmount triggers the ref definition
+    if (component) {
+      let code = React.findDOMNode(component)
       hljs.highlightBlock(code)
     }
   }
@@ -82,6 +75,7 @@ export default class Section extends Component {
     examples.push(
         <Tabs.Panel key={'tab-panel-' + exampleId} title={'Default'}>
           {this.props.children}
+          {this.props.code && this.renderCode(this.props.code)}
         </Tabs.Panel>
     )
 
@@ -94,12 +88,14 @@ export default class Section extends Component {
           return (
             <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
               <Component key={'component-ex-' + exampleId} {...data.props}>{data.children}</Component>
+              {data.code && this.renderCode(data.code)}
             </Tabs.Panel>
           )
         } else {
           return (
             <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
               <Component key={'component-ex-' + exampleId} {...data.props} />
+              {data.code && this.renderCode(data.code)}
             </Tabs.Panel>
           )
         }
@@ -130,11 +126,12 @@ export default class Section extends Component {
 
   }
 
-  renderCode () {
+  renderCode (code) {
+
     return (
       <section className='sg sg-section-code'>
         <pre className='sg'>
-          <code className='sg xml' ref='code'>{this.props.code.trim()}</code>
+          <code className='sg xml' ref={this.highlight}>{code.trim()}</code>
         </pre>
       </section>
     )
@@ -147,7 +144,6 @@ export default class Section extends Component {
         {this.props.description && this.renderDescription()}
         {this.props.reactDocGenRefId && this.renderProps()}
         {this.props.children && this.renderExamples()}
-        {this.props.code && this.renderCode()}
       </section>
     )
   }

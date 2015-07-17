@@ -18,14 +18,14 @@ module.exports = function docgenToMarkdown (reactDocGenId) {
   }
 
   return marked([
-    'Properties',
-    '----------',
+    '### Properties',
+    '',
     Object.keys(component.props).map(propName => {
       let prop = component.props[propName]
       return (
         '`' + propName + ':' + prop.type.name + (prop.required ? '.isRequired' : '') + '` ' +
         (prop.description || '') +
-        (prop.defaultValue && prop.defaultValue.value ? ('(default value: `' + prop.defaultValue.value + '`)') : '') +
+        (prop.defaultValue && prop.defaultValue.value ? (' (default value: `' + prop.defaultValue.value + '`)') : '') +
         '\n\n'
       )
     }).join('\n')

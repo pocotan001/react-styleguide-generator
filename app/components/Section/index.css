@@ -192,7 +192,8 @@
  */
 
 .sg-section-code {
-  border-bottom: 1px solid var(--gray-lighter);
+  border: 1px solid var(--gray-lighter);
+  margin-top: 10px;
 }
 
 .sg-section-code code {
