@@ -71,11 +71,11 @@ export default class Section extends Component {
     let className = `sg sg-section-example ${this.props.className ? this.props.className : ''}`
     let examples = []
 
-    // Default example
     examples.push(
         <Tabs.Panel key={'tab-panel-' + exampleId} title={'Default'}>
           {this.props.children}
           {this.props.code && this.renderCode(this.props.code)}
+          {!this.props.code && !data.children && this.renderAutoCode(this.props)}
         </Tabs.Panel>
     )
 
@@ -89,6 +89,7 @@ export default class Section extends Component {
             <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
               <Component key={'component-ex-' + exampleId} {...data.props}>{data.children}</Component>
               {data.code && this.renderCode(data.code)}
+              {!data.code && !data.children && this.renderAutoCode(data.props)}
             </Tabs.Panel>
           )
         } else {
@@ -96,6 +97,7 @@ export default class Section extends Component {
             <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
               <Component key={'component-ex-' + exampleId} {...data.props} />
               {data.code && this.renderCode(data.code)}
+              {!data.code && !data.children && this.renderAutoCode(data.props)}
             </Tabs.Panel>
           )
         }
@@ -126,15 +128,60 @@ export default class Section extends Component {
 
   }
 
+  renderAutoCode (props) {
+
+    let displayName = this.props.reactDocGenRefId
+    let propString = ''
+    let html
+
+    if (props) {
+      Object.keys(props).forEach(function(prop) {
+        let type = typeof prop
+        switch(type) {
+          case 'string':
+            propString += `${prop}='${props[prop]}' `
+            break
+          case 'number':
+            propString += `${prop}={${props[prop]}} `
+            break
+          case 'function':
+            propString += `${prop}={fn}`
+            break
+          case 'object':
+            var objStr = JSON.stringify(props[prop])
+            propString += `${prop}={${objStr}} `
+            break
+          default:
+            propString += `${prop}={${type}} `
+        }
+
+      })
+
+      // @todo support children
+      html = `
+        <${displayName} ${propString} />
+      `
+
+      return this.renderCode(html)
+    }
+
+    return null
+  }
+
   renderCode (code) {
 
-    return (
-      <section className='sg sg-section-code'>
+    if (code) {
+      return (
+        <section className='sg sg-section-code'>
         <pre className='sg'>
           <code className='sg xml' ref={this.highlight}>{code.trim()}</code>
         </pre>
-      </section>
-    )
+        </section>
+      )
+    }
+
+    return null
+
   }
 
   render () {

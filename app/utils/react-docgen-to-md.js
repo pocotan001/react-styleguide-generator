@@ -8,12 +8,12 @@ import marked from 'marked'
  * @author marcello3d
  * @author theogravity
  */
-module.exports = function docgenToMarkdown (reactDocGenId) {
+module.exports = function docgenToMarkdown (displayName) {
 
-  var component = window.RSG.propMetas[reactDocGenId]
+  var component = window.RSG.propMetas[displayName]
 
   if (!component) {
-    console.error('no prop docs found for ' + reactDocGenId)
+    console.error('no prop docs found for ' + displayName)
     return
   }
 
