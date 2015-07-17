@@ -34,14 +34,27 @@ export default class extends React.Component {
     category: 'Elements',
     title: 'Button',
     description: 'You can use **Markdown** within this `description` field.',
+    // Code to go into default tab
     code: `<Button size='small|large' onClick={Function}>Cool Button</Button>`,
-    className: 'apply the css class'
+    className: 'apply the css class',
+    // Array of additional example tabs
+    examples: [
+      {
+        title: 'Tab title',
+        props: {
+          size: 'Prop to assign to the rendered example component'
+        },
+        code: 'If not specified, will generate a code example using the `props`.',
+        children: `React child elements to insert into the component. If specified, auto-code generation is disabled.`
+      }
+    ]
   }
 
   onClick () {
     alert('Alo!')
   }
 
+  //Used for the 'default' tab
   render () {
     return (
       <Button size='large' onClick={this.onClick}>Cool Button</Button>
@@ -56,6 +69,11 @@ export default class extends React.Component {
 - `description`: Components description (optional)
 - `code`: Code examples (optional)
 - `className`: CSS class name (optional)
+- `examples`: Array of examples
+- `examples[].title`: Title of example tab
+- `examples[].props`: Properties to assign to the rendered example component
+- `examples[].code`: Example code to render. If not specified and `examples[].children` is not present, will auto-generate code based on the defined `examples[].props`
+- `examples[].children`: React element/text to insert as children to the component (eg `<Button>Children Text</Button>`)
 
 If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
 
@@ -83,6 +101,7 @@ Options:
   -c, --config     Use the config file         ['styleguide.json']
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
+  -w, --watch      Watch mode using `browserifyConfig`
 
 Examples:
   rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js'
@@ -140,16 +159,23 @@ Used as a page title and in the page header.
 
 ##### react-docgen
 
+**Note that es6 classes are not supported with the current version of `react-docgen`.
+
 ###### react-docgen.enabled
 
-Enables use of `react-docgen` to ouput metadata from a React component's `props`. Note that es6 classes are not supported with
-the current version of `react-docgen`.
+Type: `Boolean`
+Default: `false`
+
+Enables use of `react-docgen` to ouput metadata from a React component's `props`. 
 
 Metadata files are found in `<output_dir>/react-docgen/<relative-path-to-component>`.
 
 ###### react-docgen.files
 
-An array of `glob`'d file/paths for `react-docgen` to parse. If not specified, will default the value to `input`.
+Type: `Array`
+Default: `[]`
+
+An array of `glob`-able file/paths for `react-docgen` to parse. If not specified, will default the value to `input`.
 
 ##### root
 
