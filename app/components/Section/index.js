@@ -33,7 +33,7 @@ export default class Section extends Component {
 
   highlight (component) {
     // fix bug where unmount triggers the ref definition
-    if (this.isMounted()) {
+    if (component) {
       let code = React.findDOMNode(component)
       hljs.highlightBlock(code)
     }
@@ -136,10 +136,10 @@ export default class Section extends Component {
 
     if (props) {
       Object.keys(props).forEach(function(prop) {
-        let type = typeof prop
+        let type = typeof props[prop]
         switch(type) {
           case 'string':
-            propString += `${prop}='${props[prop]}' `
+            propString += `${prop}="${props[prop]}" `
             break
           case 'number':
             propString += `${prop}={${props[prop]}} `
