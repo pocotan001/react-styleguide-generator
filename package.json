@@ -16,7 +16,7 @@
     "dev-build:css": "cssnext -s app/index.css dist/app.css",
     "dev-build:js": "browserify -d -t [babelify --stage 0] -x react app -o dist/app.js",
     "clean": "rimraf dist/*",
-    "styleguide": "node bin/rsg 'example/components/**/*.js'",
+    "styleguide": "node bin/rsg 'example/**/*.js' -c 'styleguide.json' -v | bunyan -o short",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
   },
   "files": [
@@ -62,6 +62,7 @@
     "babel": "^5.6.23",
     "babelify": "^6.1.2",
     "browserify": "^10.2.4",
+    "bunyan": "^1.4.0",
     "fs-extra": "^0.20.1",
     "glob": "^5.0.10",
     "minimist": "^1.1.1",
@@ -80,7 +81,7 @@
     "mocha": "^2.2.5",
     "page": "^1.6.3",
     "react": "^0.13.3",
-    "react-bootstrap": "^0.23.5",
+    "react-bootstrap": "0.23.5",
     "rimraf": "^2.4.0",
     "standard": "^4.3.2",
     "uglify-js": "^2.4.23"

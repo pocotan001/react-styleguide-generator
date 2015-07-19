@@ -1,8 +1,8 @@
 {
   "title": "React Style Guide",
-  "react-docgen": {
-    "enabled": false,
-    "files": []
+  "reactDocgen": {
+    "enabled": "true",
+    "files": ["src/**/*.js"]
   },
   "files": [
     "//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css",

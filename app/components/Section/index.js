@@ -72,7 +72,7 @@ export default class Section extends Component {
     let examples = []
 
     examples.push(
-        <Tabs.Panel key={'tab-panel-' + exampleId} title={'Default'}>
+        <Tabs.Panel key={'tab-panel-' + exampleId} title={'Example'}>
           {this.props.children}
           {this.props.code && this.renderCode(this.props.code)}
           {!this.props.code && !data.children && this.renderAutoCode(this.props)}
@@ -89,7 +89,7 @@ export default class Section extends Component {
             <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
               <Component key={'component-ex-' + exampleId} {...data.props}>{data.children}</Component>
               {data.code && this.renderCode(data.code)}
-              {!data.code && !data.children && this.renderAutoCode(data.props)}
+              {!data.code && !data.props.children && this.renderAutoCode(data.props)}
             </Tabs.Panel>
           )
         } else {
@@ -97,7 +97,7 @@ export default class Section extends Component {
             <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
               <Component key={'component-ex-' + exampleId} {...data.props} />
               {data.code && this.renderCode(data.code)}
-              {!data.code && !data.children && this.renderAutoCode(data.props)}
+              {!data.code && !data.props.children && this.renderAutoCode(data.props)}
             </Tabs.Panel>
           )
         }

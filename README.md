@@ -44,8 +44,7 @@ export default class extends React.Component {
         props: {
           size: 'Prop to assign to the rendered example component'
         },
-        code: 'If not specified, will generate a code example using the `props`.',
-        children: `React child elements to insert into the component. If specified, auto-code generation is disabled.`
+        code: 'If not specified, will generate a code example using the `props`.'
       }
     ]
   }
@@ -71,11 +70,21 @@ export default class extends React.Component {
 - `className`: CSS class name (optional)
 - `examples`: Array of examples
 - `examples[].title`: Title of example tab
-- `examples[].props`: Properties to assign to the rendered example component
+- `examples[].props`: Properties to assign to the rendered example component. Use `children` to specify child elements.
 - `examples[].code`: Example code to render. If not specified and `examples[].children` is not present, will auto-generate code based on the defined `examples[].props`
-- `examples[].children`: React element/text to insert as children to the component (eg `<Button>Children Text</Button>`)
 
 If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
+
+### Documenting props with react-docgen
+
+If the config file option `react-docgen.enabled` is `true`, [`react-docgen`](https://github.com/reactjs/react-docgen) will be used to extract documentation data on your component `props` found in `react-docgen.files`.
+
+**[You cannot use es6 classes](https://github.com/reactjs/react-docgen/issues/10) (as in the quick start example) with `react-docgen` at the moment.
+
+See the following for examples:
+
+- `example/ReactDocgen/Text input example.js`
+- `src/Text input.js` 
 
 ### Generating the documentation
 
@@ -163,7 +172,7 @@ Used as a page title and in the page header.
 
 ###### react-docgen.enabled
 
-Type: `Boolean`
+Type: `String`
 Default: `false`
 
 Enables use of `react-docgen` to ouput metadata from a React component's `props`. 

@@ -17,17 +17,22 @@ module.exports = function docgenToMarkdown (displayName) {
     return
   }
 
-  return marked([
-    '### Properties',
-    '',
-    Object.keys(component.props).map(propName => {
-      let prop = component.props[propName]
-      return (
-        '`' + propName + (prop.type.name ? ':' + prop.type.name : '') + (prop.required ? '.isRequired' : '') + '` ' +
-        (prop.description || '') +
-        (prop.defaultValue && prop.defaultValue.value ? (' (default value: `' + prop.defaultValue.value + '`)') : '') +
-        '\n\n'
-      )
-    }).join('\n')
-  ].join('\n'), { sanitize: true })
+  if (component.props) {
+    return marked([
+      '### Properties',
+      '',
+      Object.keys(component.props).map(propName => {
+        let prop = component.props[propName]
+        return (
+          '`' + propName + (prop.type.name ? ':' + prop.type.name : '') + (prop.required ? '.isRequired' : '') + '` ' +
+          (prop.description || '') +
+          (prop.defaultValue && prop.defaultValue.value ? (' (default value: `' + prop.defaultValue.value + '`)') : '') +
+          '\n\n'
+        )
+      }).join('\n')
+    ].join('\n'), { sanitize: true })
+  }
+
+  console.error('no props found for ' + displayName)
+
 }
