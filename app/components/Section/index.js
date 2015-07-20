@@ -17,8 +17,6 @@ export default class Section extends Component {
     code: PropTypes.string,
     className: PropTypes.string,
     children: PropTypes.node,
-    // the reactDocGenId used to locate the properties metadata stored in window.RSG.propMetas
-    reactDocGenRefId: PropTypes.string,
     // Array of props/children that are used to create additional examples
     examples: PropTypes.array,
     // React element class used for rendering additional examples
@@ -27,8 +25,7 @@ export default class Section extends Component {
 
   static defaultProps () {
     return {
-      examples: [],
-      reactDocGenRefId: null
+      examples: []
     }
   }
 
@@ -125,7 +122,7 @@ export default class Section extends Component {
   }
 
   renderProps () {
-    let markup = reactDocGenToMD(this.props.reactDocGenRefId, { sanitize: true })
+    let markup = reactDocGenToMD(utils.getDisplayName(this.props.exampleComponent), { sanitize: true })
 
     if (markup) {
       return (
@@ -149,7 +146,7 @@ export default class Section extends Component {
 
   renderAutoCode (props) {
 
-    let displayName = this.props.exampleComponent && utils.getDisplayName(this.props.exampleComponent) || this.props.reactDocGenRefId || 'Component'
+    let displayName = this.props.exampleComponent && utils.getDisplayName(this.props.exampleComponent) || 'Component'
     let propString = ''
     let html
 
@@ -233,7 +230,7 @@ export default class Section extends Component {
       <section className='sg sg-section'>
         {this.props.category && this.props.title && this.renderHeading()}
         {this.props.description && this.renderDescription()}
-        {this.props.reactDocGenRefId && this.renderProps()}
+        {this.props.exampleComponent && this.renderProps()}
         {this.props.children && this.renderExamples()}
       </section>
     )
