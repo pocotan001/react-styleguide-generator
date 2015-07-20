@@ -23,10 +23,19 @@ module.exports = function docgenToMarkdown (displayName) {
       '',
       Object.keys(component.props).map(propName => {
         let prop = component.props[propName]
+        let defaultValue = ''
+
+        // Doing it this way instead of ternary operator is because
+        // the linter gives back 'Infix operators must be spaced.'
+        // unsure how to fix given that everything was spaced properly
+        if (prop.defaultValue && prop.defaultValue.value) {
+          defaultValue = ' (default value : `' + defaultValue + '`)'
+        }
+
         return (
           '`' + propName + (prop.type.name ? ':' + prop.type.name : '') + (prop.required ? '.isRequired' : '') + '` ' +
           (prop.description || '') +
-          (prop.defaultValue && prop.defaultValue.value ? (' (default value: `' + prop.defaultValue.value + '`)') : '') +
+          defaultValue +
           '\n\n'
         )
       }).join('\n')

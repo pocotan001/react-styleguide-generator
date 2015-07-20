@@ -21,7 +21,9 @@ export default class Section extends Component {
     // reference to the react element
     _self: PropTypes.func,
     // Array of props/children that are used to create additional examples
-    examples: PropTypes.array
+    examples: PropTypes.array,
+    // React element class used for rendering additional examples
+    exampleComponent: PropTypes.element
   }
 
   static defaultProps () {
@@ -67,37 +69,45 @@ export default class Section extends Component {
   }
 
   renderExamples () {
-    let Component = this.props._self
+    // We first check if there is a user-defined component to use for creating additional examples
+    let Component = this.props.exampleComponent || null
     let className = `sg sg-section-example ${this.props.className ? this.props.className : ''}`
     let examples = []
 
+    // Renders the base example using the styleguide block
     examples.push(
         <Tabs.Panel key={'tab-panel-' + exampleId} title={'Example'}>
           {this.props.children}
-          {this.props.code && this.renderCode(this.props.code)}
-          {!this.props.code && !data.children && this.renderAutoCode(this.props)}
+          {this.renderExampleCode(this.props, this.props.code)}
         </Tabs.Panel>
     )
 
-    // Additional examples
+    // Additional examples found in styleguide.examples
     if (this.props.examples) {
-      let addlExamples = this.props.examples.map(function(data) {
+      let tabNumber = 0
+
+      if (!Component) {
+        console.error('styleguide.exampleComponent must be specified with a ReactElement before additional ' +
+          'examples can be generated. If using es5 react, use the lib/rsg-mixin.')
+        return
+      }
+
+      let addlExamples = this.props.examples.map(function (data) {
         exampleId += 1
+        tabNumber += 1
 
         if (data.children) {
           return (
-            <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
+            <Tabs.Panel key={'tab-panel-' + exampleId} title={data.tabTitle || ('Example-' + tabNumber) }>
               <Component key={'component-ex-' + exampleId} {...data.props}>{data.children}</Component>
-              {data.code && this.renderCode(data.code)}
-              {!data.code && !data.props.children && this.renderAutoCode(data.props)}
+              {this.renderExampleCode(data.props, data.code)}
             </Tabs.Panel>
           )
         } else {
           return (
-            <Tabs.Panel key={'tab-panel-' + exampleId} title={data.title}>
+            <Tabs.Panel key={'tab-panel-' + exampleId} title={data.tabTitle || ('Example-' + tabNumber)}>
               <Component key={'component-ex-' + exampleId} {...data.props} />
-              {data.code && this.renderCode(data.code)}
-              {!data.code && !data.props.children && this.renderAutoCode(data.props)}
+              {this.renderExampleCode(data.props, data.code)}
             </Tabs.Panel>
           )
         }
@@ -128,39 +138,75 @@ export default class Section extends Component {
 
   }
 
+  renderExampleCode (props, code) {
+    if (code) {
+      return this.renderCode(code)
+    } else if (props) {
+      return this.renderAutoCode(props)
+    }
+
+    return null
+  }
+
   renderAutoCode (props) {
 
-    let displayName = this.props.reactDocGenRefId
+    let displayName = this.props.exampleComponent && this.props.exampleComponent.displayName || this.props.reactDocGenRefId || 'Component'
+
     let propString = ''
     let html
 
     if (props) {
-      Object.keys(props).forEach(function(prop) {
+      Object.keys(props).forEach(function (prop) {
+        if (prop === 'children') {
+          return
+        }
+
         let type = typeof props[prop]
-        switch(type) {
+        switch (type) {
           case 'string':
-            propString += `${prop}="${props[prop]}" `
+            propString += ` ${prop}='${props[prop]}'`
             break
           case 'number':
-            propString += `${prop}={${props[prop]}} `
+            propString += ` ${prop}={${props[prop]}} `
             break
           case 'function':
-            propString += `${prop}={fn}`
+            propString += ` ${prop}={function}`
             break
           case 'object':
-            var objStr = JSON.stringify(props[prop])
-            propString += `${prop}={${objStr}} `
+
+            if (props[prop]._isReactElement) {
+              // @todo support rendering actual react elements (eg using actual component name) + props
+              propString += ` ${prop}={ReactElement}`
+            } else {
+              var objStr = JSON.stringify(props[prop])
+              propString += `
+                ${prop}={${objStr}}`
+            }
+
             break
           default:
-            propString += `${prop}={${type}} `
+            propString += ` ${prop}={${type}}`
         }
 
       })
 
-      // @todo support children
-      html = `
-        <${displayName} ${propString} />
-      `
+      propString = propString.trim()
+
+      if (props.children) {
+        switch (typeof props.children) {
+          case 'string':
+            html = `<${displayName} ${propString}>${props.children}</${displayName}>`
+            break
+          // @todo support nested children elements
+          default:
+            html = `<${displayName} ${propString}>Auto-documentation for
+                      child elements not supported. Please define the "code" property manually.
+                    </${displayName}>`
+        }
+
+      } else {
+        html = `<${displayName} ${propString} />`
+      }
 
       return this.renderCode(html)
     }

@@ -18,11 +18,11 @@ Which requires **React 0.13.0** or newer. To install it `npm install react`.
 
 ## Quick Start
 
-### Documenting your React components
+**NOTE:** By default Babel's `static` keyword is disabled. You can turn them on individually by passing `stage 0` as a [babelrc](https://babeljs.io/docs/usage/babelrc/) or [options.babelConfig](#babelconfig).
+
+### Documenting your React components (es6)
 
 Create file for the styleguide, and then add some documentation to a static field named `styleguide`. You can use the [ES6 syntax](https://github.com/lukehoban/es6features) by [Babel](https://babeljs.io/).
-
-**NOTE:** By default Babel's `static` keyword is disabled. You can turn them on individually by passing `stage 0` as a [babelrc](https://babeljs.io/docs/usage/babelrc/) or [options.babelConfig](#babelconfig).
 
 ``` js
 import React from 'react'
@@ -34,17 +34,22 @@ export default class extends React.Component {
     category: 'Elements',
     title: 'Button',
     description: 'You can use **Markdown** within this `description` field.',
-    // Code to go into default tab
-    code: `<Button size='small|large' onClick={Function}>Cool Button</Button>`,
     className: 'apply the css class',
+    // Used in the first 'Example' tab
+    code: `<Button size='small|large' onClick={Function}>Cool Button</Button>`,
+    // Component to use for generating additional examples
+    exampleComponent: Button,
     // Array of additional example tabs
     examples: [
       {
-        title: 'Tab title',
+        tabTitle: 'Tab title',
         props: {
-          size: 'Prop to assign to the rendered example component'
-        },
-        code: 'If not specified, will generate a code example using the `props`.'
+          size: 'small',
+          onClick () {
+            alert('o hay!')
+          }
+        }
+        //code: This is optional; by omitting it, the RSG will attempt to auto-generate an example using the props!
       }
     ]
   }
@@ -53,7 +58,7 @@ export default class extends React.Component {
     alert('Alo!')
   }
 
-  //Used for the 'default' tab
+  //Used for the first 'Example' tab
   render () {
     return (
       <Button size='large' onClick={this.onClick}>Cool Button</Button>
@@ -66,20 +71,24 @@ export default class extends React.Component {
 - `category`: Components category name
 - `title`: Components title
 - `description`: Components description (optional)
-- `code`: Code examples (optional)
+- `code`: Code example (optional)
 - `className`: CSS class name (optional)
-- `examples`: Array of examples
-- `examples[].title`: Title of example tab
-- `examples[].props`: Properties to assign to the rendered example component. Use `children` to specify child elements.
-- `examples[].code`: Example code to render. If not specified and `examples[].children` is not present, will auto-generate code based on the defined `examples[].props`
+- `exampleComponent`: `ReactElement` to use to generate the examples. This is generally your base component you're making documenation out of. (es6 only, not required with es5 + rsg-mixin - see es5 section)
+- `examples`: Array of examples, which generates additional tabs of example components and sample code
+- `examples[].tabTitle`: Title of example tab
+- `examples[].props`: Properties to assign to the rendered example component
+- `examples[].props.children`: Child elements to assign to the example component
+- `examples[].code`: Code example (optional). Omitting this will attempt to auto-generate a code example using the `examples[].props`
 
 If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
 
-### Documenting props with react-docgen
+### Documenting your react components (es5)
 
-If the config file option `react-docgen.enabled` is `true`, [`react-docgen`](https://github.com/reactjs/react-docgen) will be used to extract documentation data on your component `props` found in `react-docgen.files`.
-
-**[You cannot use es6 classes](https://github.com/reactjs/react-docgen/issues/10) (as in the quick start example) with `react-docgen` at the moment.
+* Using react es5 has the benefit of using `react-docgen` to document your `props` when `reactDocgen.enabled` is set to `"true"`.
+* Use `reactDocgen.files` to specify the path(s) of your es5 react components to parse out `props` documentation
+* See `styleguide.json` for more details
+* `require('react-styleguide-generator/lib/rsg-mixin`)(<component>)` is required to show the `props` documentation
+* [es6 support is pending](https://github.com/reactjs/react-docgen/issues/10)
 
 See the following for examples:
 
@@ -113,7 +122,10 @@ Options:
   -w, --watch      Watch mode using `browserifyConfig`
 
 Examples:
-  rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js'
+  rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js' -v
+  
+  # Necessary to use a config file if you want to enable react-docgen
+  rsg 'example/**/*.js' -c 'styleguide.json' -v
 ```
 
 #### Gulp
@@ -135,6 +147,41 @@ gulp.task('styleguide', function (done) {
 
     done()
   })
+})
+```
+
+#### Grunt
+
+``` js
+var RSG = require('react-styleguide-generator')
+
+...
+
+grunt.registerTask('rsg', 'React style guide', function () {
+  var done = this.async()
+
+  try {
+
+    var conf = grunt.config.get('rsg')
+
+    RSG(conf.input, {
+        config: conf.configFile,
+        watch: false,
+        verbose: false
+    }).generate(function (err) {
+        if (err) {
+            grunt.log.error('Error: ' + err + ' ' + err.stack())
+            return done(false)
+        }
+
+        grunt.log.ok('react styleguide generation complete')
+        done()
+    })
+
+  } catch (e) {
+    grunt.log.error('Error: ' + e + ' ' + e.stack)
+    done(false)
+  }
 })
 ```
 
@@ -278,6 +325,13 @@ A usage example is below. See the [browserify docs](https://github.com/substack/
   extensions: ['', '.js', '.jsx']
 }
 ```
+
+### watch
+
+Type: `String`
+Default: `false`
+
+Enables `watchify` for when the `input` files change, speeding up rebuild time.
 
 ### rsg.generate([callback])
 

@@ -193,6 +193,7 @@ describe('RSG', function () {
       var files = [
         'index.html',
         'src/contents.js',
+        'src/contents-inter.js',
         'src/react_' + rsg.reactVersion + '.js',
         'files/example.css'
       ].map(function (file) { return getRealPath(TMP_DIR + '/' + file) })

@@ -13,7 +13,7 @@ import React from 'react'
  * https://github.com/reactjs/react-docgen/issues/10
  */
 const TextInput = React.createClass({
-  //DisplayName is required for storing generated props metadata
+  // DisplayName is required for storing generated props metadata
   displayName: 'TextInput',
   statics: {
     // the styleguide core props can be defined in this base component
@@ -23,8 +23,10 @@ const TextInput = React.createClass({
       index: '1.1',
       category: 'React Docgen',
       title: 'Text Input',
-      description: 'You can use **Markdown** within this `description` field. This is an example that uses ' +
-      '`react-docgen` to generate documentation on your component `props`'
+      description: 'This is an example that uses ' +
+      '`react-docgen` (es5 react only) to generate documentation on your component `props`' +
+      ' and `lib/rsg-mixin` to display them.' +
+      ' You can use **Markdown** within this `description` field.'
     }
   },
   propTypes: {
@@ -40,7 +42,7 @@ const TextInput = React.createClass({
   },
   render: function () {
     return (
-      <input type="text" defaultValue={this.props.text} />
+      <input type='text' defaultValue={this.props.text} />
     )
   }
 })
