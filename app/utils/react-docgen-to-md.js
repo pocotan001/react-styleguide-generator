@@ -29,7 +29,7 @@ module.exports = function docgenToMarkdown (displayName) {
         // the linter gives back 'Infix operators must be spaced.'
         // unsure how to fix given that everything was spaced properly
         if (prop.defaultValue && prop.defaultValue.value) {
-          defaultValue = ' (default value : `' + defaultValue + '`)'
+          defaultValue = ' (default value : `' + prop.defaultValue.value + '`)'
         }
 
         return (
