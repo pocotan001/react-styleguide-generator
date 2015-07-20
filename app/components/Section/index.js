@@ -3,6 +3,7 @@ import marked from 'marked'
 import hljs from 'highlight.js'
 import reactDocGenToMD from '../../utils/react-docgen-to-md'
 import Tabs from 'react-simpletabs'
+import utils from '../../../lib/utils'
 
 var exampleId = 0
 
@@ -148,8 +149,7 @@ export default class Section extends Component {
 
   renderAutoCode (props) {
 
-    let displayName = this.props.exampleComponent && this.props.exampleComponent.displayName || this.props.reactDocGenRefId || 'Component'
-
+    let displayName = this.props.exampleComponent && utils.getDisplayName(this.props.exampleComponent) || this.props.reactDocGenRefId || 'Component'
     let propString = ''
     let html
 
