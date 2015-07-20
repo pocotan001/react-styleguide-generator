@@ -13,7 +13,6 @@ module.exports = function docgenToMarkdown (displayName) {
   var component = window.RSG.propMetas[displayName]
 
   if (!component) {
-    console.error('no prop docs found for ' + displayName)
     return
   }
 
@@ -41,7 +40,5 @@ module.exports = function docgenToMarkdown (displayName) {
       }).join('\n')
     ].join('\n'), { sanitize: true })
   }
-
-  console.error('no props found for ' + displayName)
 
 }
