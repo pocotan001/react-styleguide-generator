@@ -16,7 +16,6 @@ export default class extends Component {
   ${content}
 </Panel>
 `,
-    children: content,
     // Component to use when creating additional examples; required with es6 react
     // not required in es5 react + rsg-mixin
     exampleComponent: Panel,
