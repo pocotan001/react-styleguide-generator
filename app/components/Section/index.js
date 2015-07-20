@@ -18,12 +18,10 @@ export default class Section extends Component {
     children: PropTypes.node,
     // the reactDocGenId used to locate the properties metadata stored in window.RSG.propMetas
     reactDocGenRefId: PropTypes.string,
-    // reference to the react element
-    _self: PropTypes.func,
     // Array of props/children that are used to create additional examples
     examples: PropTypes.array,
     // React element class used for rendering additional examples
-    exampleComponent: PropTypes.element
+    exampleComponent: PropTypes.func
   }
 
   static defaultProps () {
