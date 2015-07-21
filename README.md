@@ -286,10 +286,12 @@ Inject file references into index.html if the files with the extension `.css` or
 
 ##### config
 
-Type: `String`  
+Type: `String|Object`  
 Default: `styleguide.json`
 
 The entire range of RSG API options is allowed. [Usage example](https://github.com/pocotan001/react-styleguide-generator/blob/master/example/styleguide.json).
+
+An object can be passed instead of a filename that contains the RSG API options.
 
 ##### pushstate
 
