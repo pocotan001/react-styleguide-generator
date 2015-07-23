@@ -74,7 +74,7 @@ export default class Section extends Component {
     examples.push(
         <Tabs.Panel key={'tab-panel-' + exampleId} title={'Example'}>
           {this.props.children}
-          {this.renderExampleCode(this.props, this.props.code)}
+          {this.props.code && this.renderCode(this.props.code)}
         </Tabs.Panel>
     )
 

@@ -71,7 +71,7 @@ export default class extends React.Component {
 - `category`: Components category name
 - `title`: Components title
 - `description`: Components description (optional)
-- `code`: Code example (optional)
+- `code`: Code example (optional). Not specifying this will not auto-generate an example like with the `examples` array.
 - `className`: CSS class name (optional)
 - `exampleComponent`: `ReactElement` to use to generate the examples. This is generally your base component you're making documenation out of. (es6 only, not required with es5 + rsg-mixin - see es5 section)
 - `examples`: Array of examples, which generates additional tabs of example components and sample code
