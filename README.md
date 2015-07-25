@@ -58,7 +58,7 @@ export default class extends React.Component {
     ]
   }
   
-  // Document the props
+  // Document the props via react-docgen
   static propTypes = {
     /**
      * Header title
@@ -219,7 +219,7 @@ Used as a page title and in the page header.
 ##### reactDocgen.files
 
 Type: `Array`
-Default: `[]`
+Default: `input`
 
 An array of `glob`-able file/paths for `react-docgen` to parse. If not specified, will default the value to `input`.
 
