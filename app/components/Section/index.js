@@ -20,7 +20,9 @@ export default class Section extends Component {
     // Array of props/children that are used to create additional examples
     examples: PropTypes.array,
     // React element class used for rendering additional examples
-    exampleComponent: PropTypes.func
+    exampleComponent: PropTypes.func,
+    // Reference to the example component
+    _self: PropTypes.object
   }
 
   static defaultProps () {
@@ -84,7 +86,7 @@ export default class Section extends Component {
 
       if (!Component) {
         console.error('styleguide.exampleComponent must be specified with a ReactElement before additional ' +
-          'examples can be generated. If using es5 react, use the lib/rsg-mixin.')
+          'examples can be generated.')
         return
       }
 
@@ -122,7 +124,23 @@ export default class Section extends Component {
   }
 
   renderProps () {
-    let markup = reactDocGenToMD(utils.getDisplayName(this.props.exampleComponent), { sanitize: true })
+    let markup
+
+    // Check if the base component has prop docs
+    let displayName = utils.getDisplayName(this.props._self.type)
+
+    if (displayName) {
+      markup = reactDocGenToMD(displayName)
+    }
+
+    // no prop docs found on the base; check the defined exampleComponent instead
+    if (!markup) {
+      displayName = utils.getDisplayName(this.props.exampleComponent)
+
+      if (displayName) {
+        markup = reactDocGenToMD(displayName)
+      }
+    }
 
     if (markup) {
       return (

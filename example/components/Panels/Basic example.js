@@ -6,6 +6,9 @@ const title = <h3>Panel title</h3>
 
 export default class extends Component {
 
+  // displayName is required for props documentation
+  static displayName = 'PanelExample'
+
   static styleguide = {
     index: '2.1',
     category: 'Panels',
@@ -16,8 +19,7 @@ export default class extends Component {
   ${content}
 </Panel>
 `,
-    // Component to use when creating additional examples; required with es6 react
-    // not required in es5 react + rsg-mixin
+    // Component to use when creating additional examples
     exampleComponent: Panel,
     examples: [
       {
@@ -63,10 +65,20 @@ export default class extends Component {
     ]
   }
 
+  static propTypes = {
+    /**
+     * Header title
+     */
+    header: React.PropTypes.object,
+    /**
+     * Panel style class
+     */
+    bsStyle: React.PropTypes.string
+  }
+
   render () {
     return (
       <Panel>{content}</Panel>
     )
   }
 }
-

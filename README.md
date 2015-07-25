@@ -20,7 +20,7 @@ Which requires **React 0.13.0** or newer. To install it `npm install react`.
 
 **NOTE:** By default Babel's `static` keyword is disabled. You can turn them on individually by passing `stage 0` as a [babelrc](https://babeljs.io/docs/usage/babelrc/) or [options.babelConfig](#babelconfig).
 
-### Documenting your React components (es6)
+### Documenting your React components
 
 Create file for the styleguide, and then add some documentation to a static field named `styleguide`. You can use the [ES6 syntax](https://github.com/lukehoban/es6features) by [Babel](https://babeljs.io/).
 
@@ -29,6 +29,10 @@ import React from 'react'
 import Button from './Button'
 
 export default class extends React.Component {
+
+  // required for prop documentation
+  static displayName = 'ExampleButton'
+
   static styleguide = {
     index: '1.1',
     category: 'Elements',
@@ -53,6 +57,18 @@ export default class extends React.Component {
       }
     ]
   }
+  
+  // Document the props
+  static propTypes = {
+    /**
+     * Header title
+     */
+    header: React.propTypes.object,
+    /**
+     * Panel style class
+     */
+    bsStyle: React.propTypes.string
+  }
 
   onClick () {
     alert('Alo!')
@@ -73,7 +89,7 @@ export default class extends React.Component {
 - `description`: Components description (optional)
 - `code`: Code example (optional). Not specifying this will not auto-generate an example like with the `examples` array.
 - `className`: CSS class name (optional)
-- `exampleComponent`: `ReactElement` to use to generate the examples. This is generally your base component you're making documenation out of. (es6 only, not required with es5 + rsg-mixin - see es5 section)
+- `exampleComponent`: `ReactElement` to use to generate the examples.
 - `examples`: Array of examples, which generates additional tabs of example components and sample code
 - `examples[].tabTitle`: Title of example tab
 - `examples[].props`: Properties to assign to the rendered example component
@@ -81,19 +97,6 @@ export default class extends React.Component {
 - `examples[].code`: Code example (optional). Omitting this will attempt to auto-generate a code example using the `examples[].props`
 
 If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
-
-### Documenting your react components (es5)
-
-* Using react es5 has the benefit of using `react-docgen` to document your `props` when `reactDocgen.enabled` is set to `"true"`.
-* Use `reactDocgen.files` to specify the path(s) of your es5 react components to parse out `props` documentation
-* See `styleguide.json` for more details
-* `require('react-styleguide-generator/lib/rsg-mixin`)(<component>)` is required to show the `props` documentation
-* [es6 support is pending](https://github.com/reactjs/react-docgen/issues/10)
-
-See the following for examples:
-
-- `example/ReactDocgen/Text input example.js`
-- `src/Text input.js` 
 
 ### Generating the documentation
 
@@ -167,7 +170,7 @@ grunt.registerTask('rsg', 'React style guide', function () {
     RSG(conf.input, {
         config: conf.configFile,
         watch: false,
-        verbose: false
+        verbose: true
     }).generate(function (err) {
         if (err) {
             grunt.log.error('Error: ' + err + ' ' + err.stack())
@@ -213,20 +216,7 @@ Default: `'Style Guide'`
 
 Used as a page title and in the page header.
 
-##### react-docgen
-
-**Note that es6 classes are not supported with the current version of `react-docgen`.
-
-###### react-docgen.enabled
-
-Type: `String`
-Default: `false`
-
-Enables use of `react-docgen` to ouput metadata from a React component's `props`. 
-
-Metadata files are found in `<output_dir>/react-docgen/<relative-path-to-component>`.
-
-###### react-docgen.files
+##### reactDocgen.files
 
 Type: `Array`
 Default: `[]`
