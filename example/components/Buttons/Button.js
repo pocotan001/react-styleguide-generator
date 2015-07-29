@@ -6,7 +6,7 @@ export default class extends Component {
     index: '1.1',
     category: 'Buttons',
     title: 'Buttons',
-    description: 'se any of the available button style types to quickly create a styled button. Just modify the `bsStyle` prop.',
+    description: 'Use any of the available button style types to quickly create a styled button. Just modify the `bsStyle` prop.',
     code: `
 <ButtonToolbar>
   <Button>Default</Button>
