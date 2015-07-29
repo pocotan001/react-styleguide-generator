@@ -72,7 +72,7 @@ export default class extends React.Component {
 - `category`: Components category name
 - `title`: Components title
 - `description`: Components description (optional)
-- `code`: Code example (optional). Not specifying this will not auto-generate an example like with the `examples` array.
+- `code`: Code example (optional). Not specifying this will not auto-generate an example.
 - `className`: CSS class name (optional)
 
 #### Additional examples in tabs (optional)
