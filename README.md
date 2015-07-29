@@ -40,22 +40,7 @@ export default class extends React.Component {
     description: 'You can use **Markdown** within this `description` field.',
     className: 'apply the css class',
     // Used in the first 'Example' tab
-    code: `<Button size='small|large' onClick={Function}>Cool Button</Button>`,
-    // Component to use for generating additional examples
-    exampleComponent: Button,
-    // Array of additional example tabs
-    examples: [
-      {
-        tabTitle: 'Tab title',
-        props: {
-          size: 'small',
-          onClick () {
-            alert('o hay!')
-          }
-        }
-        //code: This is optional; by omitting it, the RSG will attempt to auto-generate an example using the props!
-      }
-    ]
+    code: `<Button size='small|large' onClick={Function}>Cool Button</Button>`
   }
   
   // Document the props via react-docgen
@@ -89,12 +74,51 @@ export default class extends React.Component {
 - `description`: Components description (optional)
 - `code`: Code example (optional). Not specifying this will not auto-generate an example like with the `examples` array.
 - `className`: CSS class name (optional)
+
+#### Additional examples in tabs (optional)
+
+You can optionally use tabs to segment out examples for a component:
+
+```
+import React from 'react'
+import Button from './Button'
+
+export default class extends React.Component {
+
+  // required for prop documentation
+  static displayName = 'ExampleButton'
+
+  static styleguide = {
+    ...
+    
+    // Component to use for generating additional examples
+    exampleComponent: Button,
+    // Array of additional example tabs
+    examples: [
+      {
+        tabTitle: 'Tab title',
+        props: {
+          size: 'small',
+          onClick () {
+            alert('o hay!')
+          }
+        }
+        //code: This is optional; by omitting it, the RSG will attempt to auto-generate an example using the props!
+      }
+    ]
+  }
+  
+  ...
+}
+```
+
 - `exampleComponent`: `ReactElement` to use to generate the examples.
 - `examples`: Array of examples, which generates additional tabs of example components and sample code
 - `examples[].tabTitle`: Title of example tab
 - `examples[].props`: Properties to assign to the rendered example component
-- `examples[].props.children`: Child elements to assign to the example component
-- `examples[].code`: Code example (optional). Omitting this will attempt to auto-generate a code example using the `examples[].props`
+- `examples[].props.children`: (optional) Child elements to assign to the example component
+- `examples[].code`: (optional) Code example. Omitting this will attempt to auto-generate a code example using the `examples[].props`
+
 
 If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
 

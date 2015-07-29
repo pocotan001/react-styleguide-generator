@@ -67,9 +67,28 @@ export default class Section extends Component {
   }
 
   renderExamples () {
+    if (this.props.examples && this.props.examples.length > 1) {
+      return this.renderTabbedExamples()
+    } else {
+      return this.renderExample()
+    }
+  }
+
+  renderExample () {
+    let className = `sg sg-section-example ${this.props.className ? this.props.className : ''}`
+
+    return (
+      <section className={className}>
+        {this.props.children}
+        {this.props.code && this.renderCode(this.props.code)}
+      </section>
+    )
+  }
+
+  renderTabbedExamples () {
     // We first check if there is a user-defined component to use for creating additional examples
     let Component = this.props.exampleComponent || null
-    let className = `sg sg-section-example ${this.props.className ? this.props.className : ''}`
+    let className = `sg sg-tabbed sg-section-example ${this.props.className ? this.props.className : ''}`
     let examples = []
 
     // Renders the base example using the styleguide block

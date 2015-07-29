@@ -183,8 +183,14 @@
 .sg-section-example {
   position: relative;
   overflow: auto;
-  padding: 20px 0 0 0;
+  padding: 20px;
   border-bottom: 1px solid var(--gray-lighter);
+}
+
+.sg-tabbed.sg-section-example {
+  padding: 20px 0 0 0;
+  border: 1px solid var(--gray-lighter);
+  margin-top: 10px;
 }
 
 /**
@@ -195,6 +201,11 @@
   border: 1px solid var(--gray-lighter);
   margin-top: 10px;
 }
+
+.sg-tabbed .sg-section-code {
+  margin-top: 0;
+}
+
 
 .sg-section-code code {
   padding: 20px;
