@@ -365,3 +365,9 @@ npm start
 ```
 
 Visit [http://localhost:3000/](http://localhost:3000/) in your browser.
+
+## Troubleshooting
+
+### Error: No suitable component definition found.
+
+Make sure your component contains `displayName` and `render()`.
