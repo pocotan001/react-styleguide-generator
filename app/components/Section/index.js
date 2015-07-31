@@ -67,7 +67,7 @@ export default class Section extends Component {
   }
 
   renderExamples () {
-    if (this.props.examples && this.props.examples.length > 1) {
+    if (this.props.examples && this.props.examples.length > 0) {
       return this.renderTabbedExamples()
     } else {
       return this.renderExample()
