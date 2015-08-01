@@ -184,11 +184,20 @@ export default class Section extends Component {
   renderAutoCode (props) {
 
     let displayName = this.props.exampleComponent && utils.getDisplayName(this.props.exampleComponent) || 'Component'
-    let propString = ''
+    let propString = []
     let html
+    let displaySpaces = ' '.repeat(displayName.length + 1)
 
     if (props) {
-      Object.keys(props).forEach(function (prop) {
+      let propKeys = Object.keys(props)
+
+      propKeys.forEach(function (prop, index) {
+        let spaces = ''
+
+        if (index > 0) {
+          spaces = displaySpaces
+        }
+
         if (prop === 'children') {
           return
         }
@@ -196,33 +205,38 @@ export default class Section extends Component {
         let type = typeof props[prop]
         switch (type) {
           case 'string':
-            propString += ` ${prop}='${props[prop]}'`
+            propString.push(`${spaces} ${prop}='${props[prop]}'`)
             break
           case 'number':
-            propString += ` ${prop}={${props[prop]}} `
+            propString.push(`${spaces} ${prop}={${props[prop]}} `)
             break
           case 'function':
-            propString += ` ${prop}={function}`
+            propString.push(`${spaces} ${prop}={function}`)
             break
           case 'object':
 
             if (props[prop]._isReactElement) {
               // @todo support rendering actual react elements (eg using actual component name) + props
-              propString += ` ${prop}={ReactElement}`
+              propString.push(`${displaySpaces} ${prop}={ReactElement}`)
             } else {
-              var objStr = JSON.stringify(props[prop])
-              propString += `
-                ${prop}={${objStr}}`
+              var objStr = JSON.stringify(props[prop], null, 2)
+              // Properly indent out the formatted json
+              objStr = objStr.replace(/^(?!\[|\{)(.*)/gm, displaySpaces + ' $1')
+              propString.push(`${spaces} ${prop}={${objStr}}`)
             }
 
             break
           default:
-            propString += ` ${prop}={${type}}`
+            propString.push(`${spaces} ${prop}={${type}}`)
         }
 
       })
 
-      propString = propString.trim()
+      if (propString.length > 1) {
+        propString = propString.join('\n').trim()
+      } else {
+        propString = propString.join('').trim()
+      }
 
       if (props.children) {
         switch (typeof props.children) {
@@ -237,7 +251,11 @@ export default class Section extends Component {
         }
 
       } else {
-        html = `<${displayName} ${propString} />`
+        if (propKeys.length < 2) {
+          html = `<${displayName} ${propString} />`
+        } else {
+          html = `<${displayName} ${propString}` + '\n' + '/>'
+        }
       }
 
       return this.renderCode(html)
