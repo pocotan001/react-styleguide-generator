@@ -5,7 +5,7 @@ import reactDocGenToMD from '../../utils/react-docgen-to-md'
 import Tabs from 'react-simpletabs'
 import utils from '../../../lib/utils'
 
-var exampleId = 0
+let exampleId = 0
 
 export default class Section extends Component {
   static displayName = 'SG.Section'
@@ -95,12 +95,12 @@ export default class Section extends Component {
 
     // Renders the base example using the styleguide block
     examples.push(
-        <Tabs.Panel key={'tab-panel-' + exampleId} title={'Example'}>
-          <div className='sg-section-example-body'>
-            {this.props.children}
-          </div>
-          {this.props.code && this.renderCode(this.props.code)}
-        </Tabs.Panel>
+      <Tabs.Panel key={'tab-panel-' + exampleId} title={'Example'}>
+        <div className='sg-section-example-body'>
+          {this.props.children}
+        </div>
+        {this.props.code && this.renderCode(this.props.code)}
+      </Tabs.Panel>
     )
 
     // Additional examples found in styleguide.examples
@@ -117,21 +117,14 @@ export default class Section extends Component {
         exampleId += 1
         tabNumber += 1
 
-        if (data.children) {
-          return (
-            <Tabs.Panel key={'tab-panel-' + exampleId} title={data.tabTitle || ('Example-' + tabNumber) }>
-              <Component key={'component-ex-' + exampleId} {...data.props}>{data.children}</Component>
-              {this.renderExampleCode(data.props, data.code)}
-            </Tabs.Panel>
-          )
-        } else {
-          return (
-            <Tabs.Panel key={'tab-panel-' + exampleId} title={data.tabTitle || ('Example-' + tabNumber)}>
+        return (
+          <Tabs.Panel key={'tab-panel-' + exampleId} title={data.tabTitle || ('Example-' + tabNumber)}>
+            <div className='sg-section-example-body'>
               <Component key={'component-ex-' + exampleId} {...data.props} />
-              {this.renderExampleCode(data.props, data.code)}
-            </Tabs.Panel>
-          )
-        }
+            </div>
+            {this.renderExampleCode(data.props, data.code)}
+          </Tabs.Panel>
+        )
       }, this)
 
       examples = examples.concat(addlExamples)
