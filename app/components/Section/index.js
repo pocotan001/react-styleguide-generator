@@ -79,7 +79,9 @@ export default class Section extends Component {
 
     return (
       <section className={className}>
-        {this.props.children}
+        <div className='sg-section-example-body'>
+          {this.props.children}
+        </div>
         {this.props.code && this.renderCode(this.props.code)}
       </section>
     )
@@ -94,7 +96,9 @@ export default class Section extends Component {
     // Renders the base example using the styleguide block
     examples.push(
         <Tabs.Panel key={'tab-panel-' + exampleId} title={'Example'}>
-          {this.props.children}
+          <div className='sg-section-example-body'>
+            {this.props.children}
+          </div>
           {this.props.code && this.renderCode(this.props.code)}
         </Tabs.Panel>
     )

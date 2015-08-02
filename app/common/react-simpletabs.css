@@ -1,49 +1,57 @@
-/* =============================================================================
-  An example of how stylize the tabs
-============================================================================= */
+/**
+ * Tabs
+ */
 
-.tabs-navigation {
-  padding: 0 50px;
+.sg-tabbed {
+  margin-top: 60px;
 }
 
 .tabs-navigation {
-  max-height: 62px;
-  padding: 0 10px;
-  border-bottom: 1px solid #ddd;
+  position: absolute;
+  bottom: 100%;
+  width: 100%;
+  padding-right: 40px;
 }
 
 .tabs-menu {
   display: table;
+  width: 100%;
   margin: 0;
   padding: 0;
+  table-layout: fixed;
   list-style: none;
 }
 
 .tabs-menu-item {
-  float: left;
+  display: table-cell;
+  text-align: center;
 }
 
-.tab-panel {
-  margin: 20px;
+.tabs-menu-item + .tabs-menu-item {
+  padding-left: 5px;
 }
 
 .tabs-menu-item a {
   display: block;
-  height: 30px;
-  padding: 0 30px;
-  color: #a9a9a9;
-  border-bottom: 0;
-  line-height: 30px;
+  height: 36px;
+  padding-top: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--gray-light);
+  border: 1px solid transparent;
+  border-bottom: none;
 }
 
-.tabs-menu-item:not(.is-active) a:hover {
-  color: #3498db;
+.tabs-menu-item a:hover,
+.tabs-menu-item.is-active a {
+  text-decoration: none;
+  color: var(--gray-dark);
+  border-color: var(--gray-lighter);
+  border-radius: 2px 2px 0 0;
+  background: var(--white);
 }
 
 .tabs-menu-item.is-active a {
-  color: #333;
-  border: 1px solid #ddd;
-  border-top: 2px solid #3498db;
-  border-bottom: 0;
-  background: #fff;
+  font-weight: bold;
 }
