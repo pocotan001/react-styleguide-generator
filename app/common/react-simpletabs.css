@@ -3,47 +3,47 @@
 ============================================================================= */
 
 .tabs-navigation {
-    padding: 0 50px;
+  padding: 0 50px;
 }
 
 .tabs-navigation {
-    padding: 0 10px;
-    max-height: 62px;
-    border-bottom: 1px solid #DDD;
+  max-height: 62px;
+  padding: 0 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .tabs-menu {
-    display: table;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  display: table;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .tabs-menu-item {
-    float: left;
+  float: left;
 }
 
 .tab-panel {
-    margin: 20px;
+  margin: 20px;
 }
 
 .tabs-menu-item a {
-    display: block;
-    padding: 0 30px;
-    height: 30px;
-    line-height: 30px;
-    border-bottom: 0;
-    color: #A9A9A9;
+  display: block;
+  height: 30px;
+  padding: 0 30px;
+  color: #a9a9a9;
+  border-bottom: 0;
+  line-height: 30px;
 }
 
 .tabs-menu-item:not(.is-active) a:hover {
-    color: #3498db;
+  color: #3498db;
 }
 
 .tabs-menu-item.is-active a {
-    background: #fff;
-    border: 1px solid #DDD;
-    border-top: 2px solid #3498db;
-    border-bottom: 0;
-    color: #333;
+  color: #333;
+  border: 1px solid #ddd;
+  border-top: 2px solid #3498db;
+  border-bottom: 0;
+  background: #fff;
 }
