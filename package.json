@@ -41,14 +41,9 @@
   ],
   "author": "pocotan001",
   "contributors": [
-    {
-      "name": "Theo Gravity",
-      "email": "theo@suteki.nu"
-    },
-    {
-      "name": "Marcello Bastea-Forte",
-      "email": "marcello@cellosoft.com"
-    }
+    { "name": "ygoto3" },
+    { "name": "Theo Gravity", "email": "theo@suteki.nu" },
+    { "name": "Marcello Bastea-Forte", "email": "marcello@cellosoft.com" }
   ],
   "license": "MIT",
   "bugs": {
