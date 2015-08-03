@@ -4,6 +4,11 @@ import { Panel } from 'react-bootstrap'
 const content = 'Panel content'
 const title = <h3>Panel title</h3>
 
+/**
+ * By default, all the `<Panel />` does is apply some basic border and padding to contain some content.
+ *
+ * (This description is defined above the class definition in code.)
+ */
 export default class extends Component {
 
   // displayName is required for props documentation
@@ -13,7 +18,6 @@ export default class extends Component {
     index: '2.1',
     category: 'Panels',
     title: 'Panel example',
-    description: 'By default, all the `<Panel />` does is apply some basic border and padding to contain some content.',
     code: `
 <Panel>
   ${content}
