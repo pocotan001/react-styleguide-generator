@@ -31,11 +31,13 @@ export default class Section extends Component {
     }
   }
 
-  highlight (component) {
-    // fix bug where unmount triggers the ref definition
-    if (component) {
-      let code = React.findDOMNode(component)
-      hljs.highlightBlock(code)
+  highlight () {
+    // @todo - possible perf issue if there are a huge amount of code blocks
+    let nodes = document.querySelectorAll('code.example-code')
+
+    // a NodeList is returned, not an Array, so can't use array methods here
+    for (let i = 0; i < nodes.length; ++i) {
+      hljs.highlightBlock(nodes[i])
     }
   }
 
@@ -163,7 +165,7 @@ export default class Section extends Component {
 
     return (
       <section className={className}>
-        <Tabs>
+        <Tabs onAfterChange={this.highlight}>
           {examples}
         </Tabs>
       </section>
@@ -298,7 +300,7 @@ export default class Section extends Component {
       return (
         <section className='sg sg-section-code'>
         <pre className='sg'>
-          <code className='sg xml' ref={this.highlight}>{code.trim()}</code>
+          <code className='sg xml example-code'>{code.trim()}</code>
         </pre>
         </section>
       )
@@ -306,6 +308,14 @@ export default class Section extends Component {
 
     return null
 
+  }
+
+  componentDidMount () {
+    this.highlight()
+  }
+
+  componentDidUpdate () {
+    this.highlight()
   }
 
   render () {
