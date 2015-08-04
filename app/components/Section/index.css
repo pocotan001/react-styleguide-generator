@@ -200,4 +200,5 @@
   padding: 0;
   background: var(--white);
   font-family: monospace;
+  display: block;
 }

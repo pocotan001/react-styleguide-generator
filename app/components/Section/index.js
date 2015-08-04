@@ -31,11 +31,13 @@ export default class Section extends Component {
     }
   }
 
-  highlight (component) {
-    // fix bug where unmount triggers the ref definition
-    if (component) {
-      let code = React.findDOMNode(component)
-      hljs.highlightBlock(code)
+  highlight () {
+    // @todo - possible perf issue if there are a huge amount of code blocks
+    let nodes = document.querySelectorAll('code.example-code')
+
+    // a NodeList is returned, not an Array, so can't use array methods here
+    for (let i = 0; i < nodes.length; ++i) {
+      hljs.highlightBlock(nodes[i])
     }
   }
 
@@ -59,7 +61,35 @@ export default class Section extends Component {
   }
 
   renderDescription () {
-    let markup = marked(this.props.description.trim(), { sanitize: true })
+    let markup, displayName, docMeta
+
+    // Check if the styleguide static description exists
+    if (this.props.description) {
+      markup = marked(this.props.description.trim(), { sanitize: true })
+    }
+
+    // If there is no markup, check if the react-docgen has a class description
+    if (!markup) {
+      // Check if the base component has docs
+      displayName = utils.getDisplayName(this.props._self.type)
+      docMeta = window.RSG.propMetas[displayName]
+
+      if (docMeta && docMeta.description) {
+        markup = marked(docMeta.description.trim(), {sanitize: true})
+      }
+
+      // no description found on the base; check the defined exampleComponent instead
+      if (!markup) {
+        displayName = utils.getDisplayName(this.props.exampleComponent)
+        docMeta = window.RSG.propMetas[displayName]
+
+        if (docMeta && docMeta.description) {
+          markup = marked(docMeta.description.trim(), {sanitize: true})
+        }
+      }
+    }
+
+    if (!markup) { return null }
 
     return (
       <div className='sg sg-section-description' dangerouslySetInnerHTML={{__html: markup}} />
@@ -132,7 +162,7 @@ export default class Section extends Component {
 
     return (
       <section className={className}>
-        <Tabs>
+        <Tabs onAfterChange={this.highlight}>
           {examples}
         </Tabs>
       </section>
@@ -267,7 +297,7 @@ export default class Section extends Component {
       return (
         <section className='sg sg-section-code'>
         <pre className='sg'>
-          <code className='sg xml' ref={this.highlight}>{code.trim()}</code>
+          <code className='sg xml example-code'>{code.trim()}</code>
         </pre>
         </section>
       )
@@ -277,11 +307,19 @@ export default class Section extends Component {
 
   }
 
+  componentDidMount () {
+    this.highlight()
+  }
+
+  componentDidUpdate () {
+    this.highlight()
+  }
+
   render () {
     return (
       <section className='sg sg-section'>
         {this.props.category && this.props.title && this.renderHeading()}
-        {this.props.description && this.renderDescription()}
+        {this.renderDescription()}
         {this.props.exampleComponent && this.renderProps()}
         {this.props.children && this.renderExamples()}
       </section>
