@@ -16,7 +16,8 @@
     "dev-build:css": "cssnext -s app/index.css dist/app.css",
     "dev-build:js": "browserify -d -t [babelify --stage 0] -x react app -o dist/app.js",
     "clean": "rimraf dist/*",
-    "styleguide": "node bin/rsg 'example/**/*.js' -v | bunyan -o short"
+    "styleguide": "node bin/rsg 'example/**/*.js' -v",
+    "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
   },
   "files": [
     "bin",
@@ -79,6 +80,7 @@
   "devDependencies": {
     "babel-eslint": "^4.0.5",
     "cssnext": "^1.7.1",
+    "gh-pages": "^0.3.1",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
     "mocha": "^2.2.5",
