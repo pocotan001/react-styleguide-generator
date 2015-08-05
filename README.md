@@ -99,6 +99,40 @@ export default class extends React.Component {
 - `examples[].props.children`: (optional) Child elements to assign to the example component
 - `examples[].code`: (optional) Code example. Omitting this will attempt to auto-generate a code example using the `examples[].props`
 
+#### Additional examples via doc comment (optional) [Demo](http://pocotan001.github.io/react-styleguide-generator/#!/Features%20:\)/Additional%20examples%20via%20doc%20comment)
+
+Doc comment support example is:
+
+``` js
+/**
+ * Substitute this description for `styleguide.description`.
+ */
+export default class extends Component {
+  // required for prop documentation
+  static displayName = 'ExampleButton'
+
+  static styleguide = {
+    …
+  }
+
+  // Document the props via react-docgen
+  static propTypes = {
+    /**
+     * Block level
+     */
+    block: React.PropTypes.bool,
+    /**
+     * Style types
+     */
+    kind: React.PropTypes.oneOf(['default', 'primary', 'success', 'info']),
+  }
+
+  render () {
+    return <Button block kind='primary'>Cool Button</Button>
+  }
+}
+```
+
 If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
 
 ### Generating the documentation
@@ -161,29 +195,25 @@ gulp.task('styleguide', function (done) {
 ``` js
 var RSG = require('react-styleguide-generator')
 
-...
-
 grunt.registerTask('rsg', 'React style guide', function () {
   var done = this.async()
 
   try {
-
     var conf = grunt.config.get('rsg')
 
     RSG(conf.input, {
-        config: conf.configFile,
-        watch: false,
-        verbose: true
+      config: conf.configFile,
+      watch: false,
+      verbose: true
     }).generate(function (err) {
-        if (err) {
-            grunt.log.error('Error: ' + err + ' ' + err.stack())
-            return done(false)
-        }
+      if (err) {
+          grunt.log.error('Error: ' + err + ' ' + err.stack())
+          return done(false)
+      }
 
-        grunt.log.ok('react styleguide generation complete')
-        done()
+      grunt.log.ok('react styleguide generation complete')
+      done()
     })
-
   } catch (e) {
     grunt.log.error('Error: ' + e + ' ' + e.stack)
     done(false)

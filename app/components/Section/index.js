@@ -190,14 +190,7 @@ export default class Section extends Component {
       }
     }
 
-    if (markup) {
-      return (
-        <div className='sg sg-section-description' dangerouslySetInnerHTML={{__html: markup}} />
-      )
-    }
-
-    return null
-
+    return markup ? <div className='sg sg-section-description' dangerouslySetInnerHTML={{__html: markup}} /> : null
   }
 
   renderExampleCode (props, code) {
@@ -302,7 +295,7 @@ export default class Section extends Component {
       <section className='sg sg-section'>
         {this.props.category && this.props.title && this.renderHeading()}
         {this.renderDescription()}
-        {this.props.exampleComponent && this.renderProps()}
+        {this.renderProps()}
         {(this.props.children || this.props.examples) && this.renderExamples()}
       </section>
     )

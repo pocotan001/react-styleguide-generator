@@ -9,8 +9,7 @@ import marked from 'marked'
  * @author theogravity
  */
 module.exports = function docgenToMarkdown (displayName) {
-
-  var component = window.RSG.propMetas[displayName]
+  let component = window.RSG.propMetas[displayName]
 
   if (!component) {
     return
@@ -18,24 +17,22 @@ module.exports = function docgenToMarkdown (displayName) {
 
   if (component.props) {
     return marked([
-      '### Properties',
+      '#### Properties',
       '',
       Object.keys(component.props).map(propName => {
         let prop = component.props[propName]
-        let defaultValue = ''
+        let value = ''
 
         // Doing it this way instead of ternary operator is because
         // the linter gives back 'Infix operators must be spaced.'
         // unsure how to fix given that everything was spaced properly
         if (prop.defaultValue && prop.defaultValue.value) {
-          defaultValue = ' (default value : `' + prop.defaultValue.value + '`)'
+          value = ` (default value:\`${prop.defaultValue.value}\`)`
         }
 
         return (
-          '`' + propName + (prop.type.name ? ':' + prop.type.name : '') + (prop.required ? '.isRequired' : '') + '` ' +
-          (prop.description || '') +
-          defaultValue +
-          '\n\n'
+          `\`${propName}${prop.type.name ? ':' + prop.type.name : ''}${prop.required ? '.isRequired' : ''}\`` +
+          `${prop.description ? ` \- ${prop.description}` : ''}${value}\n`
         )
       }).join('\n')
     ].join('\n'), { sanitize: true })
