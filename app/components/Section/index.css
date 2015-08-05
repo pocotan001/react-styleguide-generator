@@ -186,17 +186,18 @@
   border-top: 1px solid var(--gray-lighter);
 }
 
-.sg-section-example .sg-section-code {
-  margin: 20px -20px 0;
-  padding: 20px 20px 0;
+.sg-section-code {
+  margin: 20px -20px -20px;
+  padding: 20px;
   border-top: 1px solid var(--gray-lighter);
+  background: #fff;
 }
 
 .sg-section-example-body {
   overflow: auto;
 }
 
-.sg-section-example .sg-section-code code {
+.sg-section-code code {
   padding: 0;
   background: var(--white);
   font-family: monospace;

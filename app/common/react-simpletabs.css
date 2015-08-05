@@ -46,6 +46,7 @@
 .tabs-menu-item a:hover,
 .tabs-menu-item.is-active a {
   text-decoration: none;
+  opacity: 1;
   color: var(--gray-dark);
   border-color: var(--gray-lighter);
   border-radius: 2px 2px 0 0;
