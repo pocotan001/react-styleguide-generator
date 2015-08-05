@@ -174,12 +174,6 @@ describe('RSG', function () {
     this.timeout(60000)
 
     var opts = {
-      'react-docgen': {
-        'enabled': true,
-        'files': [
-          'example/components/Select/select.js'
-        ]
-      },
       files: [
         '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css',
         'example/example.css'
