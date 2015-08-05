@@ -190,7 +190,7 @@ export default class Section extends Component {
       }
     }
 
-    return markup ? <div className='sg sg-section-description' dangerouslySetInnerHTML={{__html: markup}} /> : null
+    return markup ? <div className='sg sg-section-description sg-props' dangerouslySetInnerHTML={{__html: markup}} /> : null
   }
 
   renderExampleCode (props, code) {
