@@ -1,5 +1,7 @@
 # React Styleguide Generator
 
+[![Join the chat at https://gitter.im/pocotan001/react-styleguide-generator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pocotan001/react-styleguide-generator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![CircleCI](https://img.shields.io/circleci/project/pocotan001/react-styleguide-generator.svg)](https://circleci.com/gh/pocotan001/react-styleguide-generator)
 [![npm](https://img.shields.io/npm/v/react-styleguide-generator.svg)](https://npmjs.org/package/react-styleguide-generator)
 
