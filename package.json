@@ -16,7 +16,7 @@
     "dev-build:css": "cssnext -s app/index.css dist/app.css",
     "dev-build:js": "browserify -d -t [babelify --stage 0] -x react app -o dist/app.js",
     "clean": "rimraf dist/*",
-    "styleguide": "node bin/rsg 'example/components/**/*.js'",
+    "styleguide": "node bin/rsg 'example/**/*.js' -c 'styleguide.json' -v | bunyan -o short",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
   },
   "files": [
@@ -40,6 +40,16 @@
     "styleguide"
   ],
   "author": "pocotan001",
+  "contributors": [
+    {
+      "name": "Theo Gravity",
+      "email": "theo@suteki.nu"
+    },
+    {
+      "name": "Marcello Bastea-Forte",
+      "email": "marcello@cellosoft.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pocotan001/react-styleguide-generator/issues"
@@ -59,25 +69,30 @@
     "react": ">=0.13"
   },
   "dependencies": {
-    "babelify": "^6.1.2",
-    "browserify": "^10.2.4",
-    "es6-promise": "^2.3.0",
+    "babel": "^5.8.19",
+    "babelify": "^6.1.3",
+    "browserify": "^11.0.1",
+    "bunyan": "^1.4.0",
     "fs-extra": "^0.20.1",
     "glob": "^5.0.10",
     "minimist": "^1.1.1",
     "mustache": "^2.1.2",
-    "object-assign": "^3.0.0"
+    "object-assign": "^3.0.0",
+    "react-docgen": "^2.0.0",
+    "react-simpletabs": "matthewgertner/react-simpletabs",
+    "watchify": "^3.2.3",
+    "xtend": "^4.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^3.1.18",
+    "babel-eslint": "^4.0.5",
     "cssnext": "^1.7.1",
     "gh-pages": "^0.3.1",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
     "mocha": "^2.2.5",
-    "page": "^1.6.3",
+    "page": "1.6.3",
     "react": "^0.13.3",
-    "react-bootstrap": "^0.23.5",
+    "react-bootstrap": "0.23.5",
     "rimraf": "^2.4.0",
     "standard": "^4.3.2",
     "uglify-js": "^2.4.23"

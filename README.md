@@ -20,30 +20,48 @@ Which requires **React 0.13.0** or newer. To install it `npm install react`.
 
 ## Quick Start
 
+**NOTE:** By default Babel's `static` keyword is disabled. You can turn them on individually by passing `stage 0` as a [babelrc](https://babeljs.io/docs/usage/babelrc/) or [options.babelConfig](#babelconfig).
+
 ### Documenting your React components
 
 Create file for the styleguide, and then add some documentation to a static field named `styleguide`. You can use the [ES6 syntax](https://github.com/lukehoban/es6features) by [Babel](https://babeljs.io/).
-
-**NOTE:** By default Babel's `static` keyword is disabled. You can turn them on individually by passing `stage 0` as a [babelrc](https://babeljs.io/docs/usage/babelrc/) or [options.babelConfig](#babelconfig).
 
 ``` js
 import React from 'react'
 import Button from './Button'
 
 export default class extends React.Component {
+
+  // required for prop documentation
+  static displayName = 'ExampleButton'
+
   static styleguide = {
     index: '1.1',
     category: 'Elements',
     title: 'Button',
     description: 'You can use **Markdown** within this `description` field.',
-    code: `<Button size='small|large' onClick={Function}>Cool Button</Button>`,
-    className: 'apply the css class'
+    className: 'apply the css class',
+    // Used in the first 'Example' tab
+    code: `<Button size='small|large' onClick={Function}>Cool Button</Button>`
+  }
+  
+  // Document the props via react-docgen
+  static propTypes = {
+    /**
+     * Header title
+     */
+    header: React.propTypes.object,
+    /**
+     * Panel style class
+     */
+    bsStyle: React.propTypes.string
   }
 
   onClick () {
     alert('Alo!')
   }
 
+  //Used for the first 'Example' tab
   render () {
     return (
       <Button size='large' onClick={this.onClick}>Cool Button</Button>
@@ -56,8 +74,53 @@ export default class extends React.Component {
 - `category`: Components category name
 - `title`: Components title
 - `description`: Components description (optional)
-- `code`: Code examples (optional)
+- `code`: Code example (optional). Not specifying this will not auto-generate an example.
 - `className`: CSS class name (optional)
+
+#### Additional examples in tabs (optional)
+
+You can optionally use tabs to segment out examples for a component:
+
+```
+import React from 'react'
+import Button from './Button'
+
+export default class extends React.Component {
+
+  // required for prop documentation
+  static displayName = 'ExampleButton'
+
+  static styleguide = {
+    ...
+    
+    // Component to use for generating additional examples
+    exampleComponent: Button,
+    // Array of additional example tabs
+    examples: [
+      {
+        tabTitle: 'Tab title',
+        props: {
+          size: 'small',
+          onClick () {
+            alert('o hay!')
+          }
+        }
+        //code: This is optional; by omitting it, the RSG will attempt to auto-generate an example using the props!
+      }
+    ]
+  }
+  
+  ...
+}
+```
+
+- `exampleComponent`: `ReactElement` to use to generate the examples.
+- `examples`: Array of examples, which generates additional tabs of example components and sample code
+- `examples[].tabTitle`: Title of example tab
+- `examples[].props`: Properties to assign to the rendered example component
+- `examples[].props.children`: (optional) Child elements to assign to the example component
+- `examples[].code`: (optional) Code example. Omitting this will attempt to auto-generate a code example using the `examples[].props`
+
 
 If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
 
@@ -85,9 +148,13 @@ Options:
   -c, --config     Use the config file         ['styleguide.json']
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
+  -w, --watch      Watch mode using `browserifyConfig`
 
 Examples:
-  rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js'
+  rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js' -v
+  
+  # Necessary to use a config file if you want to enable react-docgen
+  rsg 'example/**/*.js' -c 'styleguide.json' -v
 ```
 
 #### Gulp
@@ -109,6 +176,41 @@ gulp.task('styleguide', function (done) {
 
     done()
   })
+})
+```
+
+#### Grunt
+
+``` js
+var RSG = require('react-styleguide-generator')
+
+...
+
+grunt.registerTask('rsg', 'React style guide', function () {
+  var done = this.async()
+
+  try {
+
+    var conf = grunt.config.get('rsg')
+
+    RSG(conf.input, {
+        config: conf.configFile,
+        watch: false,
+        verbose: true
+    }).generate(function (err) {
+        if (err) {
+            grunt.log.error('Error: ' + err + ' ' + err.stack())
+            return done(false)
+        }
+
+        grunt.log.ok('react styleguide generation complete')
+        done()
+    })
+
+  } catch (e) {
+    grunt.log.error('Error: ' + e + ' ' + e.stack)
+    done(false)
+  }
 })
 ```
 
@@ -139,6 +241,13 @@ Type: `String`
 Default: `'Style Guide'`
 
 Used as a page title and in the page header.
+
+##### reactDocgen.files
+
+Type: `Array`
+Default: `input`
+
+An array of `glob`-able file/paths for `react-docgen` to parse. If not specified, will default the value to `input`.
 
 ##### root
 
@@ -193,10 +302,12 @@ Inject file references into index.html if the files with the extension `.css` or
 
 ##### config
 
-Type: `String`  
+Type: `String|Object`  
 Default: `styleguide.json`
 
 The entire range of RSG API options is allowed. [Usage example](https://github.com/pocotan001/react-styleguide-generator/blob/master/example/styleguide.json).
+
+An object can be passed instead of a filename that contains the RSG API options.
 
 ##### pushstate
 
@@ -233,6 +344,13 @@ A usage example is below. See the [browserify docs](https://github.com/substack/
 }
 ```
 
+### watch
+
+Type: `String`
+Default: `false`
+
+Enables `watchify` for when the `input` files change, speeding up rebuild time.
+
 ### rsg.generate([callback])
 
 Generate the files and their dependencies into a styleguide output.
@@ -249,3 +367,9 @@ npm start
 ```
 
 Visit [http://localhost:3000/](http://localhost:3000/) in your browser.
+
+## Troubleshooting
+
+### Error: No suitable component definition found.
+
+Make sure your component contains `displayName` and `render()`.

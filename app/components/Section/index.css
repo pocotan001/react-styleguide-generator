@@ -187,16 +187,29 @@
   border-bottom: 1px solid var(--gray-lighter);
 }
 
+.sg-tabbed.sg-section-example {
+  padding: 20px 0 0 0;
+  border: 1px solid var(--gray-lighter);
+  margin-top: 10px;
+}
+
 /**
  * Code
  */
 
 .sg-section-code {
-  border-bottom: 1px solid var(--gray-lighter);
+  border: 1px solid var(--gray-lighter);
+  margin-top: 10px;
 }
+
+.sg-tabbed .sg-section-code {
+  margin-top: 0;
+}
+
 
 .sg-section-code code {
   padding: 20px;
   background: var(--white);
   font-family: monospace;
+  display: block;
 }
