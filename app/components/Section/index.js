@@ -97,7 +97,7 @@ export default class Section extends Component {
   }
 
   renderExamples () {
-    if (this.props.examples && this.props.examples.length > 0) {
+    if (this.props.examples && this.props.examples.length) {
       return this.renderTabbedExamples()
     } else {
       return this.renderExample()
@@ -124,14 +124,16 @@ export default class Section extends Component {
     let examples = []
 
     // Renders the base example using the styleguide block
-    examples.push(
-      <Tabs.Panel key={'tab-panel-' + exampleId} title={'Example'}>
-        <div className='sg-section-example-body'>
-          {this.props.children}
-        </div>
-        {this.props.code && this.renderCode(this.props.code)}
-      </Tabs.Panel>
-    )
+    if (this.props.children) {
+      examples.push(
+        <Tabs.Panel key={'tab-panel-' + exampleId} title={'Example'}>
+          <div className='sg-section-example-body'>
+            {this.props.children}
+          </div>
+          {this.props.code && this.renderCode(this.props.code)}
+        </Tabs.Panel>
+      )
+    }
 
     // Additional examples found in styleguide.examples
     if (this.props.examples) {
@@ -208,87 +210,67 @@ export default class Section extends Component {
     return null
   }
 
-  renderAutoCode (props) {
+  toPropTypeString (prop) {
+    let str
+    let type = typeof prop
 
-    let displayName = this.props.exampleComponent && utils.getDisplayName(this.props.exampleComponent) || 'Component'
-    let propString = []
-    let html
-    let displaySpaces = ' '.repeat(displayName.length + 1)
-
-    if (props) {
-      let propKeys = Object.keys(props)
-
-      propKeys.forEach(function (prop, index) {
-        let spaces = ''
-
-        if (index > 0) {
-          spaces = displaySpaces
-        }
-
-        if (prop === 'children') {
-          return
-        }
-
-        let type = typeof props[prop]
-        switch (type) {
-          case 'string':
-            propString.push(`${spaces} ${prop}='${props[prop]}'`)
-            break
-          case 'number':
-            propString.push(`${spaces} ${prop}={${props[prop]}} `)
-            break
-          case 'function':
-            propString.push(`${spaces} ${prop}={function}`)
-            break
-          case 'object':
-
-            if (props[prop]._isReactElement) {
-              // @todo support rendering actual react elements (eg using actual component name) + props
-              propString.push(`${displaySpaces} ${prop}={ReactElement}`)
-            } else {
-              var objStr = JSON.stringify(props[prop], null, 2)
-              // Properly indent out the formatted json
-              objStr = objStr.replace(/^(?!\[|\{)(.*)/gm, displaySpaces + ' $1')
-              propString.push(`${spaces} ${prop}={${objStr}}`)
-            }
-
-            break
-          default:
-            propString.push(`${spaces} ${prop}={${type}}`)
-        }
-
-      })
-
-      if (propString.length > 1) {
-        propString = propString.join('\n').trim()
-      } else {
-        propString = propString.join('').trim()
-      }
-
-      if (props.children) {
-        switch (typeof props.children) {
-          case 'string':
-            html = `<${displayName} ${propString}>${props.children}</${displayName}>`
-            break
-          // @todo support nested children elements
-          default:
-            html = `<${displayName} ${propString}>Auto-documentation for
-                      child elements not supported. Please define the "code" property manually.
-                    </${displayName}>`
-        }
-
-      } else {
-        if (propKeys.length < 2) {
-          html = `<${displayName} ${propString} />`
-        } else {
-          html = `<${displayName} ${propString}` + '\n' + '/>'
-        }
-      }
-
-      return this.renderCode(html)
+    switch (type) {
+      case 'string':
+        str = `'${prop}'`
+        break
+      case 'number':
+        str = `{${prop}}`
+        break
+      case 'object':
+        // @todo support rendering actual react elements (eg using actual component name) + props
+        str = prop._isReactElement ? '{ReactElement}' : `{${JSON.stringify(prop, null, 2)}}`
+        break
+      default:
+        str = `{${type}}`
     }
 
-    return null
+    return str
+  }
+
+  renderAutoCode (props) {
+    let displayName = this.props.exampleComponent && utils.getDisplayName(this.props.exampleComponent) || 'Component'
+    let html
+
+    if (props) {
+      let propKeys = Object.keys(props).filter((prop) => prop !== 'children')
+      let propLength = propKeys.length
+      let spaces
+
+      switch (propLength) {
+        case 0:
+          spaces = ''
+          break
+        case 1:
+          spaces = ' '
+          break
+        default:
+          spaces = '\n  '
+      }
+
+      let propString = propKeys
+        .map((prop) => `${spaces}${prop}=${this.toPropTypeString(props[prop])}`)
+        .join('')
+
+      if (props.children) {
+        // @todo support nested children elements
+        let text = typeof props.children === 'string' ? props.children : 'Auto-documentation for child elements not supported. Please define the "code" property manually.'
+
+        if (propLength) {
+          text = `\n  ${text}\n`
+        }
+
+        html = `<${displayName}${propString}>${text}</${displayName}>`
+      } else {
+        html = `<${displayName}${propString} />`
+      }
+    }
+
+    return html ? this.renderCode(html) : null
   }
 
   renderCode (code) {
@@ -321,7 +303,7 @@ export default class Section extends Component {
         {this.props.category && this.props.title && this.renderHeading()}
         {this.renderDescription()}
         {this.props.exampleComponent && this.renderProps()}
-        {this.props.children && this.renderExamples()}
+        {(this.props.children || this.props.examples) && this.renderExamples()}
       </section>
     )
   }

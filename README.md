@@ -29,37 +29,19 @@ import React from 'react'
 import Button from './Button'
 
 export default class extends React.Component {
-
-  // required for prop documentation
-  static displayName = 'ExampleButton'
-
   static styleguide = {
     index: '1.1',
     category: 'Elements',
     title: 'Button',
     description: 'You can use **Markdown** within this `description` field.',
-    className: 'apply the css class',
-    // Used in the first 'Example' tab
-    code: `<Button size='small|large' onClick={Function}>Cool Button</Button>`
-  }
-  
-  // Document the props via react-docgen
-  static propTypes = {
-    /**
-     * Header title
-     */
-    header: React.propTypes.object,
-    /**
-     * Panel style class
-     */
-    bsStyle: React.propTypes.string
+    code: `<Button size='small|large' onClick={Function}>Cool Button</Button>`,
+    className: 'apply the css class'
   }
 
   onClick () {
     alert('Alo!')
   }
 
-  //Used for the first 'Example' tab
   render () {
     return (
       <Button size='large' onClick={this.onClick}>Cool Button</Button>
@@ -75,40 +57,36 @@ export default class extends React.Component {
 - `code`: Code example (optional). Not specifying this will not auto-generate an example.
 - `className`: CSS class name (optional)
 
-#### Additional examples in tabs (optional)
+#### Additional examples in tabs (optional) [Demo](http://pocotan001.github.io/react-styleguide-generator/#!/Features%20:\)/Additional%20examples%20in%20tabs)
 
 You can optionally use tabs to segment out examples for a component:
 
-```
+``` js
 import React from 'react'
 import Button from './Button'
 
 export default class extends React.Component {
-
-  // required for prop documentation
-  static displayName = 'ExampleButton'
-
   static styleguide = {
-    ...
-    
+    …
     // Component to use for generating additional examples
     exampleComponent: Button,
     // Array of additional example tabs
-    examples: [
-      {
-        tabTitle: 'Tab title',
-        props: {
-          size: 'small',
-          onClick () {
-            alert('o hay!')
-          }
-        }
-        //code: This is optional; by omitting it, the RSG will attempt to auto-generate an example using the props!
+    examples: [{
+      tabTitle: 'Default',
+      props: {
+        children: 'Default'
       }
-    ]
+    }, {
+      tabTitle: 'Primary',
+      props: {
+        kind: 'primary',
+        children: 'Primary',
+        onClick () {
+          alert('o hay!')
+        }
+      }
+    }]
   }
-  
-  ...
 }
 ```
 
@@ -118,7 +96,6 @@ export default class extends React.Component {
 - `examples[].props`: Properties to assign to the rendered example component
 - `examples[].props.children`: (optional) Child elements to assign to the example component
 - `examples[].code`: (optional) Code example. Omitting this will attempt to auto-generate a code example using the `examples[].props`
-
 
 If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
 
