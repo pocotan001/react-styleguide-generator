@@ -75,8 +75,7 @@
     "object-assign": "^3.0.0",
     "react-docgen": "^2.0.0",
     "react-simpletabs": "matthewgertner/react-simpletabs",
-    "watchify": "^3.2.3",
-    "xtend": "^4.0.0"
+    "watchify": "^3.2.3"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
