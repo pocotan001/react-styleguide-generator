@@ -10,3 +10,7 @@
   bottom: auto;
   left: auto;
 }
+
+.panel {
+  margin-bottom: 0;
+}
