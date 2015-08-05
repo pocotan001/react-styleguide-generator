@@ -1,6 +1,6 @@
 {
   "name": "react-styleguide-generator",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Easily generate a good-looking styleguide by adding some documentation to your React project",
   "main": "lib/rsg.js",
   "bin": {
@@ -41,9 +41,17 @@
   ],
   "author": "pocotan001",
   "contributors": [
-    { "name": "ygoto3" },
-    { "name": "Theo Gravity", "email": "theo@suteki.nu" },
-    { "name": "Marcello Bastea-Forte", "email": "marcello@cellosoft.com" }
+    {
+      "name": "ygoto3"
+    },
+    {
+      "name": "Theo Gravity",
+      "email": "theo@suteki.nu"
+    },
+    {
+      "name": "Marcello Bastea-Forte",
+      "email": "marcello@cellosoft.com"
+    }
   ],
   "license": "MIT",
   "bugs": {
