@@ -21,11 +21,15 @@ export default class extends Component {
     /**
      * Block level
      */
-    block: React.PropTypes.bool,
+    block: React.PropTypes.bool.isRequired,
     /**
-     * Style types ('default', 'primary', 'success', 'info')
+     * Style types `'default|primary|success|info'`
      */
-    bsStyle: React.PropTypes.oneOf(['default', 'primary', 'success', 'info']),
+    bsStyle: React.PropTypes.oneOf(['default', 'primary', 'success', 'info'])
+  }
+
+  static defaultProps = {
+    bsStyle: 'default'
   }
 
   render () {
