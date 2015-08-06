@@ -30,10 +30,14 @@ module.exports = function docgenToMarkdown (displayName) {
           value = ` (default value:\`${prop.defaultValue.value}\`)`
         }
 
-        return (
-          `\`${propName}${prop.type.name ? ':' + prop.type.name : ''}${prop.required ? '.isRequired' : ''}\`` +
-          `${prop.description ? ` \- ${prop.description}` : ''}${value}\n`
-        )
+        if (prop.type) {
+          return (
+            `\`${propName}${prop.type.name ? ':' + prop.type.name : ''}${prop.required ? '.isRequired' : ''}\`` +
+            `${prop.description ? ` \- ${prop.description}` : ''}${value}\n`
+          )
+        } else {
+          return null
+        }
       }).join('\n')
     ].join('\n'), { sanitize: true })
   }
