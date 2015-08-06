@@ -124,7 +124,7 @@ export default class extends Component {
     /**
      * Style types
      */
-    kind: React.PropTypes.oneOf(['default', 'primary', 'success', 'info']),
+    kind: React.PropTypes.oneOf(['default', 'primary', 'success', 'info'])
   }
 
   render () {
