@@ -78,7 +78,7 @@
   color: inherit;
   border: none;
   background: transparent;
-  font: 300 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 300 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .sg-section-description > * {
@@ -200,4 +200,22 @@
   background: var(--white);
   font-family: monospace;
   display: block;
+}
+
+/**
+ * Props section
+ */
+.sg-section-description.sg-props > ul {
+  margin-left: 20px;
+}
+
+.sg-section-description.sg-props code {
+  color: #4463C5;
+}
+.sg-section-description.sg-props p > code:first-child {
+  color: #d14;
+}
+
+.sg-section-description.sg-props > ul li > code:first-child {
+  color: #d14;
 }
