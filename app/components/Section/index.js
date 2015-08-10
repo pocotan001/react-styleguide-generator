@@ -214,6 +214,9 @@ export default class Section extends Component {
       case 'number':
         str = `{${prop}}`
         break
+      case 'boolean':
+        str = `{${prop.toString()}}`
+        break
       case 'object':
         // @todo support rendering actual react elements (eg using actual component name) + props
         str = prop._isReactElement ? '{ReactElement}' : `{${JSON.stringify(prop, null, 2)}}`
