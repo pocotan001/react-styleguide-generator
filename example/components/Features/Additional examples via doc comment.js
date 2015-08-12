@@ -12,7 +12,7 @@ export default class extends Component {
 
   static styleguide = {
     index: '5.2',
-    category: 'Features :)',
+    category: 'Features!',
     title: 'Additional examples via doc comment',
     code: `<Button block bsStyle='primary'>Primary</Button>`
   }
@@ -21,7 +21,7 @@ export default class extends Component {
     /**
      * Block level
      */
-    block: React.PropTypes.bool.isRequired,
+    block: React.PropTypes.bool,
     /**
      * Style types `'default|primary|success|info'`
      */
