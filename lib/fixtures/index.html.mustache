@@ -25,17 +25,16 @@
         base: '{{{root}}}',
         hashbang: {{hashbang}}
       }
-
-      window.RSG = {
-          propMetas: {{{propMetas}}}
-      }
-
     </script>
     {{#jsFils}}
       <script src="{{{.}}}"></script>
     {{/jsFils}}
     <script src="src/react_{{reactVersion}}.js"></script>
+    <script src="src/propsdoc.js"></script>
     <script src="src/contents.js"></script>
     <script src="src/app.js"></script>
+    {{#livereload}}
+        <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':{{livereload}}/livereload.js?snipver=1"></' + 'script>')</script>
+    {{/livereload}}
   </body>
 </html>
