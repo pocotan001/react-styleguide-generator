@@ -1,9 +1,8 @@
 # React Styleguide Generator
 
-[![Join the chat at https://gitter.im/pocotan001/react-styleguide-generator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pocotan001/react-styleguide-generator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![CircleCI](https://img.shields.io/circleci/project/pocotan001/react-styleguide-generator.svg)](https://circleci.com/gh/pocotan001/react-styleguide-generator)
 [![npm](https://img.shields.io/npm/v/react-styleguide-generator.svg)](https://npmjs.org/package/react-styleguide-generator)
+[![Join the chat at https://gitter.im/pocotan001/react-styleguide-generator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pocotan001/react-styleguide-generator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Easily generate a good-looking styleguide by adding some documentation to your React project.
 
@@ -59,7 +58,7 @@ export default class extends React.Component {
 - `code`: Code example (optional). Not specifying this will not auto-generate an example.
 - `className`: CSS class name (optional)
 
-#### Additional examples in tabs (optional) [Demo](http://pocotan001.github.io/react-styleguide-generator/#!/Features%20:\)/Additional%20examples%20in%20tabs)
+#### Additional examples in tabs (optional) [Demo](http://pocotan001.github.io/react-styleguide-generator/#!/Features!/Additional%20examples%20in%20tabs)
 
 You can optionally use tabs to segment out examples for a component:
 
@@ -99,7 +98,7 @@ export default class extends React.Component {
 - `examples[].props.children`: (optional) Child elements to assign to the example component
 - `examples[].code`: (optional) Code example. Omitting this will attempt to auto-generate a code example using the `examples[].props`
 
-#### Additional examples via doc comment (optional) [Demo](http://pocotan001.github.io/react-styleguide-generator/#!/Features%20:\)/Additional%20examples%20via%20doc%20comment)
+#### Additional examples via doc comment (optional) [Demo](http://pocotan001.github.io/react-styleguide-generator/#!/Features!/Additional%20examples%20via%20doc%20comment)
 
 Doc comment support example is:
 
@@ -124,7 +123,7 @@ export default class extends Component {
     /**
      * Style types
      */
-    kind: React.PropTypes.oneOf(['default', 'primary', 'success', 'info']),
+    kind: React.PropTypes.oneOf(['default', 'primary', 'success', 'info'])
   }
 
   render () {
@@ -160,6 +159,7 @@ Options:
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
   -w, --watch      Watch mode using `browserifyConfig`
+  -l, --livereload Embed the [`livereload.js`](http://livereload.com/) script and listen under the specified port (usually `35729`) [false]
 
 Examples:
   rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js' -v

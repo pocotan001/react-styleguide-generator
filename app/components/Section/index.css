@@ -28,6 +28,7 @@
   display: flex;
   padding: 15px 20px;
   border-top: 1px solid var(--gray-lighter);
+
   align-items: center;
 }
 
@@ -148,6 +149,7 @@
   margin-right: .5em;
   content: "•";
   color: var(--gray);
+  font-size: .8em;
 }
 
 .sg-section-description ol {
@@ -196,8 +198,32 @@
 }
 
 .sg-section-code code {
+  display: block;
   padding: 20px;
   background: var(--white);
   font-family: monospace;
-  display: block;
+}
+
+/**
+ * Props section
+ */
+
+.sg-props ul {
+  margin-left: 20px;
+}
+
+.sg-props li {
+  margin-bottom: 10px;
+}
+
+.sg-props code {
+  color: var(--purple);
+}
+
+.sg-props p > code:first-child {
+  color: var(--red);
+}
+
+.sg-props > ul li > code:first-child {
+  color: var(--red);
 }

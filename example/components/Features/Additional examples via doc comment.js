@@ -12,7 +12,7 @@ export default class extends Component {
 
   static styleguide = {
     index: '5.2',
-    category: 'Features :)',
+    category: 'Features!',
     title: 'Additional examples via doc comment',
     code: `<Button block bsStyle='primary'>Primary</Button>`
   }
@@ -23,9 +23,13 @@ export default class extends Component {
      */
     block: React.PropTypes.bool,
     /**
-     * Style types ('default', 'primary', 'success', 'info')
+     * Style types `'default|primary|success|info'`
      */
-    bsStyle: React.PropTypes.oneOf(['default', 'primary', 'success', 'info']),
+    bsStyle: React.PropTypes.oneOf(['default', 'primary', 'success', 'info'])
+  }
+
+  static defaultProps = {
+    bsStyle: 'default'
   }
 
   render () {

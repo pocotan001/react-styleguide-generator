@@ -1,6 +1,6 @@
 {
   "name": "react-styleguide-generator",
-  "version": "1.1.1",
+  "version": "1.1.5",
   "description": "Easily generate a good-looking styleguide by adding some documentation to your React project",
   "main": "lib/rsg.js",
   "bin": {
@@ -78,6 +78,7 @@
     "bunyan": "^1.4.0",
     "fs-extra": "^0.20.1",
     "glob": "^5.0.10",
+    "livereload": "^0.3.7",
     "minimist": "^1.1.1",
     "mustache": "^2.1.2",
     "object-assign": "^3.0.0",

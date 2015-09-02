@@ -190,7 +190,7 @@ export default class Section extends Component {
       }
     }
 
-    return markup ? <div className='sg sg-section-description' dangerouslySetInnerHTML={{__html: markup}} /> : null
+    return markup ? <div className='sg sg-section-description sg-props' dangerouslySetInnerHTML={{__html: markup}} /> : null
   }
 
   renderExampleCode (props, code) {
@@ -213,6 +213,9 @@ export default class Section extends Component {
         break
       case 'number':
         str = `{${prop}}`
+        break
+      case 'boolean':
+        str = `{${prop.toString()}}`
         break
       case 'object':
         // @todo support rendering actual react elements (eg using actual component name) + props
