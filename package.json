@@ -69,7 +69,8 @@
     "node": ">=0.10.33"
   },
   "peerDependencies": {
-    "react": ">=0.14"
+    "react": ">=0.14",
+    "react-dom": ">=0.14.0"
   },
   "dependencies": {
     "babel": "^5.8.19",
