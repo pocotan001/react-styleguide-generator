@@ -22,7 +22,7 @@ export default class extends Component {
 
   renderDropdownButton (title, i) {
     return (
-      <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i}>
+      <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
         <MenuItem eventKey='1'>Action</MenuItem>
         <MenuItem eventKey='2'>Another action</MenuItem>
         <MenuItem eventKey='3' active={true}>Active Item</MenuItem>
