@@ -64,7 +64,7 @@ export default class Search extends Component {
           type='text'
           ref='q'
           placeholder='Search Components'
-          autoFocus={true}
+          autoFocus
           defaultValue={this.props.defaultValue}
         />
       </form>

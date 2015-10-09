@@ -41,5 +41,4 @@ module.exports = function docgenToMarkdown (displayName) {
       }).join('\n')
     ].join('\n'), { sanitize: true })
   }
-
 }

@@ -38,7 +38,6 @@ function getRealPath (file) {
 }
 
 describe('RSG', function () {
-
   after(function () {
     fs.removeSync(TMP_DIR)
   })
@@ -166,7 +165,6 @@ describe('RSG', function () {
       assert.equal(rsg.opts.title, 'foo')
       fs.removeSync(src)
     })
-
   })
 
   describe('#generate', function () {
@@ -198,5 +196,4 @@ describe('RSG', function () {
       }).catch(done)
     })
   })
-
 })
