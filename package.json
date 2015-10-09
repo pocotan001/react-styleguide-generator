@@ -11,10 +11,10 @@
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
     "build:css": "cssnext -c app/index.css dist/app.css",
-    "build:js": "browserify -t [babelify --stage 0] -x react app | uglifyjs -m -o dist/app.js",
+    "build:js": "browserify -t [babelify --stage 0] -x react -x react-dom app | uglifyjs -m -o dist/app.js",
     "dev-build": "npm run dev-build:css && npm run dev-build:js",
     "dev-build:css": "cssnext -s app/index.css dist/app.css",
-    "dev-build:js": "browserify -d -t [babelify --stage 0] -x react app -o dist/app.js",
+    "dev-build:js": "browserify -d -t [babelify --stage 0] -x react -x react-dom app -o dist/app.js",
     "clean": "rimraf dist/*",
     "styleguide": "node bin/rsg 'example/components/**/*.js' -v",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
@@ -69,7 +69,7 @@
     "node": ">=0.10.33"
   },
   "peerDependencies": {
-    "react": ">=0.13"
+    "react": ">=0.14"
   },
   "dependencies": {
     "babel": "^5.8.19",
@@ -93,8 +93,9 @@
     "marked": "^0.3.3",
     "mocha": "^2.2.5",
     "page": "1.6.3",
-    "react": "^0.13.3",
+    "react": "^0.14.0",
     "react-bootstrap": "0.23.5",
+    "react-dom": "^0.14.0",
     "rimraf": "^2.4.0",
     "standard": "^4.3.2",
     "uglify-js": "^2.4.23"
