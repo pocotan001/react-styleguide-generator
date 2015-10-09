@@ -30,7 +30,7 @@ The header is added automatically if you pass in a \`title\` prop.
   render () {
     return (
       <div className='static-modal'>
-        <Modal.Dialog>
+        <Modal.Dialog onHide={() => {}}>
           <Modal.Header>
             <Modal.Title>Modal title</Modal.Title>
           </Modal.Header>
