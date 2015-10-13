@@ -84,6 +84,7 @@
     "object-assign": "^4.0.1",
     "react-docgen": "^2.0.0",
     "react-simpletabs": "matthewgertner/react-simpletabs",
+    "slash": "^1.0.0",
     "watchify": "^3.2.3"
   },
   "devDependencies": {
