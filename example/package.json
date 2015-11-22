@@ -3,12 +3,13 @@
   "private": true,
   "scripts": {
     "start": "npm run styleguide && npm run serve",
-    "styleguide": "rsg 'components/**/*.js'",
+    "styleguide": "rsg \"components/**/*.js\"",
     "serve": "serve ./styleguide"
   },
   "dependencies": {
-    "react": "^0.13.3",
-    "react-bootstrap": "^0.23.5"
+    "react": "^0.14.0",
+    "react-bootstrap": "^0.27.1",
+    "react-dom": "^0.14.0"
   },
   "devDependencies": {
     "react-styleguide-generator": "*",

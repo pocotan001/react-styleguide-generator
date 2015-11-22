@@ -1,11 +1,45 @@
 import React, { Component } from 'react'
-import { ModalTrigger, Modal, Button } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 
-class MyModal extends Component {
-  render () {
+export default class extends Component {
+  static styleguide = {
+    index: '4.2',
+    category: 'Modals',
+    title: 'Live demo',
+    description: 'Use `<ModalTrigger />` to create a real modal that\'s added to the document body when opened.',
+    code: `
+<div>
+  <Button
+    bsStyle="primary"
+    bsSize="large"
+    onClick={this.open.bind(this)}
+  >
+    Launch demo modal
+  </Button>
+  {this.renderModal()}
+</div>
+    `
+  }
+
+  state = {
+    showModal: false
+  };
+
+  close () {
+    this.setState({ showModal: false });
+  }
+
+  open () {
+    this.setState({ showModal: true });
+  }
+
+  renderModal () {
     return (
-      <Modal {...this.props} title='Modal heading' animation={false}>
-        <div className='modal-body'>
+      <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <h4>Text in a modal</h4>
           <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
 
@@ -15,33 +49,26 @@ class MyModal extends Component {
           <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
           <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
           <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-        </div>
-        <div className='modal-footer'>
-          <Button onClick={this.props.onRequestHide}>Close</Button>
-        </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.close.bind(this)}>Close</Button>
+        </Modal.Footer>
       </Modal>
-    )
-  }
-}
-
-export default class extends Component {
-  static styleguide = {
-    index: '3.2',
-    category: 'Modals',
-    title: 'Live demo',
-    description: 'Use `<ModalTrigger />` to create a real modal that\'s added to the document body when opened.',
-    code: `
-<ModalTrigger modal={MyModal}>
-  <Button bsStyle='primary' bsSize='large'>Launch demo modal</Button>
-</ModalTrigger>
-    `
+    );
   }
 
   render () {
     return (
-      <ModalTrigger modal={<MyModal />}>
-        <Button bsStyle='primary' bsSize='large'>Launch demo modal</Button>
-      </ModalTrigger>
+      <div>
+        <Button
+          bsStyle="primary"
+          bsSize="large"
+          onClick={this.open.bind(this)}
+        >
+          Launch demo modal
+        </Button>
+        {this.renderModal()}
+      </div>
     )
   }
 }

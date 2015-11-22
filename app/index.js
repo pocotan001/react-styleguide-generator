@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import page from 'page'
 import App from './components/App'
 
@@ -8,21 +9,21 @@ let mountNode = document.getElementById('app')
  * Home
  */
 page('.', (ctx) => {
-  React.render(<App ctx={ctx} />, mountNode)
+  ReactDOM.render(<App ctx={ctx} />, mountNode)
 })
 
 /**
  * Search Result
  */
 page('/search/:query?', (ctx) => {
-  React.render(<App ctx={ctx} />, mountNode)
+  ReactDOM.render(<App ctx={ctx} />, mountNode)
 })
 
 /**
  * Category and Detail
  */
 page('/:category/:title?', (ctx) => {
-  React.render(<App ctx={ctx} />, mountNode)
+  ReactDOM.render(<App ctx={ctx} />, mountNode)
 })
 
 /**

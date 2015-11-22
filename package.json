@@ -1,6 +1,6 @@
 {
   "name": "react-styleguide-generator",
-  "version": "1.1.5",
+  "version": "1.2.1",
   "description": "Easily generate a good-looking styleguide by adding some documentation to your React project",
   "main": "lib/rsg.js",
   "bin": {
@@ -11,10 +11,10 @@
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
     "build:css": "cssnext -c app/index.css dist/app.css",
-    "build:js": "browserify -t [babelify --stage 0] -x react app | uglifyjs -m -o dist/app.js",
+    "build:js": "browserify -t [babelify --stage 0] -x react -x react-dom app | uglifyjs -m -o dist/app.js",
     "dev-build": "npm run dev-build:css && npm run dev-build:js",
     "dev-build:css": "cssnext -s app/index.css dist/app.css",
-    "dev-build:js": "browserify -d -t [babelify --stage 0] -x react app -o dist/app.js",
+    "dev-build:js": "browserify -d -t [babelify --stage 0] -x react -x react-dom app -o dist/app.js",
     "clean": "rimraf dist/*",
     "styleguide": "node bin/rsg 'example/components/**/*.js' -v",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
@@ -69,34 +69,37 @@
     "node": ">=0.10.33"
   },
   "peerDependencies": {
-    "react": ">=0.13"
+    "react": ">=0.14",
+    "react-dom": ">=0.14.0"
   },
   "dependencies": {
     "babel": "^5.8.19",
     "babelify": "^6.1.3",
     "browserify": "^11.0.1",
     "bunyan": "^1.4.0",
-    "fs-extra": "^0.20.1",
+    "fs-extra": "^0.24.0",
     "glob": "^5.0.10",
     "minimist": "^1.1.1",
     "mustache": "^2.1.2",
-    "object-assign": "^3.0.0",
+    "object-assign": "^4.0.1",
     "react-docgen": "^2.0.0",
     "react-simpletabs": "matthewgertner/react-simpletabs",
+    "slash": "^1.0.0",
     "watchify": "^3.2.3"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
     "cssnext": "^1.7.1",
-    "gh-pages": "^0.3.1",
+    "gh-pages": "^0.4.0",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
     "mocha": "^2.2.5",
     "page": "1.6.3",
-    "react": "^0.13.3",
-    "react-bootstrap": "0.23.5",
+    "react": "^0.14.0",
+    "react-bootstrap": "0.27.1",
+    "react-dom": "^0.14.0",
     "rimraf": "^2.4.0",
-    "standard": "^4.3.2",
+    "standard": "^5.3.1",
     "uglify-js": "^2.4.23"
   }
 }

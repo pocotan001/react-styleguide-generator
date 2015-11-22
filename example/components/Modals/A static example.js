@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap'
 
 export default class extends Component {
   static styleguide = {
-    index: '3.1',
+    index: '4.1',
     category: 'Modals',
     title: 'A static example',
     description: `
@@ -12,28 +12,36 @@ A rendered modal with header, body, and set of actions in the footer.
 The header is added automatically if you pass in a \`title\` prop.
 `,
     code: `
-<ModalTrigger modal={MyModal}>
-  <Button bsStyle='primary' bsSize='large'>Launch demo modal</Button>
-</ModalTrigger>
+<Modal.Dialog>
+  <Modal.Header>
+    <Modal.Title>Modal title</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    One fine body...
+  </Modal.Body>
+  <Modal.Footer>
+    <Button>Close</Button>
+    <Button bsStyle="primary">Save changes</Button>
+  </Modal.Footer>
+</Modal.Dialog>
     `
   }
 
   render () {
     return (
       <div className='static-modal'>
-        <Modal title='Modal title'
-          enforceFocus={false}
-          backdrop={false}
-          animation={false}
-          onRequestHide={function () {}}>
-          <div className='modal-body'>
+        <Modal.Dialog onHide={() => {}}>
+          <Modal.Header>
+            <Modal.Title>Modal title</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
             One fine body...
-          </div>
-          <div className='modal-footer'>
+          </Modal.Body>
+          <Modal.Footer>
             <Button>Close</Button>
-            <Button bsStyle='primary'>Save changes</Button>
-          </div>
-        </Modal>
+            <Button bsStyle="primary">Save changes</Button>
+          </Modal.Footer>
+        </Modal.Dialog>
       </div>
     )
   }
