@@ -11,10 +11,10 @@
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
     "build:css": "cssnext -c app/index.css dist/app.css",
-    "build:js": "browserify -t [babelify --stage 0] -x react -x react-dom app | uglifyjs -m -o dist/app.js",
+    "build:js": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "dev-build": "npm run dev-build:css && npm run dev-build:js",
     "dev-build:css": "cssnext -s app/index.css dist/app.css",
-    "dev-build:js": "browserify -d -t [babelify --stage 0] -x react -x react-dom app -o dist/app.js",
+    "dev-build:js": "NODE_ENV=development webpack -d --config webpack.config.dev.js",
     "clean": "rimraf dist/*",
     "styleguide": "node bin/rsg 'example/components/**/*.js' -v",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
@@ -74,8 +74,6 @@
   },
   "dependencies": {
     "babel": "^5.8.19",
-    "babelify": "^6.1.3",
-    "browserify": "^11.0.1",
     "bunyan": "^1.4.0",
     "fs-extra": "^0.24.0",
     "glob": "^5.0.10",
@@ -84,22 +82,31 @@
     "object-assign": "^4.0.1",
     "react-docgen": "^2.0.0",
     "react-simpletabs": "matthewgertner/react-simpletabs",
-    "slash": "^1.0.0",
-    "watchify": "^3.2.3"
+    "slash": "^1.0.0"
   },
   "devDependencies": {
+    "babel-core": "^5.8.34",
     "babel-eslint": "^4.0.5",
+    "babel-loader": "^5.4.0",
+    "babel-plugin-react-transform": "^1.1.1",
     "cssnext": "^1.7.1",
+    "eslint-plugin-react": "^2.7.1",
     "gh-pages": "^0.4.0",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
     "mocha": "^2.2.5",
     "page": "1.6.3",
-    "react": "^0.14.0",
+    "react": "^0.14.3",
     "react-bootstrap": "0.27.1",
-    "react-dom": "^0.14.0",
+    "react-dom": "^0.14.3",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redbox-react": "^1.2.0",
     "rimraf": "^2.4.0",
     "standard": "^5.3.1",
-    "uglify-js": "^2.4.23"
+    "uglify-js": "^2.4.23",
+    "webpack": "^1.12.8",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.5.0"
   }
 }
