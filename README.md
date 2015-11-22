@@ -15,7 +15,7 @@ Easily generate a good-looking styleguide by adding some documentation to your R
 npm install react-styleguide-generator
 ```
 
-Which requires **React 0.13.0** or newer. To install it `npm install react`.
+Which requires **React 0.14.0** or newer. To install it `npm install react`.
 
 ## Quick Start
 

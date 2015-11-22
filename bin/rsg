@@ -51,6 +51,8 @@ var log
       log.info({ outputDir: this.opts.output}, 'Styleguide generation complete')
     }
 
-    process.exit(0)
+    if (!opts.watch) {
+      process.exit(0)
+    }
   })
 })()

@@ -23,7 +23,7 @@ export default class Search extends Component {
   }
 
   focus () {
-    let input = React.findDOMNode(this.refs.q)
+    let input = this.refs.q
 
     input.focus()
   }
@@ -43,7 +43,7 @@ export default class Search extends Component {
    * @param {Event} e
    */
   onSubmit (e) {
-    let val = React.findDOMNode(this.refs.q).value
+    let val = this.refs.q.value
     let url = `/search/${val}`
 
     e.preventDefault()
@@ -64,7 +64,7 @@ export default class Search extends Component {
           type='text'
           ref='q'
           placeholder='Search Components'
-          autoFocus={true}
+          autoFocus
           defaultValue={this.props.defaultValue}
         />
       </form>

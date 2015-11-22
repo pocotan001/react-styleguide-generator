@@ -270,7 +270,6 @@ export default class Section extends Component {
   }
 
   renderCode (code) {
-
     if (code) {
       return (
         <section className='sg sg-section-code'>
@@ -282,7 +281,6 @@ export default class Section extends Component {
     }
 
     return null
-
   }
 
   componentDidMount () {
