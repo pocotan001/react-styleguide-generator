@@ -159,6 +159,7 @@ Options:
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
   -w, --watch      Watch mode using `browserifyConfig`
+  -l, --livereload Embed the [`livereload.js`](http://livereload.com/) script and listen under the specified port (usually `35729`) [false]
 
 Examples:
   rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js' -v

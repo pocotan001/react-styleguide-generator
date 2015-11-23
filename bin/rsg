@@ -23,7 +23,8 @@ var log
     files: argv.f || argv.files,
     config: argv.c || argv.config,
     watch: argv.w || argv.watch,
-    verbose: argv.v || argv.verbose
+    verbose: argv.v || argv.verbose,
+    livereload: argv.l || argv.livereload
   }
 
   log = require('../lib/logger')('bin', { debug: true })
@@ -43,7 +44,6 @@ var log
 
   RSG(argv._[0], opts).generate(function (err) {
     if (err) {
-      log.error(err)
       process.exit(1)
     }
 
