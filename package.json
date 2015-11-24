@@ -14,8 +14,9 @@
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
   },
   "files": [
+    ".babelrc",
+    "app",
     "bin",
-    "dist",
     "lib",
     "LICENSE",
     "package.json",
@@ -58,13 +59,6 @@
       "dist",
       "example"
     ]
-  },
-  "engines": {
-    "node": ">=0.10.33"
-  },
-  "peerDependencies": {
-    "react": ">=0.14",
-    "react-dom": ">=0.14.0"
   },
   "dependencies": {
     "babel": "^5.8.19",
