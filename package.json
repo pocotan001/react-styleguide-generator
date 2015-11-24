@@ -80,16 +80,16 @@
     "object-assign": "^4.0.1",
     "page": "1.6.3",
     "react-bootstrap": "0.27.1",
-    "react-transform-catch-errors": "^1.0.0",
-    "react-transform-hmr": "^1.0.1",
     "react-docgen": "^2.0.0",
     "react-simpletabs": "matthewgertner/react-simpletabs",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.2.0",
     "slash": "^1.0.0",
     "style-loader": "^0.13.0",
+    "webpack": "^1.12.8",
     "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.5.0",
-    "webpack": "^1.12.8"
+    "webpack-hot-middleware": "^2.5.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
