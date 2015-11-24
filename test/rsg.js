@@ -19,10 +19,6 @@ function RSG (input, opts) {
     config: null,
     babelConfig: {
       stage: 0
-    },
-    browserifyConfig: {
-      standalone: 'Contents',
-      debug: true
     }
   }
 
@@ -132,20 +128,6 @@ describe('RSG', function () {
     })
   })
 
-  describe('opts.browserifyConfig', function () {
-    it('should default to { standalone: \'Contents\', debug: true }', function () {
-      var browserifyConfig = { standalone: 'Contents', debug: true }
-      var rsg = RSG(INPUT_FILE, { browserifyConfig: undefined })
-      assert.deepEqual(rsg.opts.browserifyConfig, browserifyConfig)
-    })
-
-    it('should merge with defaults', function () {
-      var browserifyMergedConfig = { standalone: 'Contents', debug: true, extensions: ['', '.js', '.jsx'] }
-      var rsg = RSG(INPUT_FILE, { browserifyConfig: { extensions: ['', '.js', '.jsx'] } })
-      assert.deepEqual(rsg.opts.browserifyConfig, browserifyMergedConfig)
-    })
-  })
-
   describe('opts.config', function () {
     it('should load styleguide.json', function () {
       var rsg = RSG(INPUT_FILE, { config: undefined })
@@ -184,15 +166,22 @@ describe('RSG', function () {
     it('files should exist', function (done) {
       var files = [
         'index.html',
-        'src/contents.js',
-        'src/contents-inter.js',
-        'src/propsdoc.js',
-        'src/react_' + rsg.reactVersion + '.js',
+        'src/components.bundle.js',
+        'src/app.bundle.js',
+        'src/vendor.js',
         'files/example.css'
       ].map(function (file) { return getRealPath(TMP_DIR + '/' + file) })
 
       generated.then(function () {
-        assert(files.every(function (file) { return fs.existsSync(file) }))
+        assert(files.every(function (file) {
+          if (fs.existsSync(file)) {
+            return true
+          } else {
+            console.error('not found: ' + file)
+            return false
+          }
+        }))
+
         done()
       }).catch(done)
     })
