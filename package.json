@@ -10,7 +10,7 @@
     "test": "standard && mocha test/**/*.js",
     "start": "NODE_ENV=development node bin/rsg 'example/components/**/*.js' -v -d",
     "clean": "rimraf rsg-tmp/*",
-    "styleguide": "node bin/rsg 'example/components/**/*.js' -v",
+    "styleguide": "NODE_ENV=production node bin/rsg 'example/components/**/*.js' -v",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
   },
   "files": [
