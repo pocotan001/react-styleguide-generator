@@ -9,7 +9,7 @@ A React component guide that generates code examples, prop documentation, render
 * `react-docgen` is used under the hood to document your component's `propTypes`
 * Can manually + automatically generate code samples w/ syntax highlighting
 
-![preview](https://cloud.githubusercontent.com/assets/869065/8392279/7f3811ae-1d20-11e5-9707-864d5994ba49.png)  
+![preview](https://cloud.githubusercontent.com/assets/855434/11383588/17f2e6d6-92be-11e5-8031-2b67d2970a07.png)  
 [Demo](http://theogravity.github.io/react-styleguide-generator-alt/) using the [React-Bootstrap](http://react-bootstrap.github.io/).
 
 ## Fork notice
