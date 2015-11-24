@@ -158,7 +158,7 @@ Options:
   -c, --config     Use the config file         ['styleguide.json']
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
-  -w, --watch      Watch mode using `browserifyConfig`
+  -d, --dev        Start server with webpack hmr [3000]
 
 Examples:
   rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js' -v
@@ -336,26 +336,6 @@ A usage example is below. See the [babel docs](http://babeljs.io/docs/usage/opti
   }
 }
 ```
-
-##### browserifyConfig
-
-Type: `Object`  
-Default: `{ standalone: 'Contents', debug: true }`
-
-A usage example is below. See the [browserify docs](https://github.com/substack/node-browserify#browserifyfiles--opts) for the complete list.
-
-``` js
-{
-  extensions: ['', '.js', '.jsx']
-}
-```
-
-### watch
-
-Type: `String`
-Default: `false`
-
-Enables `watchify` for when the `input` files change, speeding up rebuild time.
 
 ### rsg.generate([callback])
 

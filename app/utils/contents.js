@@ -1,8 +1,11 @@
-let Contents = window.Contents
-  // for `commonStrict` module formatter
-  // https://babeljs.io/docs/usage/modules/#interop
-  .map((Content) => Content.default || Content)
-  // compare index numbers
+// component-requires.js is a generated file in rsg.js that contains
+// the list of required user-defined components
+import Components from '../../rsg-tmp/component-requires'
+
+// for `commonStrict` module formatter
+// https://babeljs.io/docs/usage/modules/#interop
+let Contents = Components.map((Content) => Content.default || Content)
+// compare index numbers
   .sort((a, b) => {
     a = a.styleguide.index
     b = b.styleguide.index
