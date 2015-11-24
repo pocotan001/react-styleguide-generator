@@ -27,7 +27,7 @@ See `HISTORY.md` for future update info
 
 ## Prereqs
 
-* **React 0.14.0** or newer.
+* React 0.14.x. Install both `react` and `react-dom`.
 * Was developed on node 4 w/ npm 3.4. Unsure if older node versions work or not.
 
 ## Installation
