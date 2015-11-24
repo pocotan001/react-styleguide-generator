@@ -14,7 +14,7 @@ A React component guide that generates code examples, prop documentation, render
 
 ## Fork notice
 
-This project is originally forked from [react-styleguide-generator-alt](https://github.com/pocotan001/react-styleguide-generator-alt).
+This project is originally forked from [react-styleguide-generator](https://github.com/pocotan001/react-styleguide-generator).
 
 Differences:
 
