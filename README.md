@@ -221,7 +221,7 @@ grunt.registerTask('rsg', 'React style guide', function () {
 
     RSG(conf.input, {
       config: conf.configFile,
-      watch: false,
+      dev: false,
       verbose: true
     }).generate(function (err) {
       if (err) {
@@ -365,7 +365,7 @@ Generate the files and their dependencies into a styleguide output.
 Get the demo running locally:
 
 ``` sh
-git clone git@github.com:theogravity/react-styleguide-generator-alt-alt.git
+git clone git@github.com:theogravity/react-styleguide-generator-alt.git
 cd react-styleguide-generator-alt/example/
 npm install
 npm start
