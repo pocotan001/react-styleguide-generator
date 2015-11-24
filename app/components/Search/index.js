@@ -11,32 +11,6 @@ export default class Search extends Component {
 
   constructor (props) {
     super(props)
-    this.onKeyUp = this.onKeyUp.bind(this)
-  }
-
-  componentDidMount () {
-    window.addEventListener('keyup', this.onKeyUp)
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('keyup', this.onKeyUp)
-  }
-
-  focus () {
-    let input = this.refs.q
-
-    input.focus()
-  }
-
-  /**
-   * @param {Event} e
-   */
-  onKeyUp (e) {
-    const S_KEY = 83
-
-    if (e.keyCode === S_KEY) {
-      this.focus()
-    }
   }
 
   /**

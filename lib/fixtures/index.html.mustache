@@ -12,7 +12,6 @@
     <meta name="format-detection" content="telephone=no">
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="src/app.css">
     {{#cssFils}}
       <link rel="stylesheet" href="{{{.}}}">
     {{/cssFils}}
@@ -29,12 +28,6 @@
     {{#jsFils}}
       <script src="{{{.}}}"></script>
     {{/jsFils}}
-    <script src="src/react_{{reactVersion}}.js"></script>
-    <script src="src/propsdoc.js"></script>
-    <script src="src/contents.js"></script>
-    <script src="src/app.js"></script>
-    {{#livereload}}
-        <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':{{livereload}}/livereload.js?snipver=1"></' + 'script>')</script>
-    {{/livereload}}
+    <script src="src/bundle.js"></script>
   </body>
 </html>
