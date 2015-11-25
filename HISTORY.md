@@ -1,3 +1,7 @@
+# 2.0.5 (2015-11-24)
+
+  * Fix major bug as a result of renaming the package from fork
+
 # 2.0.0 (2015-11-24)
 
   * First alt version, forked from `react-styleguide-generator`
