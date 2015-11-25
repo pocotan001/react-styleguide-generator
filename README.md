@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/rsg-alt.svg)](https://npmjs.org/package/rsg-alt)
 
-A React component guide that generates code examples, prop documentation, rendered component samples and active development.
+A React component guide that generates code examples, prop documentation, rendered component samples and is built for active development.
 
 * Renders out components that can be interacted with 
 * Uses `webpack` + hot module replacement to automatically update the guide as you work on your components
