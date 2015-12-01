@@ -190,7 +190,7 @@ Examples:
 
 ``` js
 var gulp = require('gulp')
-var RSG = require('react-styleguide-generator-alt')
+var RSG = require('rsg-alt')
 
 gulp.task('styleguide', function (done) {
   var rsg = RSG('example/**/*.js', {
@@ -211,7 +211,7 @@ gulp.task('styleguide', function (done) {
 #### Grunt
 
 ``` js
-var RSG = require('react-styleguide-generator-alt')
+var RSG = require('rsg-alt')
 
 grunt.registerTask('rsg', 'React style guide', function () {
   var done = this.async()
@@ -356,7 +356,7 @@ A usage example is below. See the [babel docs](http://babeljs.io/docs/usage/opti
 }
 ```
 
-#### transpileIncludes
+##### transpileIncludes
 
 Type: `Array<String|RegExp>`
 Default: `null`
