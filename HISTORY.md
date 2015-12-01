@@ -1,3 +1,7 @@
+# 2.1.1 (2015-12-01)
+
+  * Fix issue where the props metadata file was not being written out if no propdocs were defined
+
 # 2.1.0 (2015-11-30)
 
   * add `transpileIncludes` option to the config to allow for additional rules for babel transpiling
