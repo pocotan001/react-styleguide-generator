@@ -356,12 +356,19 @@ A usage example is below. See the [babel docs](http://babeljs.io/docs/usage/opti
 }
 ```
 
+##### webpackConfig
+
+Type: `Object`
+Default: `{}`
+
+Uses `deepmerge` to merge in a custom webpack configuation to the rsg webpack configuration. Existing arrays (eg plugins) are appended to maintain functionality.
+
 ##### transpileIncludes
 
 Type: `Array<String|RegExp>`
 Default: `null`
 
-Adds a custom rule(s) to the webpack loader to include additional items to transpile via `babel-loader`.
+Adds a custom rule(s) to the webpack loader to include additional items to transpile via `babel-loader`. This is provided as a convenience to using `webpackConfig` directly.
 
 ### rsg.generate([callback])
 
