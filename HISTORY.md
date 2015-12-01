@@ -1,3 +1,7 @@
+# 2.1.0 (2015-11-30)
+
+  * add `transpileIncludes` option to the config to allow for additional rules for babel transpiling
+
 # 2.0.5 (2015-11-24)
 
   * Fix major bug as a result of renaming the package from fork
