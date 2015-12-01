@@ -1,3 +1,7 @@
+# 2.2.0 (2015-12-01)
+
+  * Add `webpackConfig` configuration file option to extend the rsg webpack configuration
+
 # 2.1.1 (2015-12-01)
 
   * Fix issue where the props metadata file was not being written out if no propdocs were defined
