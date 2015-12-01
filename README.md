@@ -356,6 +356,13 @@ A usage example is below. See the [babel docs](http://babeljs.io/docs/usage/opti
 }
 ```
 
+#### transpileIncludes
+
+Type: `Array<String|RegExp>`
+Default: `null`
+
+Adds a custom rule(s) to the webpack loader to include additional items to transpile via `babel-loader`.
+
 ### rsg.generate([callback])
 
 Generate the files and their dependencies into a styleguide output.
