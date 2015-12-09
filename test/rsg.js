@@ -166,6 +166,7 @@ describe('RSG', function () {
     it('files should exist', function (done) {
       var files = [
         'index.html',
+        'src/vendor.bundle.js',
         'src/bundle.js',
         'files/example.css'
       ].map(function (file) { return getRealPath(TMP_DIR + '/' + file) })

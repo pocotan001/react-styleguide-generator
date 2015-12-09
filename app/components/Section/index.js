@@ -40,7 +40,11 @@ export default class Section extends Component {
 
     // a NodeList is returned, not an Array, so can't use array methods here
     for (let i = 0; i < nodes.length; ++i) {
-      hljs.highlightBlock(nodes[i])
+      if (!nodes[i].highlighted) {
+        hljs.highlightBlock(nodes[i])
+      }
+      // Flag the node so it does not have to undergo processing again
+      nodes[i].highlighted = true
     }
   }
 
