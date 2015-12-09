@@ -1,3 +1,11 @@
+# 2.3.0 (2015-12-08)
+
+  Performance enhancements:
+  
+  * separate vendor components into another bundle
+  * Cache highlighted nodes so they are not re-processed. For really large pages, the highlighter can take a LOT of time for processing before the page is re-rendered. This fix hopefully resolves most of that.
+  * `highlight.js` updated to `9.x`
+
 # 2.2.0 (2015-12-01)
 
   * Add `webpackConfig` configuration file option to extend the rsg webpack configuration
