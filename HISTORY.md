@@ -1,3 +1,7 @@
+# 2.4.0 (2015-12-11)
+
+  * Base exclusion `babel-loader` rule is no longer `path.resolve(process.cwd(), 'node_modules')`, but instead `node_modules`. This is mainly for projects that need to compile guides against directories that contain individually packaged components that have their own `node_modules` directory.
+
 # 2.3.0 (2015-12-08)
 
   Performance enhancements:
