@@ -1,3 +1,9 @@
+# 2.5.2, 3.0.1 (2015-12-13)
+
+  * Fix syntax highlighting when individual components in the sidebar is selected
+  * Adjust component category spacing
+  * Add show all link on sidebar
+
 # 3.0.0 (2015-12-13)
 
   * Support for babel 6. Use the 2.x versions for babel 5 support.

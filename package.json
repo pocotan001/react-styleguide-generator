@@ -1,6 +1,6 @@
 {
   "name": "rsg-alt",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A React component guide that generates code examples, prop documentation, rendered component samples and active development.",
   "main": "lib/rsg.js",
   "bin": {
