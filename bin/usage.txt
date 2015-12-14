@@ -9,7 +9,7 @@ Options:
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
   -V, --version    Version output              [false]
-  -w, --watch      Watch mode using browserifyConfig
+  -d, --dev        Start server with webpack hmr [3000]
 
 Examples:
   rsg 'example/**/*.js' -t 'My Style Guide' -f 'a.css, a.js'

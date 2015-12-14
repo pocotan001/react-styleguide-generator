@@ -1,27 +1,22 @@
 {
-  "name": "react-styleguide-generator",
-  "version": "1.2.1",
-  "description": "Easily generate a good-looking styleguide by adding some documentation to your React project",
+  "name": "rsg-alt",
+  "version": "3.0.0",
+  "description": "A React component guide that generates code examples, prop documentation, rendered component samples and active development.",
   "main": "lib/rsg.js",
   "bin": {
     "rsg": "bin/rsg"
   },
   "scripts": {
     "test": "standard && mocha test/**/*.js",
-    "prod": "npm run clean && npm run build",
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "cssnext -c app/index.css dist/app.css",
-    "build:js": "browserify -t [babelify --stage 0] -x react -x react-dom app | uglifyjs -m -o dist/app.js",
-    "dev-build": "npm run dev-build:css && npm run dev-build:js",
-    "dev-build:css": "cssnext -s app/index.css dist/app.css",
-    "dev-build:js": "browserify -d -t [babelify --stage 0] -x react -x react-dom app -o dist/app.js",
-    "clean": "rimraf dist/*",
-    "styleguide": "node bin/rsg 'example/components/**/*.js' -v",
-    "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
+    "start": "NODE_ENV=development node bin/rsg 'example/components/**/*.js' -v -d",
+    "clean": "rimraf rsg-tmp/*",
+    "styleguide": "NODE_ENV=production node bin/rsg 'example/components/**/*.js' -v",
+    "ghpages": "npm run styleguide -- -r 'react-styleguide-generator-alt' && gh-pages -d styleguide"
   },
   "files": [
+    ".babelrc",
+    "app",
     "bin",
-    "dist",
     "lib",
     "LICENSE",
     "package.json",
@@ -29,15 +24,23 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pocotan001/react-styleguide-generator.git"
+    "url": "git+https://github.com/theogravity/react-styleguide-generator-alt.git"
   },
   "keywords": [
     "component",
     "documentation",
+    "documentor",
+    "docs",
     "generator",
     "markdown",
     "react",
-    "styleguide"
+    "styleguide",
+    "react-docgen",
+    "style-guide",
+    "webpack",
+    "sample",
+    "examples",
+    "guide"
   ],
   "author": "pocotan001",
   "contributors": [
@@ -55,9 +58,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pocotan001/react-styleguide-generator/issues"
+    "url": "https://github.com/theogravity/react-styleguide-generator-alt/issues"
   },
-  "homepage": "https://github.com/pocotan001/react-styleguide-generator#readme",
+  "homepage": "https://github.com/theogravity/react-styleguide-generator-alt#readme",
   "standard": {
     "parser": "babel-eslint",
     "ignore": [
@@ -65,41 +68,49 @@
       "example"
     ]
   },
-  "engines": {
-    "node": ">=0.10.33"
-  },
-  "peerDependencies": {
-    "react": ">=0.14",
-    "react-dom": ">=0.14.0"
-  },
   "dependencies": {
-    "babel": "^5.8.19",
-    "babelify": "^6.1.3",
-    "browserify": "^11.0.1",
+    "babel-core": "^6.3.17",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-react-transform": "^2.0.0-beta1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
     "bunyan": "^1.4.0",
+    "css-loader": "^0.23.0",
+    "cssnext": "^1.7.1",
+    "cssnext-loader": "^1.0.1",
+    "deepmerge": "anthonator/deepmerge#feature/array-options",
+    "express": "^4.13.3",
     "fs-extra": "^0.24.0",
     "glob": "^5.0.10",
+    "highlight.js": "^9.0.0",
+    "immutable": "^3.7.5",
+    "marked": "^0.3.3",
     "minimist": "^1.1.1",
     "mustache": "^2.1.2",
     "object-assign": "^4.0.1",
+    "page": "1.6.3",
+    "react-bootstrap": "0.27.1",
     "react-docgen": "^2.0.0",
     "react-simpletabs": "matthewgertner/react-simpletabs",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redbox-react": "^1.2.0",
     "slash": "^1.0.0",
-    "watchify": "^3.2.3"
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",
-    "cssnext": "^1.7.1",
+    "eslint-plugin-react": "^3.10.0",
     "gh-pages": "^0.4.0",
-    "highlight.js": "^8.6.0",
-    "marked": "^0.3.3",
     "mocha": "^2.2.5",
-    "page": "1.6.3",
-    "react": "^0.14.0",
-    "react-bootstrap": "0.27.1",
-    "react-dom": "^0.14.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
     "rimraf": "^2.4.0",
-    "standard": "^5.3.1",
+    "standard": "^5.4.1",
     "uglify-js": "^2.4.23"
   }
 }

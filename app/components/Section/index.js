@@ -5,6 +5,9 @@ import reactDocGenToMD from '../../utils/react-docgen-to-md'
 import Tabs from 'react-simpletabs'
 import utils from '../../../lib/utils'
 
+// Generated file using react-docgen created by the rsg.js and webpack-plugins/react-docgen.js lib
+import reactPropMeta from '../../../rsg-tmp/propsdoc'
+
 let exampleId = 0
 
 export default class Section extends Component {
@@ -37,7 +40,11 @@ export default class Section extends Component {
 
     // a NodeList is returned, not an Array, so can't use array methods here
     for (let i = 0; i < nodes.length; ++i) {
-      hljs.highlightBlock(nodes[i])
+      if (!nodes[i].highlighted) {
+        hljs.highlightBlock(nodes[i])
+      }
+      // Flag the node so it does not have to undergo processing again
+      nodes[i].highlighted = true
     }
   }
 
@@ -72,7 +79,7 @@ export default class Section extends Component {
     if (!markup) {
       // Check if the base component has docs
       displayName = utils.getDisplayName(this.props._self.type)
-      docMeta = window.RSG.propMetas[displayName]
+      docMeta = reactPropMeta[displayName]
 
       if (docMeta && docMeta.description) {
         markup = marked(docMeta.description.trim(), {sanitize: true})
@@ -81,7 +88,7 @@ export default class Section extends Component {
       // no description found on the base; check the defined exampleComponent instead
       if (!markup) {
         displayName = utils.getDisplayName(this.props.exampleComponent)
-        docMeta = window.RSG.propMetas[displayName]
+        docMeta = reactPropMeta[displayName]
 
         if (docMeta && docMeta.description) {
           markup = marked(docMeta.description.trim(), {sanitize: true})

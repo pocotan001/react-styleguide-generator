@@ -1,4 +1,5 @@
 import marked from 'marked'
+import reactPropMeta from '../../rsg-tmp/propsdoc'
 
 /**
  * This function takes the output of react-docgen and generates some compact markdown
@@ -8,8 +9,8 @@ import marked from 'marked'
  * @author marcello3d
  * @author theogravity
  */
-module.exports = function docgenToMarkdown (displayName) {
-  let component = window.RSG.propMetas[displayName]
+export default function docgenToMarkdown (displayName) {
+  let component = reactPropMeta[displayName]
 
   if (!component) {
     return

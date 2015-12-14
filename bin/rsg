@@ -22,7 +22,7 @@ var log
     pushstate: argv.p || argv.pushstate,
     files: argv.f || argv.files,
     config: argv.c || argv.config,
-    watch: argv.w || argv.watch,
+    dev: argv.d || argv.dev,
     verbose: argv.v || argv.verbose
   }
 
@@ -43,7 +43,6 @@ var log
 
   RSG(argv._[0], opts).generate(function (err) {
     if (err) {
-      log.error(err)
       process.exit(1)
     }
 
@@ -51,7 +50,7 @@ var log
       log.info({ outputDir: this.opts.output}, 'Styleguide generation complete')
     }
 
-    if (!opts.watch) {
+    if (!opts.dev) {
       process.exit(0)
     }
   })
