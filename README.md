@@ -11,7 +11,7 @@ A React component guide that generates code examples, prop documentation, render
 * `react-docgen` is used under the hood to document your component's `propTypes`
 * Can manually + automatically generate code samples w/ syntax highlighting
 
-![preview](https://cloud.githubusercontent.com/assets/855434/11383588/17f2e6d6-92be-11e5-8031-2b67d2970a07.png)  
+![preview](https://cloud.githubusercontent.com/assets/855434/11770687/a754aea4-a1b9-11e5-8ae2-1b5db451c8d5.png)  
 [Demo](http://theogravity.github.io/react-styleguide-generator-alt/) using the [React-Bootstrap](http://react-bootstrap.github.io/).
 
 ## Fork notice
@@ -24,6 +24,7 @@ Differences:
 * Complete overhaul of the core `rsg.js` lib to support `webpack`
 * `react-docgen` generation and asset distribution moved to custom webpack plugins
 * Fixed a bug where using input text boxes and typing into them will shift focus to the search box
+* Improved highlighting performance - extremely large guides should not take forever to render
 
 See `HISTORY.md` for future update info
 

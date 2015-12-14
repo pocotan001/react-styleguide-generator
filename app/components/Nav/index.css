@@ -17,6 +17,10 @@
   color: var(--gray);
 }
 
+.sg-nav-link.category {
+  font-weight: bold;
+}
+
 .sg-nav-link:hover,
 .sg-nav-link.is-selected {
   opacity: 1 !important;
@@ -38,4 +42,8 @@
   .sg-nav-link {
     padding: 15px 25px;
   }
+}
+
+.sg-sub-nav {
+  margin-left: 15px;
 }
