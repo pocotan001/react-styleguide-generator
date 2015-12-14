@@ -1,3 +1,7 @@
+# 3.0.0 (2015-12-13)
+
+  * Support for babel 6. Use the 2.x versions for babel 5 support.
+
 # 2.5.1 (2015-12-13)
 
   * Show components in each category in the sidebar
