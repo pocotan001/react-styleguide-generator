@@ -1,3 +1,9 @@
+# 2.5.2 (2015-12-13)
+
+  * Fix syntax highlighting when individual components in the sidebar is selected
+  * Adjust component category spacing
+  * Add show all link on sidebar
+
 # 2.5.1 (2015-12-13)
 
   * Show components in each category in the sidebar
