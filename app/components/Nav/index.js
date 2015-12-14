@@ -9,13 +9,19 @@ export default class Nav extends Component {
   }
 
   render () {
+    let home = '/'
+
+    if (window.config.base && window.config.base !== '') {
+      home = window.config.base
+    }
+
     return (
       <nav>
         <ul className='sg sg-nav'>
           <li className='sg' key={'home'}>
             <a
               className={`sg sg-nav-link`}
-              href='/'
+              href={home}
             >
               Show All
             </a>
