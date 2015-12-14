@@ -1,3 +1,7 @@
+# 2.5.3, 3.0.2 (2015-12-13)
+
+  * Fix "show all" link where it was not using the configured base (if used)
+  
 # 2.5.2, 3.0.1 (2015-12-13)
 
   * Fix syntax highlighting when individual components in the sidebar is selected
