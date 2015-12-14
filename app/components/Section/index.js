@@ -25,7 +25,9 @@ export default class Section extends Component {
     // React element class used for rendering additional examples
     exampleComponent: PropTypes.func,
     // Reference to the example component
-    _self: PropTypes.object
+    _self: PropTypes.object,
+    // Id number of the section; used for caching/highlighting purposes
+    _id: PropTypes.number.isRequired
   }
 
   static defaultProps () {
@@ -35,17 +37,8 @@ export default class Section extends Component {
   }
 
   highlight () {
-    // @todo - possible perf issue if there are a huge amount of code blocks
-    let nodes = document.querySelectorAll('code.example-code')
-
-    // a NodeList is returned, not an Array, so can't use array methods here
-    for (let i = 0; i < nodes.length; ++i) {
-      if (!nodes[i].highlighted) {
-        hljs.highlightBlock(nodes[i])
-      }
-      // Flag the node so it does not have to undergo processing again
-      nodes[i].highlighted = true
-    }
+    let node = document.querySelector('[data-highlight-id="' + this.props._id + '"] code.example-code')
+    hljs.highlightBlock(node)
   }
 
   renderHeading () {
@@ -171,7 +164,7 @@ export default class Section extends Component {
 
     return (
       <section className={className}>
-        <Tabs onAfterChange={this.highlight}>
+        <Tabs onAfterChange={() => this.highlight()}>
           {examples}
         </Tabs>
       </section>
@@ -279,7 +272,7 @@ export default class Section extends Component {
   renderCode (code) {
     if (code) {
       return (
-        <section className='sg sg-section-code'>
+        <section className='sg sg-section-code' data-highlight-id={this.props._id}>
         <pre className='sg'>
           <code className='sg xml example-code'>{code.trim()}</code>
         </pre>

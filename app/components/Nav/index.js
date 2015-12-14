@@ -12,6 +12,15 @@ export default class Nav extends Component {
     return (
       <nav>
         <ul className='sg sg-nav'>
+          <li className='sg' key={'home'}>
+            <a
+              className={`sg sg-nav-link`}
+              href='/'
+            >
+              Show All
+            </a>
+          </li>
+
           {contents.navList.categories
             .map((category, i) => {
               let isSelectedCategory = this.props.ctx.params.category === category
@@ -19,18 +28,19 @@ export default class Nav extends Component {
               return (
                 <li className='sg' key={i}>
                   <a
-                    className={`sg sg-nav-link ${isSelectedCategory ? 'is-selected' : ''}`}
+                    className={`sg category sg-nav-link ${isSelectedCategory ? 'is-selected' : ''}`}
                     href={category}
                   >
                     {category}
                   </a>
 
-                  <ul>
-                  {contents.navList.components[category].map((component, j) => {
-                    let isSelectedComponent = this.props.ctx.params.component === component
+                  <ul className='sg sg-sub-nav'>
+                  {
+                    contents.navList.components[category].map((component, j) => {
+                      let isSelectedComponent = this.props.ctx.params.component === component
 
-                    return (
-                        <li  key={j}>
+                      return (
+                        <li key={j}>
                           <a
                             className={`sg sg-nav-link ${isSelectedComponent ? 'is-selected' : ''}`}
                             href={category + '/' + component}
