@@ -22,7 +22,6 @@ export default {
 
     const categories = Contents
       .map((Content) => {
-
         const styleguide = Content.styleguide
 
         components[styleguide.category] = components[styleguide.category] ? components[styleguide.category] : []
@@ -32,13 +31,11 @@ export default {
       })
       .filter((category, i, categories) => categories.indexOf(category) === i)
 
-
     return {
       categories: categories,
       components: components
     }
   })(),
-
 
   /**
    * @param {Object=} data
