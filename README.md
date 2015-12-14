@@ -80,7 +80,7 @@ export default class extends React.Component {
 - `code`: Code example (optional). Not specifying this will not auto-generate an example.
 - `className`: CSS class name (optional)
 
-#### Additional examples in tabs (optional) [Demo](http://theogravity.github.io/react-styleguide-generator-alt-alt/#!/Features!/Additional%20examples%20in%20tabs)
+#### Additional examples in tabs (optional) [Demo](http://theogravity.github.io/react-styleguide-generator-alt/#!/Features!/Additional%20examples%20in%20tabs)
 
 You can optionally use tabs to segment out examples for a component:
 
