@@ -17,11 +17,28 @@ export default {
   /**
    * @type {string[]}
    */
-  categories: (() => {
-    return Contents
-      .map((Content) => Content.styleguide.category)
+  navList: (() => {
+    const components = {}
+
+    const categories = Contents
+      .map((Content) => {
+
+        const styleguide = Content.styleguide
+
+        components[styleguide.category] = components[styleguide.category] ? components[styleguide.category] : []
+        components[styleguide.category].push(styleguide.title)
+
+        return Content.styleguide.category
+      })
       .filter((category, i, categories) => categories.indexOf(category) === i)
+
+
+    return {
+      categories: categories,
+      components: components
+    }
   })(),
+
 
   /**
    * @param {Object=} data
