@@ -1,3 +1,7 @@
+# 2.5.5 (2015-12-15)
+
+  * Fix issues where exception gets thrown where highlighter is fed an empty node
+
 # 2.5.4, 3.0.2 (2015-12-13)
 
   * Fix "show all" link where it was not using the configured base (if used)
