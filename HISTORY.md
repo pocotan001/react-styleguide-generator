@@ -1,3 +1,7 @@
+# UNRELEASED
+
+  * Allow passing a Javascript file for the `--config` option. This will allow usage of `webpackConfig` outside of using `gulp` or `grunt`
+
 # 2.5.5 (2015-12-15)
 
   * Fix issues where exception gets thrown where highlighter is fed an empty node
