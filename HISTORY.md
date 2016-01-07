@@ -1,4 +1,4 @@
-# UNRELEASED
+# 2.6.0 (2016-01-07)
 
   * Allow passing a Javascript file for the `--config` option. This will allow usage of `webpackConfig` outside of using `gulp` or `grunt`
 
