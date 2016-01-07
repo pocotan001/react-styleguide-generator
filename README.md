@@ -2,7 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/rsg-alt.svg)](https://npmjs.org/package/rsg-alt)
 
-* Use the `2.x` versions for babel 5, `3.x` for babel 6.
+* Use the `2.x` versions for babel 5, `3.x` for babel 6.'
+* Note that babel 6.4 requires semicolons in your class properties https://github.com/feross/standard/issues/372; packages have been fixed to 6.3 for now due to conflicts with using `standard.
 
 A React component guide that generates code examples, prop documentation, rendered component samples and is built for active development.
 
@@ -25,6 +26,7 @@ Differences:
 * `react-docgen` generation and asset distribution moved to custom webpack plugins
 * Fixed a bug where using input text boxes and typing into them will shift focus to the search box
 * Improved highlighting performance - extremely large guides should not take forever to render
+* Config file can now be an exported object, allowing for more dynamic configuration
 
 See `HISTORY.md` for future update info
 
@@ -177,7 +179,7 @@ Options:
   -t, --title      Used as a page title        ['Style Guide']
   -r, --root       Set the root path           ['.']
   -f, --files      Inject references to files  ['']
-  -c, --config     Use the config file         ['styleguide.json']
+  -c, --config     Use a js/json config file   ['styleguide.json']
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
   -d, --dev        Start server with webpack hmr [3000]
@@ -187,6 +189,9 @@ Examples:
   
   # Necessary to use a config file if you want to enable react-docgen
   rsg 'example/**/*.js' -c 'styleguide.json' -v
+  
+  # Example 2 - config file does module.exports = { ... }
+  rsg 'example/**/*.js' -c 'styleguide.js' -v
 ```
 
 #### Gulp
@@ -335,7 +340,23 @@ Default: `styleguide.json`
 
 The entire range of RSG API options is allowed. [Usage example](https://github.com/theogravity/react-styleguide-generator-alt/blob/master/example/styleguide.json).
 
-An object can be passed instead of a filename that contains the RSG API options.
+- An object can be passed instead of a filename that contains the RSG API options.
+- A Javascript file can be passed in that exports an object instead:
+
+```js
+// styleguide.js
+module.exports = {
+  "title": "React Style Guide",
+  "files": [
+    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css",
+    "example/example.css"
+  ],
+  "babelConfig": {
+    "stage": 0
+  },
+  "webpackConfig": {}
+}
+```
 
 ##### pushstate
 
