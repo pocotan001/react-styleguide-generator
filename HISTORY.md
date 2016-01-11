@@ -1,4 +1,4 @@
-# UNRELEASED
+# 2.6.1 (2016-01-11)
 
   * Change hmr server hostname to 0.0.0.0 so we can use with vagrant/virtualbox
 
