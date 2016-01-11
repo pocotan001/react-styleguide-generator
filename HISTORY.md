@@ -1,3 +1,7 @@
+# UNRELEASED
+
+  * Change hmr server hostname to 0.0.0.0 so we can use with vagrant/virtualbox
+
 # 2.6.0, 3.1.0 (2016-01-07)
 
   * Allow passing a Javascript file for the `--config` option. This will allow usage of `webpackConfig` outside of using `gulp` or `grunt`
