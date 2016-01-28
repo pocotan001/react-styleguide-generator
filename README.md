@@ -1,21 +1,46 @@
-# React Styleguide Generator
+# React Styleguide Generator (Alt!)
 
-[![CircleCI](https://img.shields.io/circleci/project/pocotan001/react-styleguide-generator.svg)](https://circleci.com/gh/pocotan001/react-styleguide-generator)
-[![npm](https://img.shields.io/npm/v/react-styleguide-generator.svg)](https://npmjs.org/package/react-styleguide-generator)
-[![Join the chat at https://gitter.im/pocotan001/react-styleguide-generator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pocotan001/react-styleguide-generator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![npm](https://img.shields.io/npm/v/rsg-alt.svg)](https://npmjs.org/package/rsg-alt)
 
-Easily generate a good-looking styleguide by adding some documentation to your React project.
+* Use the `2.x` versions for babel 5, `3.x` for babel 6.'
+* Note that babel 6.4 requires semicolons in your class properties https://github.com/feross/standard/issues/372; packages have been fixed to 6.3 for now due to conflicts with using `standard.
+* PRs are welcome, feel free to contribute to the project!
 
-![preview](https://cloud.githubusercontent.com/assets/869065/8392279/7f3811ae-1d20-11e5-9707-864d5994ba49.png)  
-[Demo](http://pocotan001.github.io/react-styleguide-generator/) using the [React-Bootstrap](http://react-bootstrap.github.io/).
+A React component guide that generates code examples, prop documentation, rendered component samples and is built for active development.
+
+* Renders out components that can be interacted with 
+* Uses `webpack` + hot module replacement to automatically update the guide as you work on your components
+* `react-docgen` is used under the hood to document your component's `propTypes`
+* Can manually + automatically generate code samples w/ syntax highlighting
+
+![preview](https://cloud.githubusercontent.com/assets/855434/11770687/a754aea4-a1b9-11e5-8ae2-1b5db451c8d5.png)  
+[Demo](http://theogravity.github.io/react-styleguide-generator-alt/) using the [React-Bootstrap](http://react-bootstrap.github.io/).
+
+## Fork notice
+
+This project is originally forked from [react-styleguide-generator](https://github.com/pocotan001/react-styleguide-generator).
+
+Differences:
+
+* Removed `browserify` and replaced with `webpack` + hot module replacement
+* Complete overhaul of the core `rsg.js` lib to support `webpack`
+* `react-docgen` generation and asset distribution moved to custom webpack plugins
+* Fixed a bug where using input text boxes and typing into them will shift focus to the search box
+* Improved highlighting performance - extremely large guides should not take forever to render
+* Config file can now be an exported object, allowing for more dynamic configuration
+
+See `HISTORY.md` for future update info
+
+## Prereqs
+
+* React 0.14.x. Install both `react` and `react-dom`.
+* Was developed on node 4 w/ npm 3.4. Unsure if older node versions work or not.
 
 ## Installation
 
 ``` sh
-npm install react-styleguide-generator
+npm install rsg-alt
 ```
-
-Which requires **React 0.14.0** or newer. To install it `npm install react`.
 
 ## Quick Start
 
@@ -58,7 +83,7 @@ export default class extends React.Component {
 - `code`: Code example (optional). Not specifying this will not auto-generate an example.
 - `className`: CSS class name (optional)
 
-#### Additional examples in tabs (optional) [Demo](http://pocotan001.github.io/react-styleguide-generator/#!/Features!/Additional%20examples%20in%20tabs)
+#### Additional examples in tabs (optional) [Demo](http://theogravity.github.io/react-styleguide-generator-alt/#!/Features!/Additional%20examples%20in%20tabs)
 
 You can optionally use tabs to segment out examples for a component:
 
@@ -98,7 +123,7 @@ export default class extends React.Component {
 - `examples[].props.children`: (optional) Child elements to assign to the example component
 - `examples[].code`: (optional) Code example. Omitting this will attempt to auto-generate a code example using the `examples[].props`
 
-#### Additional examples via doc comment (optional) [Demo](http://pocotan001.github.io/react-styleguide-generator/#!/Features!/Additional%20examples%20via%20doc%20comment)
+#### Additional examples via doc comment (optional) [Demo](http://theogravity.github.io/react-styleguide-generator-alt/#!/Features!/Additional%20examples%20via%20doc%20comment)
 
 Doc comment support example is:
 
@@ -132,7 +157,7 @@ export default class extends Component {
 }
 ```
 
-If necessary, visit [react-styleguide-generator/example](https://github.com/pocotan001/react-styleguide-generator/tree/master/example) to see more complete examples for the documenting syntax.
+If necessary, visit [react-styleguide-generator-alt/example](https://github.com/theogravity/react-styleguide-generator-alt/tree/master/example) to see more complete examples for the documenting syntax.
 
 ### Generating the documentation
 
@@ -155,23 +180,26 @@ Options:
   -t, --title      Used as a page title        ['Style Guide']
   -r, --root       Set the root path           ['.']
   -f, --files      Inject references to files  ['']
-  -c, --config     Use the config file         ['styleguide.json']
+  -c, --config     Use a js/json config file   ['styleguide.json']
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
-  -w, --watch      Watch mode using `browserifyConfig`
+  -d, --dev        Start server with webpack hmr [3000]
 
 Examples:
   rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js' -v
   
   # Necessary to use a config file if you want to enable react-docgen
   rsg 'example/**/*.js' -c 'styleguide.json' -v
+  
+  # Example 2 - config file does module.exports = { ... }
+  rsg 'example/**/*.js' -c 'styleguide.js' -v
 ```
 
 #### Gulp
 
 ``` js
 var gulp = require('gulp')
-var RSG = require('react-styleguide-generator')
+var RSG = require('rsg-alt')
 
 gulp.task('styleguide', function (done) {
   var rsg = RSG('example/**/*.js', {
@@ -192,7 +220,7 @@ gulp.task('styleguide', function (done) {
 #### Grunt
 
 ``` js
-var RSG = require('react-styleguide-generator')
+var RSG = require('rsg-alt')
 
 grunt.registerTask('rsg', 'React style guide', function () {
   var done = this.async()
@@ -202,7 +230,7 @@ grunt.registerTask('rsg', 'React style guide', function () {
 
     RSG(conf.input, {
       config: conf.configFile,
-      watch: false,
+      dev: false,
       verbose: true
     }).generate(function (err) {
       if (err) {
@@ -311,9 +339,25 @@ Inject file references into index.html if the files with the extension `.css` or
 Type: `String|Object`  
 Default: `styleguide.json`
 
-The entire range of RSG API options is allowed. [Usage example](https://github.com/pocotan001/react-styleguide-generator/blob/master/example/styleguide.json).
+The entire range of RSG API options is allowed. [Usage example](https://github.com/theogravity/react-styleguide-generator-alt/blob/master/example/styleguide.json).
 
-An object can be passed instead of a filename that contains the RSG API options.
+- An object can be passed instead of a filename that contains the RSG API options.
+- A Javascript file can be passed in that exports an object instead:
+
+```js
+// styleguide.js
+module.exports = {
+  "title": "React Style Guide",
+  "files": [
+    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css",
+    "example/example.css"
+  ],
+  "babelConfig": {
+    "stage": 0
+  },
+  "webpackConfig": {}
+}
+```
 
 ##### pushstate
 
@@ -337,25 +381,19 @@ A usage example is below. See the [babel docs](http://babeljs.io/docs/usage/opti
 }
 ```
 
-##### browserifyConfig
+##### webpackConfig
 
-Type: `Object`  
-Default: `{ standalone: 'Contents', debug: true }`
+Type: `Object`
+Default: `{}`
 
-A usage example is below. See the [browserify docs](https://github.com/substack/node-browserify#browserifyfiles--opts) for the complete list.
+Uses `deepmerge` to merge in a custom webpack configuation to the rsg webpack configuration. Existing arrays (eg plugins) are appended to maintain functionality.
 
-``` js
-{
-  extensions: ['', '.js', '.jsx']
-}
-```
+##### transpileIncludes
 
-### watch
+Type: `Array<String|RegExp>`
+Default: `null`
 
-Type: `String`
-Default: `false`
-
-Enables `watchify` for when the `input` files change, speeding up rebuild time.
+Adds a custom rule(s) to the webpack loader to include additional items to transpile via `babel-loader`. This is provided as a convenience to using `webpackConfig` directly.
 
 ### rsg.generate([callback])
 
@@ -366,8 +404,8 @@ Generate the files and their dependencies into a styleguide output.
 Get the demo running locally:
 
 ``` sh
-git clone git@github.com:pocotan001/react-styleguide-generator.git
-cd react-styleguide-generator/example/
+git clone git@github.com:theogravity/react-styleguide-generator-alt.git
+cd react-styleguide-generator-alt/example/
 npm install
 npm start
 ```

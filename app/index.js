@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import page from 'page'
 import App from './components/App'
 
+import './index.css'
+
 let mountNode = document.getElementById('app')
 
 /**

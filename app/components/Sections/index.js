@@ -36,6 +36,8 @@ export default class Sections extends Component {
           // This exists so we can pull out the displayName for props documentation
           Content.styleguide._self = <Content />
 
+          Content.styleguide._id = i
+
           return (
             <Section {...Content.styleguide} key={i}>
               {Content.prototype.render && <Content {...this.props} />}

@@ -5,6 +5,9 @@ import reactDocGenToMD from '../../utils/react-docgen-to-md'
 import Tabs from 'react-simpletabs'
 import utils from '../../../lib/utils'
 
+// Generated file using react-docgen created by the rsg.js and webpack-plugins/react-docgen.js lib
+import reactPropMeta from '../../../rsg-tmp/propsdoc'
+
 let exampleId = 0
 
 export default class Section extends Component {
@@ -22,7 +25,9 @@ export default class Section extends Component {
     // React element class used for rendering additional examples
     exampleComponent: PropTypes.func,
     // Reference to the example component
-    _self: PropTypes.object
+    _self: PropTypes.object,
+    // Id number of the section; used for caching/highlighting purposes
+    _id: PropTypes.number.isRequired
   }
 
   static defaultProps () {
@@ -32,12 +37,9 @@ export default class Section extends Component {
   }
 
   highlight () {
-    // @todo - possible perf issue if there are a huge amount of code blocks
-    let nodes = document.querySelectorAll('code.example-code')
-
-    // a NodeList is returned, not an Array, so can't use array methods here
-    for (let i = 0; i < nodes.length; ++i) {
-      hljs.highlightBlock(nodes[i])
+    let node = document.querySelector('[data-highlight-id="' + this.props._id + '"] code.example-code')
+    if (node) {
+      hljs.highlightBlock(node)
     }
   }
 
@@ -72,7 +74,7 @@ export default class Section extends Component {
     if (!markup) {
       // Check if the base component has docs
       displayName = utils.getDisplayName(this.props._self.type)
-      docMeta = window.RSG.propMetas[displayName]
+      docMeta = reactPropMeta[displayName]
 
       if (docMeta && docMeta.description) {
         markup = marked(docMeta.description.trim(), {sanitize: true})
@@ -81,7 +83,7 @@ export default class Section extends Component {
       // no description found on the base; check the defined exampleComponent instead
       if (!markup) {
         displayName = utils.getDisplayName(this.props.exampleComponent)
-        docMeta = window.RSG.propMetas[displayName]
+        docMeta = reactPropMeta[displayName]
 
         if (docMeta && docMeta.description) {
           markup = marked(docMeta.description.trim(), {sanitize: true})
@@ -164,7 +166,7 @@ export default class Section extends Component {
 
     return (
       <section className={className}>
-        <Tabs onAfterChange={this.highlight}>
+        <Tabs onAfterChange={() => this.highlight()}>
           {examples}
         </Tabs>
       </section>
@@ -272,7 +274,7 @@ export default class Section extends Component {
   renderCode (code) {
     if (code) {
       return (
-        <section className='sg sg-section-code'>
+        <section className='sg sg-section-code' data-highlight-id={this.props._id}>
         <pre className='sg'>
           <code className='sg xml example-code'>{code.trim()}</code>
         </pre>

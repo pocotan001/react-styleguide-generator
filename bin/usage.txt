@@ -5,11 +5,11 @@ Options:
   -t, --title      Used as a page title        ['Style Guide']
   -r, --root       Set the root path           ['.']
   -f, --files      Inject references to files  ['']
-  -c, --config     Use the config file         ['styleguide.json']
+  -c, --config     Use a js/json config file   ['styleguide.json']
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
   -V, --version    Version output              [false]
-  -w, --watch      Watch mode using browserifyConfig
+  -d, --dev        Start server with webpack hmr [3000]
 
 Examples:
   rsg 'example/**/*.js' -t 'My Style Guide' -f 'a.css, a.js'
