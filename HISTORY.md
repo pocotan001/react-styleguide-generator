@@ -1,3 +1,9 @@
+# 3.2.0 (2016-01-28)
+
+  * Fix issues with babel 6 found in
+    * https://github.com/theogravity/react-styleguide-generator-alt/issues/12
+    * https://github.com/theogravity/react-styleguide-generator-alt/issues/11
+
 # 3.1.1 (2016-01-11)
 
   * Change hmr server hostname to 0.0.0.0 so we can use with vagrant/virtualbox
