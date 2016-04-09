@@ -18,7 +18,13 @@ function RSG (input, opts) {
     output: TMP_DIR,
     config: null,
     babelConfig: {
-      stage: 0
+      presets: [
+        'es2015',
+        'react'
+      ],
+      plugins: [
+        'transform-class-properties'
+      ]
     },
     browserifyConfig: {
       standalone: 'Contents',
