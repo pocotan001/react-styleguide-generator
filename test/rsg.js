@@ -3,7 +3,6 @@
 var assert = require('assert')
 var path = require('path')
 var fs = require('fs-extra')
-var assign = require('object-assign')
 var _RSG = require('../lib/rsg')
 
 var INPUT_FILE = 'example/components/**/*.js'
@@ -32,7 +31,7 @@ function RSG (input, opts) {
     }
   }
 
-  return _RSG(input, assign(baseOpts, opts))
+  return _RSG(input, Object.assign(baseOpts, opts))
 }
 
 /**
