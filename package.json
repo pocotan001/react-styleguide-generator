@@ -86,7 +86,7 @@
     "mustache": "^2.1.2",
     "object-assign": "^4.0.1",
     "react-docgen": "^2.0.0",
-    "react-simpletabs": "matthewgertner/react-simpletabs",
+    "react-simpletabs": "^0.7.0",
     "slash": "^1.0.0",
     "watchify": "^3.7.0"
   },
