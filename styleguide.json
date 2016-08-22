@@ -5,6 +5,12 @@
     "example/example.css"
   ],
   "babelConfig": {
-    "stage": 0
+    "presets": [
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
   }
 }
