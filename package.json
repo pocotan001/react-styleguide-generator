@@ -69,8 +69,8 @@
     "node": ">=4"
   },
   "peerDependencies": {
-    "react": ">=0.14",
-    "react-dom": ">=0.14.0"
+    "react": ">=15.4.1",
+    "react-dom": ">=15.4.1"
   },
   "dependencies": {
     "babel-plugin-transform-class-properties": "^6.11.5",
@@ -91,16 +91,16 @@
     "watchify": "^3.7.0"
   },
   "devDependencies": {
-    "babel-eslint": "^4.0.5",
+    "babel-eslint": "^6.1.2",
     "cssnext": "^1.7.1",
     "gh-pages": "^0.4.0",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
     "mocha": "^2.2.5",
     "page": "1.6.3",
-    "react": "^0.14.0",
-    "react-bootstrap": "0.27.1",
-    "react-dom": "^0.14.0",
+    "react": "^15.4.1",
+    "react-bootstrap": "^0.30.7",
+    "react-dom": "^15.4.1",
     "rimraf": "^2.4.0",
     "standard": "^5.3.1",
     "uglify-js": "^2.4.23"
