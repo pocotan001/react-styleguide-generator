@@ -132,7 +132,15 @@ describe('RSG', function () {
     })
 
     it('should be an object', function () {
-      var babelConfig = { stage: 0 }
+      var babelConfig = {
+        presets: [
+          'es2015',
+          'react'
+        ],
+        plugins: [
+          'transform-class-properties'
+        ]
+      }
       var rsg = RSG(INPUT_FILE, { babelConfig: babelConfig })
       assert.deepEqual(rsg.opts.babelConfig, babelConfig)
     })
