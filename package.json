@@ -11,10 +11,10 @@
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
     "build:css": "cssnext -c app/index.css dist/app.css",
-    "build:js": "browserify -t [babelify --presets [es2015 react] --plugins [transform-class-properties]] -x react -x react-dom app | uglifyjs -m -o dist/app.js",
+    "build:js": "browserify -t [ babelify --presets [es2015 react ] --plugins [ add-module-exports transform-class-properties ] ] -x react -x react-dom app | uglifyjs -m -o dist/app.js",
     "dev-build": "npm run dev-build:css && npm run dev-build:js",
     "dev-build:css": "cssnext -s app/index.css dist/app.css",
-    "dev-build:js": "browserify -d -t [babelify --presets [es2015 react] --plugins [transform-class-properties]] -x react -x react-dom app -o dist/app.js",
+    "dev-build:js": "browserify -d -t [ babelify --presets [ es2015 react ] --plugins [ add-module-exports transform-class-properties ] ] -x react -x react-dom app -o dist/app.js",
     "clean": "rimraf dist/*",
     "styleguide": "node bin/rsg 'example/components/**/*.js' -v",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
@@ -73,6 +73,7 @@
     "react-dom": ">=15.4.1"
   },
   "dependencies": {
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.11.5",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
