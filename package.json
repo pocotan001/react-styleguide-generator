@@ -105,5 +105,15 @@
     "rimraf": "^2.4.0",
     "standard": "^5.3.1",
     "uglify-js": "^2.4.23"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      "add-module-exports",
+      "transform-class-properties"
+    ]
   }
 }
