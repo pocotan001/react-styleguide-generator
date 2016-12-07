@@ -15,7 +15,7 @@ Easily generate a good-looking styleguide by adding some documentation to your R
 npm install react-styleguide-generator
 ```
 
-Which requires **React 0.14.0** or newer. To install it `npm install react`.
+Which requires **React 15.x.x** or newer. To install it `npm install react`.
 
 ## Quick Start
 
@@ -162,7 +162,7 @@ Options:
 
 Examples:
   rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js' -v
-  
+
   # Necessary to use a config file if you want to enable react-docgen
   rsg 'example/**/*.js' -c 'styleguide.json' -v
 ```
