@@ -6,15 +6,19 @@
   "bin": {
     "rsg": "bin/rsg"
   },
+  "config": {
+    "postcss_plugins": "--use postcss-import --use postcss-cssnext --use cssnano",
+    "browserify_transforms": "[ babelify --presets [ es2015 react ] --plugins [ add-module-exports transform-class-properties ] ]"
+  },
   "scripts": {
     "test": "standard && mocha test/**/*.js",
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
-    "build:css": "cssnext -c app/index.css dist/app.css",
-    "build:js": "browserify -t [ babelify --presets [es2015 react ] --plugins [ add-module-exports transform-class-properties ] ] -x react -x react-dom app | uglifyjs -m -o dist/app.js",
+    "build:css": "postcss $npm_package_config_postcss_plugins --output dist/app.css app/index.css",
+    "build:js": "browserify -t $npm_package_config_browserify_transforms -x react -x react-dom app | uglifyjs -m -o dist/app.js",
     "dev-build": "npm run dev-build:css && npm run dev-build:js",
-    "dev-build:css": "cssnext -s app/index.css dist/app.css",
-    "dev-build:js": "browserify -d -t [ babelify --presets [ es2015 react ] --plugins [ add-module-exports transform-class-properties ] ] -x react -x react-dom app -o dist/app.js",
+    "dev-build:css": "postcss $npm_package_config_postcss_plugins --output dist/app.css app/index.css",
+    "dev-build:js": "browserify -d -t $npm_package_config_browserify_transforms -x react -x react-dom app -o dist/app.js",
     "clean": "rimraf dist/*",
     "styleguide": "node bin/rsg 'example/components/**/*.js' -v",
     "ghpages": "npm run styleguide -- -r 'react-styleguide-generator' && gh-pages -d styleguide"
@@ -93,12 +97,15 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
-    "cssnext": "^1.7.1",
+    "cssnano": "^3.8.1",
     "gh-pages": "^0.4.0",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
     "mocha": "^2.2.5",
     "page": "1.6.3",
+    "postcss-cli": "^2.6.0",
+    "postcss-cssnext": "^2.9.0",
+    "postcss-import": "^9.0.0",
     "react": "^15.4.1",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
