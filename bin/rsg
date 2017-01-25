@@ -1,58 +1,60 @@
 #!/usr/bin/env node
 
-var RSG = require('../lib/rsg')
-var argv = require('minimist')(process.argv.slice(2))
-var log
+const fs = require('fs')
+const path = require('path')
+const minimist = require('minimist')
+const argv = minimist(process.argv.slice(2))
+const rsg = require('../lib/rsg').rsg
+const logger = require('../lib/logger')
+const log = logger('bin', { debug: true })
 
-!(function () {
-  if (!argv._[0] || argv.h || argv.help) {
-    return require('fs').createReadStream(require('path').resolve(__dirname, 'usage.txt'))
-      .pipe(process.stdout)
-      .on('close', function () { process.exit(1) })
+if (!argv._[0] || argv.h || argv.help) {
+  return fs.createReadStream(path.resolve(__dirname, 'usage.txt'))
+    .pipe(process.stdout)
+    .on('close', () => process.exit(1))
+}
+
+if (argv.V || argv.version) {
+  return console.log(require('../package.json').version)
+}
+
+const opts = {
+  output: argv.o || argv.output,
+  title: argv.t || argv.title,
+  root: argv.r || argv.root,
+  pushstate: argv.p || argv.pushstate,
+  files: argv.f || argv.files,
+  config: argv.c || argv.config,
+  watch: argv.w || argv.watch,
+  verbose: argv.v || argv.verbose
+}
+
+// removing falsy fields from an opts
+Object.keys(opts).forEach(name => {
+  if (!opts[name]) {
+    delete opts[name]
   }
+})
 
-  if (argv.V || argv.version) {
-    return console.log(require('../package.json').version)
-  }
+// convert files to array
+// 'a.js, b.js' -> ['a.js', 'b.js']
+if (opts.files) {
+  opts.files = opts.files.split(',').map(part => part.trim())
+}
 
-  var opts = {
-    output: argv.o || argv.output,
-    title: argv.t || argv.title,
-    root: argv.r || argv.root,
-    pushstate: argv.p || argv.pushstate,
-    files: argv.f || argv.files,
-    config: argv.c || argv.config,
-    watch: argv.w || argv.watch,
-    verbose: argv.v || argv.verbose
-  }
-
-  log = require('../lib/logger')('bin', { debug: true })
-
-  // removing falsy fields from an opts
-  Object.keys(opts).forEach(function (name) {
-    if (!opts[name]) {
-      delete opts[name]
-    }
-  })
-
-  // convert files to array
-  // 'a.js, b.js' -> ['a.js', 'b.js']
-  if (opts.files) {
-    opts.files = opts.files.split(',').map(function (part) { return part.trim() })
-  }
-
-  RSG(argv._[0], opts).generate(function (err) {
-    if (err) {
-      log.error(err)
-      process.exit(1)
-    }
-
+rsg(argv._[0], opts)
+  .generate()
+  .then(() => {
     if (argv.v || argv.verbose) {
-      log.info({ outputDir: this.opts.output}, 'Styleguide generation complete')
+      log.info({
+        outputDir: this.opts.output
+      }, 'Styleguide generation complete')
     }
 
     if (!opts.watch) {
       process.exit(0)
     }
+  }).catch(err => {
+    log.error(err)
+    process.exit(1)
   })
-})()
