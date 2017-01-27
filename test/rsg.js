@@ -1,8 +1,6 @@
-/* global describe, it, after */
-
-const assert = require('assert')
 const path = require('path')
 const fs = require('fs-extra')
+const test = require('ava')
 const rsg = require('../lib/rsg').rsg
 
 const INPUT_FILE = 'example/components/**/*.js'
@@ -22,6 +20,7 @@ function RSG (input, opts) {
         'react'
       ],
       plugins: [
+        'add-module-exports',
         'transform-class-properties'
       ]
     },
@@ -40,191 +39,161 @@ function getRealPath (file) {
   return path.resolve(process.cwd(), file)
 }
 
-describe('RSG', function () {
-  after(() => {
-    fs.removeSync(TMP_DIR)
+test.after(() => {
+  fs.removeSync(TMP_DIR)
+})
+
+test('should throw an exception when the value is not present', t => {
+  t.throws(RSG.bind(), Error)
+})
+
+test('should be an array', t => {
+  const rsg = RSG(INPUT_FILE)
+  t.true(Array.isArray(rsg.input))
+})
+
+test('should be a realpath', t => {
+  const rsg = RSG(INPUT_FILE)
+  t.true(rsg.input.every(file => getRealPath(file)))
+})
+
+test('should default to "styleguide"', t => {
+  const rsg = RSG(INPUT_FILE, { output: undefined })
+  t.is(rsg.opts.output, getRealPath('styleguide'))
+})
+
+test('should be a "Foo"', t => {
+  const rsg = RSG(INPUT_FILE, { output: 'Foo' })
+  t.is(rsg.opts.output, getRealPath('Foo'))
+})
+
+test('should default to "Style Guide"', t => {
+  const rsg = RSG(INPUT_FILE, { title: undefined })
+  t.is(rsg.opts.title, 'Style Guide')
+})
+
+test('should be a "Foo"', t => {
+  const rsg = RSG(INPUT_FILE, { title: 'Foo' })
+  t.is(rsg.opts.title, 'Foo')
+})
+
+test('should default to null', t => {
+  const rsg = RSG(INPUT_FILE, { root: undefined })
+  t.is(rsg.opts.root, null)
+})
+
+test('should be a "foo"', t => {
+  const rsg = RSG(INPUT_FILE, { root: 'foo' })
+  t.is(rsg.opts.root, '/foo')
+})
+
+test('should default to false', t => {
+  const rsg = RSG(INPUT_FILE, { pushstate: undefined })
+  t.false(rsg.opts.pushstate)
+})
+
+test('should be a true', t => {
+  const rsg = RSG(INPUT_FILE, { pushstate: true })
+  t.true(rsg.opts.pushstate)
+})
+
+test('should default to []', t => {
+  const rsg = RSG(INPUT_FILE, { files: undefined })
+  t.deepEqual(rsg.opts.files, [])
+})
+
+test('should be the files', t => {
+  const files = ['a.css', 'a.js']
+  const rsg = RSG(INPUT_FILE, { files: files })
+  t.deepEqual(rsg.opts.files, files)
+})
+
+test('should default to null', t => {
+  const rsg = RSG(INPUT_FILE, { babelConfig: undefined })
+  t.is(rsg.opts.babelConfig, null)
+})
+
+test('should be an object', t => {
+  const babelConfig = {
+    presets: [
+      'es2015',
+      'react'
+    ],
+    plugins: [
+      'transform-class-properties'
+    ]
+  }
+  const rsg = RSG(INPUT_FILE, { babelConfig })
+  t.deepEqual(rsg.opts.babelConfig, babelConfig)
+})
+
+test('should default to { standalone: \'Contents\', debug: true }', t => {
+  const browserifyConfig = {
+    debug: true,
+    standalone: 'Contents'
+  }
+  const rsg = RSG(INPUT_FILE, {
+    browserifyConfig
   })
+  t.deepEqual(rsg.opts.browserifyConfig, browserifyConfig)
+})
 
-  describe('input', function () {
-    it('should throw an exception when the value is not present', () => {
-      assert.throws(RSG.bind(), Error)
-    })
-
-    it('should be an array', () => {
-      const rsg = RSG(INPUT_FILE)
-      assert(Array.isArray(rsg.input))
-    })
-
-    it('should be a realpath', () => {
-      const rsg = RSG(INPUT_FILE)
-      assert(rsg.input.every(file => getRealPath(file)))
-    })
-  })
-
-  describe('opts.output', function () {
-    it('should default to "styleguide"', () => {
-      const rsg = RSG(INPUT_FILE, { output: undefined })
-      assert.equal(rsg.opts.output, getRealPath('styleguide'))
-    })
-
-    it('should be a "Foo"', () => {
-      const rsg = RSG(INPUT_FILE, { output: 'Foo' })
-      assert.equal(rsg.opts.output, getRealPath('Foo'))
-    })
-  })
-
-  describe('opts.title', function () {
-    it('should default to "Style Guide"', () => {
-      const rsg = RSG(INPUT_FILE, { title: undefined })
-      assert.equal(rsg.opts.title, 'Style Guide')
-    })
-
-    it('should be a "Foo"', () => {
-      const rsg = RSG(INPUT_FILE, { title: 'Foo' })
-      assert.equal(rsg.opts.title, 'Foo')
-    })
-  })
-
-  describe('opts.root', function () {
-    it('should default to null', () => {
-      const rsg = RSG(INPUT_FILE, { root: undefined })
-      assert.equal(rsg.opts.root, null)
-    })
-
-    it('should be a "foo"', () => {
-      const rsg = RSG(INPUT_FILE, { root: 'foo' })
-      assert.equal(rsg.opts.root, '/foo')
-    })
-  })
-
-  describe('opts.pushstate', function () {
-    it('should default to false', () => {
-      const rsg = RSG(INPUT_FILE, { pushstate: undefined })
-      assert.equal(rsg.opts.pushstate, false)
-    })
-
-    it('should be a true', () => {
-      const rsg = RSG(INPUT_FILE, { pushstate: true })
-      assert.equal(rsg.opts.pushstate, true)
-    })
-  })
-
-  describe('opts.files', function () {
-    it('should default to []', () => {
-      const rsg = RSG(INPUT_FILE, { files: undefined })
-      assert.deepEqual(rsg.opts.files, [])
-    })
-
-    it('should be the files', () => {
-      const files = ['a.css', 'a.js']
-      const rsg = RSG(INPUT_FILE, { files: files })
-      assert.deepEqual(rsg.opts.files, files)
-    })
-  })
-
-  describe('opts.babelConfig', function () {
-    it('should default to null', () => {
-      const rsg = RSG(INPUT_FILE, { babelConfig: undefined })
-      assert.equal(rsg.opts.babelConfig, null)
-    })
-
-    it('should be an object', () => {
-      const babelConfig = {
-        presets: [
-          'es2015',
-          'react'
-        ],
-        plugins: [
-          'transform-class-properties'
-        ]
-      }
-      const rsg = RSG(INPUT_FILE, { babelConfig })
-      assert.deepEqual(rsg.opts.babelConfig, babelConfig)
-    })
-  })
-
-  describe('opts.browserifyConfig', function () {
-    it('should default to { standalone: \'Contents\', debug: true }', () => {
-      const browserifyConfig = {
-        standalone: 'Contents',
-        debug: true
-      }
-      const rsg = RSG(INPUT_FILE, {
-        browserifyConfig
-      })
-      assert.deepEqual(rsg.opts.browserifyConfig, browserifyConfig)
-    })
-
-    it('should merge with defaults', function () {
-      const browserifyMergedConfig = {
-        standalone: 'Contents',
-        debug: true,
-        extensions: ['', '.js', '.jsx']
-      }
-      const rsg = RSG(INPUT_FILE, {
-        browserifyConfig: {
-          extensions: ['', '.js', '.jsx']
-        }
-      })
-      assert.deepEqual(rsg.opts.browserifyConfig, browserifyMergedConfig)
-    })
-  })
-
-  describe('opts.config', function () {
-    it('should load styleguide.json', function () {
-      const rsg = RSG(INPUT_FILE, {
-        config: undefined
-      })
-      assert.equal(rsg.opts.title, 'React Style Guide')
-    })
-
-    it('should be overwritten', () => {
-      const rsg = RSG(INPUT_FILE, {
-        config: undefined,
-        title: 'foo'
-      })
-      assert.equal(rsg.opts.title, 'foo')
-    })
-
-    it('should custom config file', () => {
-      const src = TMP_DIR + '/foo.json'
-      fs.outputFileSync(src, '{ "title": "foo" }')
-
-      const rsg = RSG(INPUT_FILE, {
-        config: src
-      })
-      assert.equal(rsg.opts.title, 'foo')
-      fs.removeSync(src)
-    })
-  })
-
-  describe('#generate', function () {
-    // this test is too heavy...
-    this.timeout(60000)
-
-    const opts = {
-      files: [
-        '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css',
-        'example/example.css'
-      ]
+test('should merge with defaults', t => {
+  const browserifyMergedConfig = {
+    debug: true,
+    standalone: 'Contents',
+    extensions: ['', '.js', '.jsx']
+  }
+  const rsg = RSG(INPUT_FILE, {
+    browserifyConfig: {
+      extensions: ['', '.js', '.jsx']
     }
-
-    const rsg = RSG(INPUT_FILE, opts)
-    const generated = rsg.generate()
-
-    it('files should exist', done => {
-      const files = [
-        'index.html',
-        'src/contents.js',
-        'src/contents-inter.js',
-        'src/react_' + rsg.reactVersion + '.js',
-        'files/example.css'
-      ].map(file => getRealPath(TMP_DIR + '/' + file))
-
-      generated.then(() => {
-        assert(files.every(file => fs.existsSync(file)))
-        done()
-      }).catch(done)
-    })
   })
+  t.deepEqual(rsg.opts.browserifyConfig, browserifyMergedConfig)
+})
+
+test('should load styleguide.json', t => {
+  const rsg = RSG(INPUT_FILE, {
+    config: undefined
+  })
+  t.is(rsg.opts.title, 'React Style Guide')
+})
+
+test('should be overwritten', t => {
+  const rsg = RSG(INPUT_FILE, {
+    config: undefined,
+    title: 'foo'
+  })
+  t.is(rsg.opts.title, 'foo')
+})
+
+test('should custom config file', t => {
+  const src = TMP_DIR + '/foo.json'
+  fs.outputFileSync(src, '{ "title": "foo" }')
+
+  const rsg = RSG(INPUT_FILE, {
+    config: src
+  })
+  t.is(rsg.opts.title, 'foo')
+  fs.removeSync(src)
+})
+
+test('files should exist', async t => {
+  const rsg = RSG(INPUT_FILE, {
+    files: [
+      '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css',
+      'example/example.css'
+    ]
+  })
+  await rsg.generate()
+
+  const files = [
+    'index.html',
+    'src/contents.js',
+    'src/contents-inter.js',
+    'src/react_' + rsg.reactVersion + '.js',
+    'files/example.css'
+  ].map(file => getRealPath(TMP_DIR + '/' + file))
+
+  t.true(files.every(file => fs.existsSync(file)))
 })

@@ -11,7 +11,7 @@
     "browserify_transforms": "[ babelify --presets [ es2015 react ] --plugins [ add-module-exports transform-class-properties ] ]"
   },
   "scripts": {
-    "test": "standard && mocha test/**/*.js",
+    "test": "standard && ava",
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
     "build:css": "postcss $npm_package_config_postcss_plugins --output dist/app.css app/index.css",
@@ -95,12 +95,12 @@
     "watchify": "^3.7.0"
   },
   "devDependencies": {
+    "ava": "^0.17.0",
     "babel-eslint": "^6.1.2",
     "cssnano": "^3.8.1",
     "gh-pages": "^0.4.0",
     "highlight.js": "^8.6.0",
     "marked": "^0.3.3",
-    "mocha": "^2.2.5",
     "page": "1.6.3",
     "postcss-cli": "^2.6.0",
     "postcss-cssnext": "^2.9.0",
