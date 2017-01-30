@@ -170,49 +170,46 @@ Examples:
 #### Gulp
 
 ``` js
-var gulp = require('gulp')
-var RSG = require('react-styleguide-generator')
+const gulp = require('gulp')
+const rsg = require('react-styleguide-generator').rsg
 
 gulp.task('styleguide', function (done) {
-  var rsg = RSG('example/**/*.js', {
+  rsg('example/**/*.js', {
     output: 'path/to/dir',
     files: ['a.css', 'a.js']
-  })
-
-  rsg.generate(function (err) {
-    if (err) {
-      console.error(String(err))
-    }
-
-    done()
-  })
+  }).generate()
+    .then(() => done())
+    .catch(err => {
+      console.error(err)
+      done()
+    })
 })
 ```
 
 #### Grunt
 
 ``` js
-var RSG = require('react-styleguide-generator')
+const rsg = require('react-styleguide-generator').rsg
 
 grunt.registerTask('rsg', 'React style guide', function () {
-  var done = this.async()
+  const done = this.async()
 
   try {
-    var conf = grunt.config.get('rsg')
+    const conf = grunt.config.get('rsg')
 
-    RSG(conf.input, {
+    rsg(conf.input, {
       config: conf.configFile,
       watch: false,
       verbose: true
-    }).generate(function (err) {
-      if (err) {
-          grunt.log.error('Error: ' + err + ' ' + err.stack())
-          return done(false)
-      }
-
-      grunt.log.ok('react styleguide generation complete')
-      done()
-    })
+    }).generate()
+      .then(() => {
+        grunt.log.ok('react styleguide generation complete')
+        done()
+      })
+      .catch(err => {
+        grunt.log.error('Error: ' + err + ' ' + err.stack())
+        done(false)
+      })
   } catch (e) {
     grunt.log.error('Error: ' + e + ' ' + e.stack)
     done(false)
@@ -357,7 +354,7 @@ Default: `false`
 
 Enables `watchify` for when the `input` files change, speeding up rebuild time.
 
-### rsg.generate([callback])
+### rsg.generate()
 
 Generate the files and their dependencies into a styleguide output.
 
