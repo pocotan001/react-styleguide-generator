@@ -47,7 +47,7 @@ rsg(argv._[0], opts)
   .then(() => {
     if (argv.v || argv.verbose) {
       log.info({
-        outputDir: this.opts.output
+        outputDir: opts.output
       }, 'Styleguide generation complete')
     }
 
