@@ -33,7 +33,7 @@ module.exports = function docgenToMarkdown (displayName) {
         if (prop.type) {
           return (
             `\`${propName}${prop.type.name ? ':' + prop.type.name : ''}${prop.required ? '.isRequired' : ''}\`` +
-            `${prop.description ? ` \- ${prop.description}` : ''}${value}\n`
+            `${prop.description ? ` - ${prop.description}` : ''}${value}\n`
           )
         } else {
           return null

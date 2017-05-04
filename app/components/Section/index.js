@@ -229,7 +229,7 @@ export default class Section extends Component {
   }
 
   renderAutoCode (props) {
-    let displayName = this.props.exampleComponent && utils.getDisplayName(this.props.exampleComponent) || 'Component'
+    let displayName = this.props.exampleComponent ? utils.getDisplayName(this.props.exampleComponent) : 'Component'
     let html
 
     if (props) {
@@ -273,9 +273,9 @@ export default class Section extends Component {
     if (code) {
       return (
         <section className='sg sg-section-code'>
-        <pre className='sg'>
-          <code className='sg xml example-code'>{code.trim()}</code>
-        </pre>
+          <pre className='sg'>
+            <code className='sg xml example-code'>{code.trim()}</code>
+          </pre>
         </section>
       )
     }
