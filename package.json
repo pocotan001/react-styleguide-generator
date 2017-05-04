@@ -15,7 +15,7 @@
     "prod": "npm run clean && npm run build",
     "build": "npm run build:css && npm run build:js",
     "build:css": "postcss $npm_package_config_postcss_plugins --output dist/app.css app/index.css",
-    "build:js": "browserify -t $npm_package_config_browserify_transforms -x react -x react-dom app | uglifyjs -m -o dist/app.js",
+    "build:js": "browserify -t $npm_package_config_browserify_transforms -x react -x react-dom app -o dist/app.js && uglifyjs dist/app.js > dist/app.js",
     "dev-build": "npm run dev-build:css && npm run dev-build:js",
     "dev-build:css": "postcss $npm_package_config_postcss_plugins --output dist/app.css app/index.css",
     "dev-build:js": "browserify -d -t $npm_package_config_browserify_transforms -x react -x react-dom app -o dist/app.js",
@@ -72,10 +72,6 @@
   "engines": {
     "node": ">=6"
   },
-  "peerDependencies": {
-    "react": ">=15.4.1",
-    "react-dom": ">=15.4.1"
-  },
   "dependencies": {
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.11.5",
@@ -83,10 +79,10 @@
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.11.6",
     "babelify": "^7.2.0",
-    "browserify": "^13.0.0",
+    "browserify": "^14.3.0",
     "bunyan": "^1.4.0",
-    "fs-extra": "^0.24.0",
-    "glob": "^5.0.10",
+    "fs-extra": "^3.0.0",
+    "glob": "^7.1.1",
     "minimist": "^1.1.1",
     "mustache": "^2.1.2",
     "react-docgen": "^2.0.0",
@@ -96,7 +92,7 @@
   },
   "devDependencies": {
     "ava": "^0.17.0",
-    "babel-eslint": "^6.1.2",
+    "babel-eslint": "^7.2.3",
     "cssnano": "^3.8.1",
     "gh-pages": "^0.4.0",
     "highlight.js": "^8.6.0",
@@ -109,8 +105,12 @@
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
     "rimraf": "^2.4.0",
-    "standard": "^5.3.1",
+    "standard": "^10.0.2",
     "uglify-js": "^2.4.23"
+  },
+  "peerDependencies": {
+    "react": ">=15.4.1",
+    "react-dom": ">=15.4.1"
   },
   "babel": {
     "presets": [
